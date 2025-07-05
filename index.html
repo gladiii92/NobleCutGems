@@ -1513,8 +1513,22 @@
             langBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
                     const lang = btn.getAttribute('data-lang');
+                    
+                    // Check if content exists for this language
+                    const elementsForLang = document.querySelectorAll(`[lang="${lang}"]`);
+                    
+                    // If no content exists for this language, stay on German
+                    if (elementsForLang.length === 0) {
+                        alert('Diese Sprache ist noch nicht verfügbar. / This language is not yet available. / Cette langue n\'est pas encore disponible.');
+                        return;
+                    }
+                    
+                    // Remove active class from all buttons
                     langBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
                     btn.classList.add('active');
+                    
+                    // Show elements of selected language, hide others
                     langElements.forEach(el => {
                         if (el.getAttribute('lang') === lang) {
                             el.classList.add('active-lang');
