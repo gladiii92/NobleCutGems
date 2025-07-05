@@ -270,10 +270,11 @@
             }
     
             .modal-carousel img {
-                width: auto !important;      /* Breite automatisch */
-                height: 90% !important;      /* Höhe maximieren */
-                max-width: 100%;            /* Trotzdem nicht über Container hinaus */
-                object-fit: contain;
+                width: auto !important;
+                height: 75% !important;           /* Nur 75% der Höhe */
+                max-width: 100%;
+                object-fit: cover !important;     /* WICHTIG: cover statt contain */
+                object-position: center bottom;   /* WICHTIG: zeigt unteren Teil */
                 cursor: zoom-in;
                 margin: 0 auto;
                 display: block;
@@ -282,6 +283,7 @@
                 left: 50%;
                 transform: translate(-50%, -50%);
             }
+        
             .modal-carousel video {
                 max-width: 70%; /* Noch kleiner - war 100% */
                 max-height: 70%; /* Noch kleiner - war 100% */
@@ -690,10 +692,11 @@
             }
     
             .carousel-slide img {
-                width: auto !important;      /* Breite automatisch */
-                height: 100% !important;     /* Höhe ausfüllen */
-                max-width: 100%;            /* Nicht über Container */
-                object-fit: contain;
+                width: auto !important;
+                height: 75% !important;           /* Nur 75% der Höhe */
+                max-width: 100%;
+                object-fit: cover !important;     /* WICHTIG: cover statt contain */
+                object-position: center bottom;   /* WICHTIG: zeigt unteren Teil */
                 cursor: pointer;
                 margin: 0 auto;
                 display: block;
@@ -702,6 +705,7 @@
                 left: 50%;
                 transform: translate(-50%, -50%);
             }
+        
             .carousel-slide video {
                 width: 100%;
                 height: 100%;
@@ -2666,6 +2670,50 @@
             });
             
             console.log('✅ WEBSITE VOLLSTÄNDIG GELADEN!');
+        });
+        // 🔧 HIER DEN BUG-FIX CODE EINFÜGEN:
+        
+        // BUG-FIX: Verhindere dass Karussell-Klicks die Gem-Card triggern
+        function stopEventBubbling() {
+            console.log('🔧 Event-Bubbling Fix wird angewendet...');
+            
+            // Alle Karussell-Elemente finden
+            const carouselArrows = document.querySelectorAll('.carousel-arrow');
+            const carouselDots = document.querySelectorAll('.carousel-dot');
+            
+            // Pfeile: Event-Bubbling stoppen
+            carouselArrows.forEach(arrow => {
+                arrow.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    console.log('🏹 Pfeil geklickt - Event gestoppt');
+                });
+            });
+            
+            // Dots: Event-Bubbling stoppen
+            carouselDots.forEach(dot => {
+                dot.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    console.log('⚫ Dot geklickt - Event gestoppt');
+                });
+            });
+            
+            console.log('✅ Event-Bubbling Fix angewendet!');
+        }
+
+        // Nach dem DOM-Loading ausführen
+        setTimeout(stopEventBubbling, 1000);
+
+        // Auch nach Modal-Öffnung ausführen (für dynamische Inhalte)
+        document.addEventListener('DOMContentLoaded', function() {
+            const originalSetupModalCarousel = window.setupModalCarousel;
+            if (originalSetupModalCarousel) {
+                window.setupModalCarousel = function() {
+                    originalSetupModalCarousel();
+                    stopEventBubbling();
+                };
+            }
         });
     </script>
 
