@@ -243,8 +243,8 @@
     
             /* BILD BEREICH - 75% */
             .modal-image-section {
-                width: 125%;
-                height: 85%;
+                width: 100%;
+                height: 75%;
                 position: relative;
                 overflow: hidden;
                 background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(244, 228, 193, 0.1));
@@ -270,18 +270,13 @@
             }
     
             .modal-carousel img {
-                width: auto !important;
-                height: 85% !important;           /* Nur 75% der Höhe */
-                max-width: 125%;
-                object-fit: cover !important;     /* WICHTIG: cover statt contain */
-                object-position: center bottom;   /* WICHTIG: zeigt unteren Teil */
+                width: 100% !important;           /* GLEICH wie Videos */
+                height: 100% !important;          /* GLEICH wie Videos */
+                max-width: 100%;
+                object-fit: cover !important;     
+                object-position: center bottom;   /* Zeigt unteren Teil (wo der Stein ist) */
                 cursor: zoom-in;
-                margin: 0 auto;
-                display: block;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+                padding: 10px;                    /* GLEICH wie Videos */
             }
         
             .modal-carousel video {
@@ -692,18 +687,11 @@
             }
     
             .carousel-slide img {
-                width: auto !important;
-                height: 85% !important;           /* Nur 75% der Höhe */
-                max-width: 125%;
-                object-fit: cover !important;     /* WICHTIG: cover statt contain */
-                object-position: center bottom;   /* WICHTIG: zeigt unteren Teil */
+                width: 100% !important;           /* GLEICH wie Videos */
+                height: 100% !important;          /* GLEICH wie Videos */
+                object-fit: cover !important;     
+                object-position: center bottom;   /* Zeigt unteren Teil */
                 cursor: pointer;
-                margin: 0 auto;
-                display: block;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
             }
         
             .carousel-slide video {
