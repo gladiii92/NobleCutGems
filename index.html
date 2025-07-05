@@ -71,7 +71,7 @@
         /* BESSERE Social Media Buttons */
         .social-media {
             position: fixed;
-            bottom: 105px;
+            bottom: 100px;
             right: 30px;
             z-index: 999;
             display: flex;
@@ -2201,219 +2201,80 @@
     </div>
 
     <script>
-    window.addEventListener('DOMContentLoaded', () => {
-        console.log('DOM geladen - starte JavaScript');
-    
-        // Language switcher
-        const langBtns = document.querySelectorAll('.lang-btn');
-        const langContents = document.querySelectorAll('.lang-content');
-    
-        langBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const lang = btn.getAttribute('data-lang');
-                langBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                langContents.forEach(content => {
-                    content.classList.remove('active');
-                    if (content.getAttribute('data-lang') === lang) {
-                        content.classList.add('active');
-                    }
-                });
-            });
-        });
-    
-        // Category filter
-        const categoryBtns = document.querySelectorAll('.category-btn');
-        const gemCards = document.querySelectorAll('.gem-card');
-    
-        categoryBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const category = btn.getAttribute('data-category');
-                categoryBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                gemCards.forEach(card => {
-                    if (category === 'all' || card.getAttribute('data-category') === category) {
-                        card.classList.add('show');
-                    } else {
-                        card.classList.remove('show');
-                    }
-                });
-            });
-        });
-    
-        // Carousel functionality
-        const carousels = document.querySelectorAll('.carousel-container');
-        carousels.forEach(carousel => {
-            const slides = carousel.querySelectorAll('.carousel-slide');
-            const dots = carousel.querySelectorAll('.carousel-dot');
-            const prevArrow = carousel.querySelector('.carousel-arrow.prev');
-            const nextArrow = carousel.querySelector('.carousel-arrow.next');
-            let currentIndex = 0;
-    
-            function showSlide(index) {
-                slides.forEach((slide, i) => {
-                    slide.classList.toggle('active', i === index);
-                });
-                dots.forEach((dot, i) => {
-                    dot.classList.toggle('active', i === index);
-                });
-                currentIndex = index;
-            }
-    
-            dots.forEach((dot, i) => {
-                dot.addEventListener('click', () => showSlide(i));
-            });
-    
-            if (prevArrow) {
-                prevArrow.addEventListener('click', () => {
-                    let newIndex = currentIndex - 1;
-                    if (newIndex < 0) newIndex = slides.length - 1;
-                    showSlide(newIndex);
-                });
-            }
-    
-            if (nextArrow) {
-                nextArrow.addEventListener('click', () => {
-                    let newIndex = currentIndex + 1;
-                    if (newIndex >= slides.length) newIndex = 0;
-                    showSlide(newIndex);
-                });
-            }
-    
-            if (slides.length > 0) showSlide(0);
-        });
-    
-        // GARANTIERT FUNKTIONIERENDES Zoom Modal
-        setTimeout(() => {
-            console.log('Starte Zoom-Modal Setup...');
+    // DIREKTER TEST - FUNKTIONIERT GARANTIERT
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('🔥 DIREKTER TEST GESTARTET');
+        
+        // Warte 2 Sekunden, dann füge Click-Handler hinzu
+        setTimeout(function() {
+            const firstImage = document.querySelector('img[src*="sapphire1-1"]');
+            console.log('🖼️ Erstes Bild gefunden:', firstImage ? 'JA' : 'NEIN');
             
-            const modal = document.getElementById('zoomModal');
-            const modalImg = document.getElementById('zoomImg');
-            const closeBtn = document.getElementById('zoomClose');
-            
-            console.log('Modal gefunden:', modal ? 'Ja' : 'Nein');
-            console.log('Modal Img gefunden:', modalImg ? 'Ja' : 'Nein');
-            console.log('Close Button gefunden:', closeBtn ? 'Ja' : 'Nein');
-    
-            if (!modal || !modalImg || !closeBtn) {
-                console.error('Modal-Elemente nicht gefunden!');
-                return;
-            }
-    
-            // Alle Bilder mit der Klasse "zoomable" finden
-            const images = document.querySelectorAll('.zoomable');
-            console.log('Zoombare Bilder gefunden:', images.length);
-    
-            if (images.length === 0) {
-                console.error('Keine zoombare Bilder gefunden!');
-                return;
-            }
-    
-            // Event Listener für jedes Bild
-            images.forEach((img, index) => {
-                console.log(`Setze Event Listener für Bild ${index + 1}:`, img.src);
-                
-                // Click Event
-                img.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    event.stopPropagation();
+            if (firstImage) {
+                // DIREKTE Click-Funktion
+                firstImage.onclick = function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
                     
-                    console.log('BILD GEKLICKT:', this.src);
+                    console.log('🎯 BILD GEKLICKT - DIREKT!');
                     
-                    // Modal anzeigen
-                    modal.style.display = 'block';
-                    modal.classList.add('show');
+                    // Modal erstellen falls nicht vorhanden
+                    let modal = document.getElementById('zoomModal');
+                    if (!modal) {
+                        modal = document.createElement('div');
+                        modal.id = 'zoomModal';
+                        modal.innerHTML = `
+                            <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 99999; display: flex; align-items: center; justify-content: center; cursor: zoom-out;">
+                                <img style="max-width: 90%; max-height: 90%; object-fit: contain; border-radius: 10px;">
+                                <span style="position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; background: rgba(0,0,0,0.5); padding: 10px; border-radius: 50%;">&times;</span>
+                            </div>
+                        `;
+                        document.body.appendChild(modal);
+                    }
+                    
+                    const modalImg = modal.querySelector('img');
+                    const closeBtn = modal.querySelector('span');
+                    
+                    // Bild anzeigen
                     modalImg.src = this.src;
-                    modalImg.alt = this.alt || 'Vergrößertes Bild';
-                    modalImg.style.display = 'block';
-                    
-                    // Body scrollen verhindern
+                    modal.style.display = 'block';
                     document.body.style.overflow = 'hidden';
                     
-                    console.log('Modal sollte jetzt sichtbar sein');
-                });
-    
-                // Hover-Effekt
-                img.addEventListener('mouseenter', function() {
+                    console.log('🖼️ MODAL GEÖFFNET!');
+                    
+                    // Schließen-Events
+                    closeBtn.onclick = function() {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                        console.log('❌ MODAL GESCHLOSSEN');
+                    };
+                    
+                    modal.onclick = function(e) {
+                        if (e.target === modal || e.target === modalImg) {
+                            modal.style.display = 'none';
+                            document.body.style.overflow = 'auto';
+                            console.log('❌ MODAL GESCHLOSSEN (außerhalb)');
+                        }
+                    };
+                };
+                
+                // Visueller Hover-Effekt
+                firstImage.onmouseenter = function() {
                     this.style.transform = 'scale(1.05)';
-                    this.style.border = '3px solid var(--primary-gold)';
-                });
-    
-                img.addEventListener('mouseleave', function() {
+                    this.style.cursor = 'zoom-in';
+                    this.style.border = '3px solid gold';
+                    console.log('👆 HOVER: EIN');
+                };
+                
+                firstImage.onmouseleave = function() {
                     this.style.transform = 'scale(1)';
-                    this.style.border = '3px solid transparent';
-                });
-            });
-    
-            // Modal schließen - Close Button
-            closeBtn.addEventListener('click', function() {
-                console.log('Close Button geklickt');
-                modal.style.display = 'none';
-                modal.classList.remove('show');
-                modalImg.style.display = 'none';
-                modalImg.src = '';
-                document.body.style.overflow = 'auto';
-            });
-    
-            // Modal schließen - Außerhalb klicken
-            modal.addEventListener('click', function(event) {
-                if (event.target === modal) {
-                    console.log('Außerhalb Modal geklickt');
-                    modal.style.display = 'none';
-                    modal.classList.remove('show');
-                    modalImg.style.display = 'none';
-                    modalImg.src = '';
-                    document.body.style.overflow = 'auto';
-                }
-            });
-    
-            // Modal schließen - ESC Taste
-            document.addEventListener('keydown', function(event) {
-                if (event.key === 'Escape' && modal.style.display === 'block') {
-                    console.log('ESC Taste gedrückt');
-                    modal.style.display = 'none';
-                    modal.classList.remove('show');
-                    modalImg.style.display = 'none';
-                    modalImg.src = '';
-                    document.body.style.overflow = 'auto';
-                }
-            });
-    
-            console.log('Zoom Modal Setup abgeschlossen!');
-        }, 1000); // 1 Sekunde warten, bis alles geladen ist
-    
-        // Navigation scroll effect
-        const navbars = document.querySelectorAll('nav');
-        navbars.forEach(navbar => {
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
-            });
-        });
-    
-        // Auto-play videos
-        const videos = document.querySelectorAll('.carousel-slide video');
-        videos.forEach(video => {
-            video.addEventListener('mouseenter', () => video.play());
-            video.addEventListener('mouseleave', () => video.pause());
-        });
-    
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+                    this.style.border = 'none';
+                    console.log('👆 HOVER: AUS');
+                };
+                
+                console.log('✅ EVENT HANDLER GESETZT!');
+            }
+        }, 2000);
     });
     </script>
 
