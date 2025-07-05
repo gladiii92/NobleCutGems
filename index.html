@@ -270,13 +270,18 @@
             }
     
             .modal-carousel img {
-                width: 100% !important;           /* GLEICH wie Videos */
-                height: 100% !important;          /* GLEICH wie Videos */
+                width: 80% !important;            /* Kleiner als 100% */
+                height: 80% !important;           /* Kleiner als 100% */
                 max-width: 100%;
                 object-fit: cover !important;     
-                object-position: center bottom;   /* Zeigt unteren Teil (wo der Stein ist) */
+                object-position: center bottom;   /* BLEIBT - zeigt unteren Teil */
                 cursor: zoom-in;
-                padding: 10px;                    /* GLEICH wie Videos */
+                margin: 0 auto;
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
             }
         
             .modal-carousel video {
@@ -687,11 +692,17 @@
             }
     
             .carousel-slide img {
-                width: 100% !important;           /* GLEICH wie Videos */
-                height: 100% !important;          /* GLEICH wie Videos */
+                width: 80% !important;            /* Kleiner als 100% */
+                height: 80% !important;           /* Kleiner als 100% */
                 object-fit: cover !important;     
-                object-position: center bottom;   /* Zeigt unteren Teil */
+                object-position: center bottom;   /* BLEIBT - zeigt unteren Teil */
                 cursor: pointer;
+                margin: 0 auto;
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
             }
         
             .carousel-slide video {
