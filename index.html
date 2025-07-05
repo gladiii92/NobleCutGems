@@ -71,7 +71,7 @@
         /* BESSERE Social Media Buttons */
         .social-media {
             position: fixed;
-            bottom: 100px;
+            bottom: 105px;
             right: 30px;
             z-index: 999;
             display: flex;
@@ -138,8 +138,8 @@
         /* KORRIGIERTE WhatsApp Button Größe */
         .whatsapp-float {
             position: fixed;
-            bottom: 28px;
-            right: 28px;
+            bottom: 30px;
+            right: 30px;
             background: linear-gradient(45deg, #25d366 0%, #128C7E 100%);
             width: 55px;
             height: 55px;
@@ -493,18 +493,21 @@
             color: var(--dark-bg);
         }
 
-        /* VERBESSERTER Zoom Modal */
+        /* FUNKTIONIERENDER Zoom Modal */
         .zoom-modal {
-            display: none;
+            display: none !important;
             position: fixed;
-            z-index: 9999;  /* Höhere z-index */
+            z-index: 999999;
             left: 0;
             top: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             background-color: rgba(0, 0, 0, 0.95);
             cursor: zoom-out;
-            backdrop-filter: blur(5px);
+        }
+        
+        .zoom-modal.show {
+            display: block !important;
         }
         
         .zoom-modal img {
@@ -517,53 +520,45 @@
             object-fit: contain;
             border-radius: 10px;
             box-shadow: 0 20px 60px rgba(212, 175, 55, 0.5);
-            animation: zoomIn 0.3s ease;
-        }
-        
-        @keyframes zoomIn {
-            from {
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(0.5);
-            }
-            to {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1);
-            }
+            cursor: zoom-out;
         }
         
         .zoom-close {
             position: absolute;
-            top: 30px;
-            right: 40px;
-            color: var(--primary-gold);
-            font-size: 40px;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 50px;
+            font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 10000;
-            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000000;
+            background: rgba(0, 0, 0, 0.7);
             border-radius: 50%;
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             display: flex;
             align-items: center;
             justify-content: center;
+            line-height: 1;
         }
         
         .zoom-close:hover {
-            color: var(--secondary-gold);
+            background: rgba(212, 175, 55, 0.8);
             transform: rotate(90deg);
-            background: rgba(212, 175, 55, 0.2);
         }
         
-        /* Bessere Zoom-Cursor für Bilder */
+        /* Bessere Hover-Effekte für zoombare Bilder */
         .zoomable {
             cursor: zoom-in !important;
             transition: all 0.3s ease !important;
+            border: 3px solid transparent !important;
         }
         
         .zoomable:hover {
-            transform: scale(1.02) !important;
+            transform: scale(1.05) !important;
+            border: 3px solid var(--primary-gold) !important;
             filter: brightness(1.1) !important;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3) !important;
         }
 
         .gem-info {
@@ -808,10 +803,10 @@
         </svg>
     </a>
 
-    <!-- Image Zoom Modal -->
-    <div class="zoom-modal" id="zoomModal">
-        <span class="zoom-close">&times;</span>
-        <img id="zoomImg" alt="">
+    <!-- FUNKTIONIERENDES Image Zoom Modal -->
+    <div class="zoom-modal" id="zoomModal" style="display: none;">
+        <span class="zoom-close" id="zoomClose">&times;</span>
+        <img id="zoomImg" alt="" style="display: none;">
     </div>
 
     <!-- German Content -->
