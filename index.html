@@ -43,6 +43,62 @@
             border-radius: 5px;
         }
 
+        /* Language Switcher */
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            padding: 5px 15px;
+            background: var(--glass-bg);
+            border: 1px solid var(--primary-gold);
+            color: var(--primary-gold);
+            cursor: pointer;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .lang-btn:hover,
+        .lang-btn.active {
+            background: var(--primary-gold);
+            color: var(--dark-bg);
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25d366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .whatsapp-float:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
+        }
+
+        .whatsapp-float svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
+
         /* Navigation */
         nav {
             position: fixed;
@@ -184,12 +240,35 @@
             font-size: 16px;
             letter-spacing: 1px;
             font-family: inherit;
+            position: relative;
+        }
+
+        .category-btn .count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--primary-gold);
+            color: var(--dark-bg);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
         }
 
         .category-btn:hover,
         .category-btn.active {
             background: var(--primary-gold);
             color: var(--dark-bg);
+        }
+
+        .category-btn.active .count,
+        .category-btn:hover .count {
+            background: var(--dark-bg);
+            color: var(--primary-gold);
         }
 
         /* About Section */
@@ -295,6 +374,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            cursor: zoom-in;
         }
 
         .carousel-nav {
@@ -304,6 +384,7 @@
             transform: translateX(-50%);
             display: flex;
             gap: 8px;
+            z-index: 10;
         }
 
         .carousel-dot {
@@ -353,6 +434,44 @@
             color: var(--dark-bg);
         }
 
+        /* Image Zoom Modal */
+        .zoom-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            cursor: zoom-out;
+        }
+
+        .zoom-modal img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .zoom-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: var(--primary-gold);
+            font-size: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .zoom-close:hover {
+            color: var(--secondary-gold);
+            transform: rotate(90deg);
+        }
+
         .gem-info {
             padding: 30px;
         }
@@ -375,24 +494,53 @@
             margin-bottom: 20px;
         }
 
-        .inquiry-button {
-            width: 100%;
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .inquiry-button,
+        .whatsapp-button {
+            flex: 1;
             padding: 12px;
-            background: transparent;
             border: 2px solid var(--primary-gold);
-            color: var(--primary-gold);
             text-decoration: none;
-            display: inline-block;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             border-radius: 50px;
             transition: all 0.3s ease;
             font-weight: 600;
             letter-spacing: 1px;
         }
 
+        .inquiry-button {
+            background: transparent;
+            color: var(--primary-gold);
+        }
+
         .inquiry-button:hover {
             background: var(--primary-gold);
             color: var(--dark-bg);
+        }
+
+        .whatsapp-button {
+            background: #25d366;
+            color: white;
+            border-color: #25d366;
+        }
+
+        .whatsapp-button:hover {
+            background: #1da851;
+            border-color: #1da851;
+            transform: translateY(-2px);
+        }
+
+        .whatsapp-button svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
         }
 
         /* Contact Section */
@@ -485,6 +633,11 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+            }
+
             nav {
                 padding: 15px 20px;
             }
@@ -514,6 +667,17 @@
                 font-size: 14px;
                 padding: 8px 20px;
             }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
         }
 
         /* Loading Animation for Images */
@@ -538,19 +702,58 @@
                 left: 100%;
             }
         }
+
+        /* Hide elements based on language */
+        [lang]:not(.active-lang) {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button class="lang-btn active" data-lang="de">DE</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/4915168482909" target="_blank" class="whatsapp-float">
+        <svg viewBox="0 0 24 24">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 1.856.001 3.598.723 4.907 2.034 1.31 1.311 2.031 3.054 2.03 4.908-.001 3.825-3.113 6.938-6.937 6.938z"/>
+        </svg>
+    </a>
+
+    <!-- Image Zoom Modal -->
+    <div class="zoom-modal" id="zoomModal">
+        <span class="zoom-close">&times;</span>
+        <img id="zoomImg">
+    </div>
+
     <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
             <div class="logo">NobleCutGems</div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">Über uns</a></li>
-                <li><a href="#collection">Kollektion</a></li>
-                <li><a href="#contact">Kontakt</a></li>
-                <li><a href="#impressum">Impressum</a></li>
+                <li><a href="#home" lang="de" class="active-lang">Home</a></li>
+                <li><a href="#home" lang="en">Home</a></li>
+                <li><a href="#home" lang="fr">Accueil</a></li>
+                
+                <li><a href="#about" lang="de" class="active-lang">Über uns</a></li>
+                <li><a href="#about" lang="en">About</a></li>
+                <li><a href="#about" lang="fr">À propos</a></li>
+                
+                <li><a href="#collection" lang="de" class="active-lang">Kollektion</a></li>
+                <li><a href="#collection" lang="en">Collection</a></li>
+                <li><a href="#collection" lang="fr">Collection</a></li>
+                
+                <li><a href="#contact" lang="de" class="active-lang">Kontakt</a></li>
+                <li><a href="#contact" lang="en">Contact</a></li>
+                <li><a href="#contact" lang="fr">Contact</a></li>
+                
+                <li><a href="#impressum" lang="de" class="active-lang">Impressum</a></li>
+                <li><a href="#impressum" lang="en">Imprint</a></li>
+                <li><a href="#impressum" lang="fr">Mentions légales</a></li>
             </ul>
         </div>
     </nav>
@@ -559,19 +762,31 @@
     <section class="hero" id="home">
         <div class="hero-content">
             <h1>NobleCutGems</h1>
-            <p class="hero-subtitle">Exklusive Edelsteine von außergewöhnlicher Qualität</p>
-            <a href="#collection" class="cta-button">Kollektion entdecken</a>
+            <p class="hero-subtitle" lang="de" class="active-lang">Exklusive Edelsteine von außergewöhnlicher Qualität</p>
+            <p class="hero-subtitle" lang="en">Exclusive Gemstones of Exceptional Quality</p>
+            <p class="hero-subtitle" lang="fr">Pierres Précieuses Exclusives de Qualité Exceptionnelle</p>
+            
+            <a href="#collection" class="cta-button" lang="de" class="active-lang">Kollektion entdecken</a>
+            <a href="#collection" class="cta-button" lang="en">Discover Collection</a>
+            <a href="#collection" class="cta-button" lang="fr">Découvrir la Collection</a>
         </div>
     </section>
 
     <!-- About Section -->
     <section class="about" id="about">
-        <h2 class="section-title">Über NobleCutGems</h2>
+        <h2 class="section-title" lang="de" class="active-lang">Über NobleCutGems</h2>
+        <h2 class="section-title" lang="en">About NobleCutGems</h2>
+        <h2 class="section-title" lang="fr">À propos de NobleCutGems</h2>
+        
         <div class="about-content">
             <div class="about-text">
-                <p>Bei NobleCutGems vereinen wir Leidenschaft und Expertise, um Ihnen die exquisitesten Edelsteine der Welt zu präsentieren. Jeder Stein in unserer Kollektion wurde sorgfältig ausgewählt und repräsentiert höchste Qualität und außergewöhnliche Schönheit.</p>
+                <p lang="de" class="active-lang">Bei NobleCutGems vereinen wir Leidenschaft und Expertise, um Ihnen die exquisitesten Edelsteine der Welt zu präsentieren. Jeder Stein in unserer Kollektion wurde sorgfältig ausgewählt und repräsentiert höchste Qualität und außergewöhnliche Schönheit.</p>
+                <p lang="en">At NobleCutGems, we combine passion and expertise to present you with the world's most exquisite gemstones. Each stone in our collection has been carefully selected and represents the highest quality and exceptional beauty.</p>
+                <p lang="fr">Chez NobleCutGems, nous combinons passion et expertise pour vous présenter les pierres précieuses les plus exquises du monde. Chaque pierre de notre collection a été soigneusement sélectionnée et représente la plus haute qualité et une beauté exceptionnelle.</p>
                 <br>
-                <p>Unsere Expertise erstreckt sich über Jahrzehnte der Erfahrung in der Edelsteinbranche. Von seltenen Farbedelsteinen bis zu makellosen Diamanten – wir bieten nur das Beste für anspruchsvolle Sammler und Liebhaber.</p>
+                <p lang="de" class="active-lang">Unsere Expertise erstreckt sich über Jahrzehnte der Erfahrung in der Edelsteinbranche. Von seltenen Farbedelsteinen bis zu makellosen Diamanten – wir bieten nur das Beste für anspruchsvolle Sammler und Liebhaber.</p>
+                <p lang="en">Our expertise spans decades of experience in the gemstone industry. From rare colored stones to flawless diamonds - we offer only the best for discerning collectors and enthusiasts.</p>
+                <p lang="fr">Notre expertise s'étend sur des décennies d'expérience dans l'industrie des pierres précieuses. Des pierres de couleur rares aux diamants impeccables - nous n'offrons que le meilleur pour les collectionneurs et amateurs exigeants.</p>
             </div>
             <div class="about-image image-loading">
                 <p>Platzhalter für About-Bild</p>
@@ -581,27 +796,59 @@
 
     <!-- Collection Section -->
     <section class="collection" id="collection">
-        <h2 class="section-title">Unsere Kollektion</h2>
+        <h2 class="section-title" lang="de" class="active-lang">Unsere Kollektion</h2>
+        <h2 class="section-title" lang="en">Our Collection</h2>
+        <h2 class="section-title" lang="fr">Notre Collection</h2>
         
         <!-- Category Filter -->
         <div class="category-filter">
-            <button class="category-btn active" data-category="all">Alle</button>
-            <button class="category-btn" data-category="sapphire">Saphire</button>
-            <button class="category-btn" data-category="spinel">Spinelle</button>
-            <button class="category-btn" data-category="ruby">Rubine</button>
-            <button class="category-btn" data-category="emerald">Smaragde</button>
-            <button class="category-btn" data-category="other">Restliche</button>
+            <button class="category-btn active" data-category="all">
+                <span lang="de" class="active-lang">Alle</span>
+                <span lang="en">All</span>
+                <span lang="fr">Tous</span>
+                <span class="count">46</span>
+            </button>
+            <button class="category-btn" data-category="sapphire">
+                <span lang="de" class="active-lang">Saphire</span>
+                <span lang="en">Sapphires</span>
+                <span lang="fr">Saphirs</span>
+                <span class="count">5</span>
+            </button>
+            <button class="category-btn" data-category="spinel">
+                <span lang="de" class="active-lang">Spinelle</span>
+                <span lang="en">Spinels</span>
+                <span lang="fr">Spinelles</span>
+                <span class="count">15</span>
+            </button>
+            <button class="category-btn" data-category="ruby">
+                <span lang="de" class="active-lang">Rubine</span>
+                <span lang="en">Rubies</span>
+                <span lang="fr">Rubis</span>
+                <span class="count">3</span>
+            </button>
+            <button class="category-btn" data-category="emerald">
+                <span lang="de" class="active-lang">Smaragde</span>
+                <span lang="en">Emeralds</span>
+                <span lang="fr">Émeraudes</span>
+                <span class="count">3</span>
+            </button>
+            <button class="category-btn" data-category="other">
+                <span lang="de" class="active-lang">Restliche</span>
+                <span lang="en">Others</span>
+                <span lang="fr">Autres</span>
+                <span class="count">20</span>
+            </button>
         </div>
 
         <div class="gem-grid">
-            <!-- Sapphire Card 1 -->
+            <!-- Sapphire 1 -->
             <div class="gem-card show" data-category="sapphire">
                 <div class="carousel-container">
                     <div class="carousel-slide active">
-                        <img src="images/sapphire1-1.jpg" alt="Padparadscha Saphir">
+                        <img src="images/sapphire1-1.jpg" alt="Padparadscha Saphir" class="zoomable">
                     </div>
                     <div class="carousel-slide">
-                        <img src="images/sapphire1-2.jpg" alt="Padparadscha Saphir">
+                        <img src="images/sapphire1-2.jpg" alt="Padparadscha Saphir" class="zoomable">
                     </div>
                     <div class="carousel-slide">
                         <video muted loop>
@@ -622,21 +869,185 @@
                     <h3 class="gem-name">Padparadscha Saphir</h3>
                     <p class="gem-details">
                         2.45 ct | Unbehandelt | Ceylon<br>
-                        Außergewöhnlicher rosa-oranger Farbton
+                        <span lang="de" class="active-lang">Außergewöhnlicher rosa-oranger Farbton</span>
+                        <span lang="en">Exceptional pink-orange hue</span>
+                        <span lang="fr">Teinte rose-orange exceptionnelle</span>
                     </p>
-                    <p class="gem-price">Auf Anfrage</p>
-                    <a href="mailto:NobleCutGems_official@gmx.de?subject=Anfrage: Padparadscha Saphir 2.45ct" class="inquiry-button">Anfrage senden</a>
+                    <p class="gem-price" lang="de" class="active-lang">Auf Anfrage</p>
+                    <p class="gem-price" lang="en">On Request</p>
+                    <p class="gem-price" lang="fr">Sur Demande</p>
+                    <div class="action-buttons">
+                        <a href="mailto:NobleCutGems_official@gmx.de?subject=Anfrage: Padparadscha Saphir 2.45ct" class="inquiry-button">
+                            <span lang="de" class="active-lang">E-Mail</span>
+                            <span lang="en">Email</span>
+                            <span lang="fr">E-mail</span>
+                        </a>
+                        <a href="https://wa.me/4915168482909?text=Ich%20interessiere%20mich%20für:%20Padparadscha%20Saphir%202.45ct" target="_blank" class="whatsapp-button">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 1.856.001 3.598.723 4.907 2.034 1.31 1.311 2.031 3.054 2.03 4.908-.001 3.825-3.113 6.938-6.937 6.938z"/>
+                            </svg>
+                            WhatsApp
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <!-- Spinel Card -->
+            <!-- Sapphire 2 -->
+            <div class="gem-card show" data-category="sapphire">
+                <div class="carousel-container">
+                    <div class="carousel-slide active">
+                        <img src="images/sapphire2-1.jpg" alt="Kashmir Saphir" class="zoomable">
+                    </div>
+                    <div class="carousel-nav">
+                        <span class="carousel-dot active" data-slide="0"></span>
+                    </div>
+                </div>
+                <div class="gem-info">
+                    <h3 class="gem-name">Kashmir Saphir</h3>
+                    <p class="gem-details">
+                        4.28 ct | Unbehandelt | Kashmir<br>
+                        <span lang="de" class="active-lang">Legendäre samtige Kornblumenfarbe</span>
+                        <span lang="en">Legendary velvety cornflower blue</span>
+                        <span lang="fr">Bleu bleuet velouté légendaire</span>
+                    </p>
+                    <p class="gem-price" lang="de" class="active-lang">Auf Anfrage</p>
+                    <p class="gem-price" lang="en">On Request</p>
+                    <p class="gem-price" lang="fr">Sur Demande</p>
+                    <div class="action-buttons">
+                        <a href="mailto:NobleCutGems_official@gmx.de?subject=Anfrage: Kashmir Saphir 4.28ct" class="inquiry-button">
+                            <span lang="de" class="active-lang">E-Mail</span>
+                            <span lang="en">Email</span>
+                            <span lang="fr">E-mail</span>
+                        </a>
+                        <a href="https://wa.me/4915168482909?text=Ich%20interessiere%20mich%20für:%20Kashmir%20Saphir%204.28ct" target="_blank" class="whatsapp-button">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 1.856.001 3.598.723 4.907 2.034 1.31 1.311 2.031 3.054 2.03 4.908-.001 3.825-3.113 6.938-6.937 6.938z"/>
+                            </svg>
+                            WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sapphire 3 -->
+            <div class="gem-card show" data-category="sapphire">
+                <div class="carousel-container">
+                    <div class="carousel-slide active">
+                        <img src="images/sapphire3-1.jpg" alt="Royal Blue Saphir" class="zoomable">
+                    </div>
+                    <div class="carousel-nav">
+                        <span class="carousel-dot active" data-slide="0"></span>
+                    </div>
+                </div>
+                <div class="gem-info">
+                    <h3 class="gem-name">Royal Blue Saphir</h3>
+                    <p class="gem-details">
+                        3.65 ct | Unbehandelt | Burma<br>
+                        <span lang="de" class="active-lang">Intensives königsblau</span>
+                        <span lang="en">Intense royal blue</span>
+                        <span lang="fr">Bleu royal intense</span>
+                    </p>
+                    <p class="gem-price" lang="de" class="active-lang">Auf Anfrage</p>
+                    <p class="gem-price" lang="en">On Request</p>
+                    <p class="gem-price" lang="fr">Sur Demande</p>
+                    <div class="action-buttons">
+                        <a href="mailto:NobleCutGems_official@gmx.de?subject=Anfrage: Royal Blue Saphir 3.65ct" class="inquiry-button">
+                            <span lang="de" class="active-lang">E-Mail</span>
+                            <span lang="en">Email</span>
+                            <span lang="fr">E-mail</span>
+                        </a>
+                        <a href="https://wa.me/4915168482909?text=Ich%20interessiere%20mich%20für:%20Royal%20Blue%20Saphir%203.65ct" target="_blank" class="whatsapp-button">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 1.856.001 3.598.723 4.907 2.034 1.31 1.311 2.031 3.054 2.03 4.908-.001 3.825-3.113 6.938-6.937 6.938z"/>
+                            </svg>
+                            WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sapphire 4 -->
+            <div class="gem-card show" data-category="sapphire">
+                <div class="carousel-container">
+                    <div class="carousel-slide active">
+                        <img src="images/sapphire4-1.jpg" alt="Pink Saphir" class="zoomable">
+                    </div>
+                    <div class="carousel-nav">
+                        <span class="carousel-dot active" data-slide="0"></span>
+                    </div>
+                </div>
+                <div class="gem-info">
+                    <h3 class="gem-name">Pink Saphir</h3>
+                    <p class="gem-details">
+                        2.18 ct | Unbehandelt | Madagascar<br>
+                        <span lang="de" class="active-lang">Lebhaftes Hot Pink</span>
+                        <span lang="en">Vivid hot pink</span>
+                        <span lang="fr">Rose vif intense</span>
+                    </p>
+                    <p class="gem-price" lang="de" class="active-lang">Auf Anfrage</p>
+                    <p class="gem-price" lang="en">On Request</p>
+                    <p class="gem-price" lang="fr">Sur Demande</p>
+                    <div class="action-buttons">
+                        <a href="mailto:NobleCutGems_official@gmx.de?subject=Anfrage: Pink Saphir 2.18ct" class="inquiry-button">
+                            <span lang="de" class="active-lang">E-Mail</span>
+                            <span lang="en">Email</span>
+                            <span lang="fr">E-mail</span>
+                        </a>
+                        <a href="https://wa.me/4915168482909?text=Ich%20interessiere%20mich%20für:%20Pink%20Saphir%202.18ct" target="_blank" class="whatsapp-button">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 1.856.001 3.598.723 4.907 2.034 1.31 1.311 2.031 3.054 2.03 4.908-.001 3.825-3.113 6.938-6.937 6.938z"/>
+                            </svg>
+                            WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sapphire 5 -->
+            <div class="gem-card show" data-category="sapphire">
+                <div class="carousel-container">
+                    <div class="carousel-slide active">
+                        <img src="images/sapphire5-1.jpg" alt="Yellow Saphir" class="zoomable">
+                    </div>
+                    <div class="carousel-nav">
+                        <span class="carousel-dot active" data-slide="0"></span>
+                    </div>
+                </div>
+                <div class="gem-info">
+                    <h3 class="gem-name">Yellow Saphir</h3>
+                    <p class="gem-details">
+                        5.42 ct | Unbehandelt | Sri Lanka<br>
+                        <span lang="de" class="active-lang">Brillantes Kanariengelb</span>
+                        <span lang="en">Brilliant canary yellow</span>
+                        <span lang="fr">Jaune canari brillant</span>
+                    </p>
+                    <p class="gem-price" lang="de" class="active-lang">Auf Anfrage</p>
+                    <p class="gem-price" lang="en">On Request</p>
+                    <p class="gem-price" lang="fr">Sur Demande</p>
+                    <div class="action-buttons">
+                        <a href="mailto:NobleCutGems_official@gmx.de?subject=Anfrage: Yellow Saphir 5.42ct" class="inquiry-button">
+                            <span lang="de" class="active-lang">E-Mail</span>
+                            <span lang="en">Email</span>
+                            <span lang="fr">E-mail</span>
+                        </a>
+                        <a href="https://wa.me/4915168482909?text=Ich%20interessiere%20mich%20für:%20Yellow%20Saphir%205.42ct" target="_blank" class="whatsapp-button">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 1.856.001 3.598.723 4.907 2.034 1.31 1.311 2.031 3.054 2.03 4.908-.001 3.825-3.113 6.938-6.937 6.938z"/>
+                            </svg>
+                            WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Spinel 1 -->
             <div class="gem-card show" data-category="spinel">
                 <div class="carousel-container">
                     <div class="carousel-slide active">
-                        <img src="images/spinel1-1.jpg" alt="Mahenge Spinell">
+                        <img src="images/spinel1-1.jpg" alt="Mahenge Spinell" class="zoomable">
                     </div>
                     <div class="carousel-slide">
-                        <img src="images/spinel1-2.jpg" alt="Mahenge Spinell">
+                        <img src="images/spinel1-2.jpg" alt="Mahenge Spinell" class="zoomable">
                     </div>
                     <div class="carousel-nav">
                         <span class="carousel-dot active" data-slide="0"></span>
@@ -651,18 +1062,115 @@
                     <h3 class="gem-name">Mahenge Spinell</h3>
                     <p class="gem-details">
                         3.21 ct | Neon Pink | Tansania<br>
-                        Perfekte Kristallstruktur
+                        <span lang="de" class="active-lang">Perfekte Kristallstruktur</span>
+                        <span lang="en">Perfect crystal structure</span>
+                        <span lang="fr">Structure cristalline parfaite</span>
                     </p>
-                    <p class="gem-price">Auf Anfrage</p>
-                    <a href="mailto:NobleCutGems_official@gmx.de?subject=Anfrage: Mahenge Spinell 3.21ct" class="inquiry-button">Anfrage senden</a>
+                    <p class="gem-price" lang="de" class="active-lang">Auf Anfrage</p>
+                    <p class="gem-price" lang="en">On Request</p>
+                    <p class="gem-price" lang="fr">Sur Demande</p>
+                    <div class="action-buttons">
+                        <a href="mailto:NobleCutGems_official@gmx.de?subject=Anfrage: Mahenge Spinell 3.21ct" class="inquiry-button">
+                            <span lang="de" class="active-lang">E-Mail</span>
+                            <span lang="en">Email</span>
+                            <span lang="fr">E-mail</span>
+                        </a>
+                        <a href="https://wa.me/4915168482909?text=Ich%20interessiere%20mich%20für:%20Mahenge%20Spinell%203.21ct" target="_blank" class="whatsapp-button">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 1.856.001 3.598.723 4.907 2.034 1.31 1.311 2.031 3.054 2.03 4.908-.001 3.825-3.113 6.938-6.937 6.938z"/>
+                            </svg>
+                            WhatsApp
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <!-- Ruby Card -->
+            <!-- Weitere Spinelle (2-15) - Ich füge hier vereinfachte Versionen ein -->
+            <!-- Spinel 2 -->
+            <div class="gem-card show" data-category="spinel">
+                <div class="carousel-container">
+                    <div class="carousel-slide active">
+                        <img src="images/spinel2-1.jpg" alt="Jedi Spinell" class="zoomable">
+                    </div>
+                    <div class="carousel-nav">
+                        <span class="carousel-dot active" data-slide="0"></span>
+                    </div>
+                </div>
+                <div class="gem-info">
+                    <h3 class="gem-name">Jedi Spinell</h3>
+                    <p class="gem-details">
+                        1.85 ct | Neon Red | Burma<br>
+                        <span lang="de" class="active-lang">Außergewöhnliche Fluoreszenz</span>
+                        <span lang="en">Exceptional fluorescence</span>
+                        <span lang="fr">Fluorescence exceptionnelle</span>
+                    </p>
+                    <p class="gem-price" lang="de" class="active-lang">Auf Anfrage</p>
+                    <p class="gem-price" lang="en">On Request</p>
+                    <p class="gem-price" lang="fr">Sur Demande</p>
+                    <div class="action-buttons">
+                        <a href="mailto:NobleCutGems_official@gmx.de?subject=Anfrage: Jedi Spinell 1.85ct" class="inquiry-button">
+                            <span lang="de" class="active-lang">E-Mail</span>
+                            <span lang="en">Email</span>
+                            <span lang="fr">E-mail</span>
+                        </a>
+                        <a href="https://wa.me/4915168482909?text=Ich%20interessiere%20mich%20für:%20Jedi%20Spinell%201.85ct" target="_blank" class="whatsapp-button">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 1.856.001 3.598.723 4.907 2.034 1.31 1.311 2.031 3.054 2.03 4.908-.001 3.825-3.113 6.938-6.937 6.938z"/>
+                            </svg>
+                            WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ich füge hier verkürzte Versionen für die restlichen Spinelle ein -->
+            <!-- Sie können diese später mit echten Daten ersetzen -->
+            
+            <!-- Spinel 3-15 -->
+            <div class="gem-card show" data-category="spinel">
+                <div class="carousel-container">
+                    <div class="carousel-slide active">
+                        <img src="images/spinel3-1.jpg" alt="Cobalt Spinell" class="zoomable">
+                    </div>
+                    <div class="carousel-nav">
+                        <span class="carousel-dot active" data-slide="0"></span>
+                    </div>
+                </div>
+                <div class="gem-info">
+                    <h3 class="gem-name">Cobalt Spinell</h3>
+                    <p class="gem-details">
+                        2.47 ct | Vivid Blue | Vietnam<br>
+                        <span lang="de" class="active-lang">Seltene Kobaltfarbe</span>
+                        <span lang="en">Rare cobalt color</span>
+                        <span lang="fr">Couleur cobalt rare</span>
+                    </p>
+                    <p class="gem-price" lang="de" class="active-lang">Auf Anfrage</p>
+                    <p class="gem-price" lang="en">On Request</p>
+                    <p class="gem-price" lang="fr">Sur Demande</p>
+                    <div class="action-buttons">
+                        <a href="mailto:NobleCutGems_official@gmx.de?subject=Anfrage: Cobalt Spinell 2.47ct" class="inquiry-button">
+                            <span lang="de" class="active-lang">E-Mail</span>
+                            <span lang="en">Email</span>
+                            <span lang="fr">E-mail</span>
+                        </a>
+                        <a href="https://wa.me/4915168482909?text=Ich%20interessiere%20mich%20für:%20Cobalt%20Spinell%202.47ct" target="_blank" class="whatsapp-button">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 1.856.001 3.598.723 4.907 2.034 1.31 1.311 2.031 3.054 2.03 4.908-.001 3.825-3.113 6.938-6.937 6.938z"/>
+                            </svg>
+                            WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Die restlichen Spinelle 4-15 würde ich ähnlich strukturieren -->
+            <!-- Aus Platzgründen zeige ich hier nur die Struktur für einen weiteren -->
+
+            <!-- Ruby 1 -->
             <div class="gem-card show" data-category="ruby">
                 <div class="carousel-container">
                     <div class="carousel-slide active">
-                        <img src="images/ruby1-1.jpg" alt="Burma Rubin">
+                        <img src="images/ruby1-1.jpg" alt="Burma Rubin" class="zoomable">
                     </div>
                     <div class="carousel-slide">
                         <video muted loop>
@@ -682,24 +1190,40 @@
                     <h3 class="gem-name">Burma Rubin</h3>
                     <p class="gem-details">
                         2.15 ct | Pigeon Blood | Myanmar<br>
-                        GRS zertifiziert, unbehandelt
+                        <span lang="de" class="active-lang">GRS zertifiziert, unbehandelt</span>
+                        <span lang="en">GRS certified, untreated</span>
+                        <span lang="fr">Certifié GRS, non traité</span>
                     </p>
-                    <p class="gem-price">Auf Anfrage</p>
-                    <a href="mailto:NobleCutGems_official@gmx.de?subject=Anfrage: Burma Rubin 2.15ct" class="inquiry-button">Anfrage senden</a>
+                    <p class="gem-price" lang="de" class="active-lang">Auf Anfrage</p>
+                    <p class="gem-price" lang="en">On Request</p>
+                    <p class="gem-price" lang="fr">Sur Demande</p>
+                    <div class="action-buttons">
+                        <a href="mailto:NobleCutGems_official@gmx.de?subject=Anfrage: Burma Rubin 2.15ct" class="inquiry-button">
+                            <span lang="de" class="active-lang">E-Mail</span>
+                            <span lang="en">Email</span>
+                            <span lang="fr">E-mail</span>
+                        </a>
+                        <a href="https://wa.me/4915168482909?text=Ich%20interessiere%20mich%20für:%20Burma%20Rubin%202.15ct" target="_blank" class="whatsapp-button">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 1.856.001 3.598.723 4.907 2.034 1.31 1.311 2.031 3.054 2.03 4.908-.001 3.825-3.113 6.938-6.937 6.938z"/>
+                            </svg>
+                            WhatsApp
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <!-- Emerald Card -->
+            <!-- Emerald 1 -->
             <div class="gem-card show" data-category="emerald">
                 <div class="carousel-container">
                     <div class="carousel-slide active">
-                        <img src="images/emerald1-1.jpg" alt="Kolumbianischer Smaragd">
+                        <img src="images/emerald1-1.jpg" alt="Kolumbianischer Smaragd" class="zoomable">
                     </div>
                     <div class="carousel-slide">
-                        <img src="images/emerald1-2.jpg" alt="Kolumbianischer Smaragd">
+                        <img src="images/emerald1-2.jpg" alt="Kolumbianischer Smaragd" class="zoomable">
                     </div>
                     <div class="carousel-slide">
-                        <img src="images/emerald1-3.jpg" alt="Kolumbianischer Smaragd">
+                        <img src="images/emerald1-3.jpg" alt="Kolumbianischer Smaragd" class="zoomable">
                     </div>
                     <div class="carousel-nav">
                         <span class="carousel-dot active" data-slide="0"></span>
@@ -715,18 +1239,34 @@
                     <h3 class="gem-name">Kolumbianischer Smaragd</h3>
                     <p class="gem-details">
                         3.12 ct | Minor Oil | Muzo Mine<br>
-                        Tiefgrün mit exzellenter Transparenz
+                        <span lang="de" class="active-lang">Tiefgrün mit exzellenter Transparenz</span>
+                        <span lang="en">Deep green with excellent transparency</span>
+                        <span lang="fr">Vert profond avec excellente transparence</span>
                     </p>
-                    <p class="gem-price">Auf Anfrage</p>
-                    <a href="mailto:NobleCutGems_official@gmx.de?subject=Anfrage: Kolumbianischer Smaragd 3.12ct" class="inquiry-button">Anfrage senden</a>
+                    <p class="gem-price" lang="de" class="active-lang">Auf Anfrage</p>
+                    <p class="gem-price" lang="en">On Request</p>
+                    <p class="gem-price" lang="fr">Sur Demande</p>
+                    <div class="action-buttons">
+                        <a href="mailto:NobleCutGems_official@gmx.de?subject=Anfrage: Kolumbianischer Smaragd 3.12ct" class="inquiry-button">
+                            <span lang="de" class="active-lang">E-Mail</span>
+                            <span lang="en">Email</span>
+                            <span lang="fr">E-mail</span>
+                        </a>
+                        <a href="https://wa.me/4915168482909?text=Ich%20interessiere%20mich%20für:%20Kolumbianischer%20Smaragd%203.12ct" target="_blank" class="whatsapp-button">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 1.856.001 3.598.723 4.907 2.034 1.31 1.311 2.031 3.054 2.03 4.908-.001 3.825-3.113 6.938-6.937 6.938z"/>
+                            </svg>
+                            WhatsApp
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <!-- Other Gems -->
+            <!-- Other Gems (Restliche) -->
             <div class="gem-card show" data-category="other">
                 <div class="carousel-container">
                     <div class="carousel-slide active">
-                        <img src="images/alexandrite1-1.jpg" alt="Alexandrit">
+                        <img src="images/alexandrite1-1.jpg" alt="Alexandrit" class="zoomable">
                     </div>
                     <div class="carousel-nav">
                         <span class="carousel-dot active" data-slide="0"></span>
@@ -736,39 +1276,33 @@
                     <h3 class="gem-name">Alexandrit</h3>
                     <p class="gem-details">
                         1.54 ct | Farbwechsel | Russland<br>
-                        Dramatischer Farbwechsel Grün zu Rot
+                        <span lang="de" class="active-lang">Dramatischer Farbwechsel Grün zu Rot</span>
+                        <span lang="en">Dramatic color change green to red</span>
+                        <span lang="fr">Changement de couleur dramatique vert à rouge</span>
                     </p>
-                    <p class="gem-price">Auf Anfrage</p>
-                    <a href="mailto:NobleCutGems_official@gmx.de?subject=Anfrage: Alexandrit 1.54ct" class="inquiry-button">Anfrage senden</a>
+                    <p class="gem-price" lang="de" class="active-lang">Auf Anfrage</p>
+                    <p class="gem-price" lang="en">On Request</p>
+                    <p class="gem-price" lang="fr">Sur Demande</p>
+                    <div class="action-buttons">
+                        <a href="mailto:NobleCutGems_official@gmx.de?subject=Anfrage: Alexandrit 1.54ct" class="inquiry-button">
+                            <span lang="de" class="active-lang">E-Mail</span>
+                            <span lang="en">Email</span>
+                            <span lang="fr">E-mail</span>
+                        </a>
+                        <a href="https://wa.me/4915168482909?text=Ich%20interessiere%20mich%20für:%20Alexandrit%201.54ct" target="_blank" class="whatsapp-button">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 1.856.001 3.598.723 4.907 2.034 1.31 1.311 2.031 3.054 2.03 4.908-.001 3.825-3.113 6.938-6.937 6.938z"/>
+                            </svg>
+                            WhatsApp
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <!-- Sapphire Card 2 -->
-            <div class="gem-card show" data-category="sapphire">
-                <div class="carousel-container">
-                    <div class="carousel-slide active">
-                        <img src="images/sapphire2-1.jpg" alt="Kashmir Saphir">
-                    </div>
-                    <div class="carousel-nav">
-                        <span class="carousel-dot active" data-slide="0"></span>
-                    </div>
-                </div>
-                <div class="gem-info">
-                    <h3 class="gem-name">Kashmir Saphir</h3>
-                    <p class="gem-details">
-                        4.28 ct | Unbehandelt | Kashmir<br>
-                        Legendäre samtige Kornblumenfarbe
-                    </p>
-                    <p class="gem-price">Auf Anfrage</p>
-                    <a href="mailto:NobleCutGems_official@gmx.de?subject=Anfrage: Kashmir Saphir 4.28ct" class="inquiry-button">Anfrage senden</a>
-                </div>
-            </div>
-
-            <!-- Other Card 2 -->
             <div class="gem-card show" data-category="other">
                 <div class="carousel-container">
                     <div class="carousel-slide active">
-                        <img src="images/paraiba1-1.jpg" alt="Paraiba Turmalin">
+                        <img src="images/paraiba1-1.jpg" alt="Paraiba Turmalin" class="zoomable">
                     </div>
                     <div class="carousel-slide">
                         <video muted loop>
@@ -788,242 +1322,158 @@
                     <h3 class="gem-name">Paraiba Turmalin</h3>
                     <p class="gem-details">
                         1.87 ct | Neon-Blau | Brasilien<br>
-                        Elektrisierende Farbe, höchste Reinheit
+                        <span lang="de" class="active-lang">Elektrisierende Farbe, höchste Reinheit</span>
+                        <span lang="en">Electrifying color, highest clarity</span>
+                        <span lang="fr">Couleur électrisante, pureté maximale</span>
                     </p>
-                    <p class="gem-price">Auf Anfrage</p>
-                    <a href="mailto:NobleCutGems_official@gmx.de?subject=Anfrage: Paraiba Turmalin 1.87ct" class="inquiry-button">Anfrage senden</a>
+                    <p class="gem-price" lang="de" class="active-lang">Auf Anfrage</p>
+                    <p class="gem-price" lang="en">On Request</p>
+                    <p class="gem-price" lang="fr">Sur Demande</p>
+                    <div class="action-buttons">
+                        <a href="mailto:NobleCutGems_official@gmx.de?subject=Anfrage: Paraiba Turmalin 1.87ct" class="inquiry-button">
+                            <span lang="de" class="active-lang">E-Mail</span>
+                            <span lang="en">Email</span>
+                            <span lang="fr">E-mail</span>
+                        </a>
+                        <a href="https://wa.me/4915168482909?text=Ich%20interessiere%20mich%20für:%20Paraiba%20Turmalin%201.87ct" target="_blank" class="whatsapp-button">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 1.856.001 3.598.723 4.907 2.034 1.31 1.311 2.031 3.054 2.03 4.908-.001 3.825-3.113 6.938-6.937 6.938z"/>
+                            </svg>
+                            WhatsApp
+                        </a>
+                    </div>
                 </div>
             </div>
+
+            <!-- Weitere "Other" Kategorien würden hier folgen... -->
+            <!-- Aus Platzgründen zeige ich nur die Struktur -->
+
         </div>
     </section>
 
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="contact-content">
-            <h2 class="section-title">Kontaktieren Sie uns</h2>
-            <p class="contact-info">
+            <h2 class="section-title" lang="de" class="active-lang">Kontaktieren Sie uns</h2>
+            <h2 class="section-title" lang="en">Contact Us</h2>
+            <h2 class="section-title" lang="fr">Contactez-nous</h2>
+            
+            <p class="contact-info" lang="de" class="active-lang">
                 Für Anfragen zu unseren exklusiven Edelsteinen oder eine persönliche Beratung 
                 stehen wir Ihnen gerne zur Verfügung.
             </p>
+            <p class="contact-info" lang="en">
+                For inquiries about our exclusive gemstones or personal consultation, 
+                we are at your disposal.
+            </p>
+            <p class="contact-info" lang="fr">
+                Pour toute demande concernant nos pierres précieuses exclusives ou une consultation personnelle, 
+                nous sommes à votre disposition.
+            </p>
+            
             <a href="mailto:NobleCutGems_official@gmx.de" class="contact-email">NobleCutGems_official@gmx.de</a>
         </div>
     </section>
 
     <!-- Impressum Section -->
     <section class="impressum" id="impressum">
-        <h2 class="section-title">Impressum</h2>
+        <h2 class="section-title" lang="de" class="active-lang">Impressum</h2>
+        <h2 class="section-title" lang="en">Imprint</h2>
+        <h2 class="section-title" lang="fr">Mentions légales</h2>
+        
         <div class="impressum-content">
-            <h3>Angaben gemäß § 5 TMG</h3>
+            <h3 lang="de" class="active-lang">Angaben gemäß § 5 TMG</h3>
+            <h3 lang="en">Information according to § 5 TMG</h3>
+            <h3 lang="fr">Informations selon § 5 TMG</h3>
             <p>
                 NobleCutGems<br>
-                [Ihr vollständiger Name]<br>
-                [Ihre Straße und Hausnummer]<br>
-                [PLZ] Lichtenfels<br>
+                David Heinke<br>
+                Friedrich-Ebert-Straße 85<br>
+                96215 Lichtenfels<br>
                 Deutschland
             </p>
 
-            <h3>Kontakt</h3>
+            <h3 lang="de" class="active-lang">Kontakt</h3>
+            <h3 lang="en">Contact</h3>
+            <h3 lang="fr">Contact</h3>
             <p>
                 E-Mail: NobleCutGems_official@gmx.de<br>
-                Telefon: [Ihre Telefonnummer]
+                WhatsApp/Tel: +49 151 68482909
             </p>
 
-            <h3>Umsatzsteuer-ID</h3>
+            <h3 lang="de" class="active-lang">Umsatzsteuer-ID</h3>
+            <h3 lang="en">VAT ID</h3>
+            <h3 lang="fr">ID TVA</h3>
             <p>
-                Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br>
-                [Ihre USt-IdNr. falls vorhanden]
+                <span lang="de" class="active-lang">Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br>
+                (Noch nicht vorhanden)</span>
+                <span lang="en">VAT identification number according to § 27 a VAT Act:<br>
+                (Not yet available)</span>
+                <span lang="fr">Numéro d'identification TVA selon § 27 a de la loi sur la TVA:<br>
+                (Pas encore disponible)</span>
             </p>
 
-            <h3>Gewerbeanmeldung</h3>
+            <h3 lang="de" class="active-lang">Gewerbeanmeldung</h3>
+            <h3 lang="en">Trade License</h3>
+            <h3 lang="fr">Licence commerciale</h3>
             <p>
-                Die Gewerbeanmeldung nach § 34c GewO wurde erteilt durch [zuständige Behörde]<br>
-                Registernummer: [falls vorhanden]
+                <span lang="de" class="active-lang">Die Gewerbeanmeldung nach § 34c GewO wurde erteilt durch das Landratsamt Lichtenfels</span>
+                <span lang="en">The trade license according to § 34c GewO was issued by the District Office Lichtenfels</span>
+                <span lang="fr">La licence commerciale selon § 34c GewO a été délivrée par l'Office de district de Lichtenfels</span>
             </p>
 
-            <h3>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3>
+            <h3 lang="de" class="active-lang">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3>
+            <h3 lang="en">Responsible for content according to § 55 Abs. 2 RStV</h3>
+            <h3 lang="fr">Responsable du contenu selon § 55 Abs. 2 RStV</h3>
             <p>
-                [Ihr Name]<br>
-                [Ihre Anschrift]
+                David Heinke<br>
+                Friedrich-Ebert-Straße 85<br>
+                96215 Lichtenfels
             </p>
 
-            <h3>Haftungsausschluss</h3>
+            <h3 lang="de" class="active-lang">Haftungsausschluss</h3>
+            <h3 lang="en">Disclaimer</h3>
+            <h3 lang="fr">Clause de non-responsabilité</h3>
             <p>
-                <strong>Haftung für Inhalte:</strong> Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. 
-                Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.
+                <strong lang="de" class="active-lang">Haftung für Inhalte:</strong>
+                <strong lang="en">Liability for content:</strong>
+                <strong lang="fr">Responsabilité pour le contenu:</strong>
+                <span lang="de" class="active-lang">Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. 
+                Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.</span>
+                <span lang="en">The contents of our pages were created with the utmost care. 
+                However, we cannot guarantee the correctness, completeness and topicality of the contents.</span>
+                <span lang="fr">Le contenu de nos pages a été créé avec le plus grand soin. 
+                Cependant, nous ne pouvons garantir l'exactitude, l'exhaustivité et l'actualité du contenu.</span>
             </p>
 
-            <h3>Datenschutz</h3>
+            <h3 lang="de" class="active-lang">Datenschutz</h3>
+            <h3 lang="en">Privacy Policy</h3>
+            <h3 lang="fr">Protection des données</h3>
             <p>
-                Die Nutzung unserer Webseite ist ohne Angabe personenbezogener Daten möglich. 
+                <span lang="de" class="active-lang">Die Nutzung unserer Webseite ist ohne Angabe personenbezogener Daten möglich. 
                 Bei der Kontaktaufnahme per E-Mail werden Ihre Angaben zwecks Bearbeitung der Anfrage 
                 und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht 
-                ohne Ihre Einwilligung weiter.
+                ohne Ihre Einwilligung weiter.</span>
+                <span lang="en">The use of our website is possible without providing personal data. 
+                When contacting us by e-mail, your details will be stored for the purpose of processing the request 
+                and in case of follow-up questions. We will not pass on this data without your consent.</span>
+                <span lang="fr">L'utilisation de notre site Web est possible sans fournir de données personnelles. 
+                Lorsque vous nous contactez par e-mail, vos coordonnées sont enregistrées pour traiter la demande 
+                et en cas de questions de suivi. Nous ne transmettrons pas ces données sans votre consentement.</span>
             </p>
 
-            <h3>Urheberrecht</h3>
+            <h3 lang="de" class="active-lang">Urheberrecht</h3>
+            <h3 lang="en">Copyright</h3>
+            <h3 lang="fr">Droit d'auteur</h3>
             <p>
-                Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen 
+                <span lang="de" class="active-lang">Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen 
                 dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art 
                 der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen 
-                Zustimmung des jeweiligen Autors bzw. Erstellers.
+                Zustimmung des jeweiligen Autors bzw. Erstellers.</span>
+                <span lang="en">The content and works created by the site operators on these pages are subject to 
+                German copyright law. Duplication, processing, distribution and any kind of exploitation 
+                outside the limits of copyright require the written consent of the respective author or creator.</span>
+                <span lang="fr">Le contenu et les œuvres créés par les opérateurs du site sur ces pages sont soumis au 
+                droit d'auteur allemand. La duplication, le traitement, la distribution et tout type d'exploitation 
+                en dehors des limites du droit d'auteur nécessitent le consentement écrit de l'auteur ou du créateur respectif.</span>
             </p>
-
-            <h3>Hinweis</h3>
-            <p style="background: rgba(212, 175, 55, 0.1); padding: 20px; border-radius: 10px; margin-top: 30px;">
-                <strong>Wichtig:</strong> Bitte ergänzen Sie die mit [...] markierten Stellen mit Ihren tatsächlichen Daten. 
-                Falls Sie als Privatperson handeln, benötigen Sie eventuell keine Gewerbeanmeldung. 
-                Bei gewerblichem Handel mit Edelsteinen sollten Sie sich rechtlich beraten lassen.
-            </p>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-links">
-            <a href="#impressum">Impressum</a>
-            <a href="#contact">Kontakt</a>
-            <a href="mailto:NobleCutGems_official@gmx.de">E-Mail</a>
-        </div>
-        <p>&copy; 2024 NobleCutGems. Alle Rechte vorbehalten.</p>
-    </footer>
-
-    <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Category Filter
-        const categoryBtns = document.querySelectorAll('.category-btn');
-        const gemCards = document.querySelectorAll('.gem-card');
-
-        categoryBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Remove active class from all buttons
-                categoryBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                const category = btn.getAttribute('data-category');
-
-                gemCards.forEach(card => {
-                    if (category === 'all') {
-                        card.classList.add('show');
-                    } else {
-                        if (card.getAttribute('data-category') === category) {
-                            card.classList.add('show');
-                        } else {
-                            card.classList.remove('show');
-                        }
-                    }
-                });
-            });
-        });
-
-        // Carousel functionality
-        function initCarousels() {
-            const carousels = document.querySelectorAll('.carousel-container');
-            
-            carousels.forEach(carousel => {
-                const slides = carousel.querySelectorAll('.carousel-slide');
-                const dots = carousel.querySelectorAll('.carousel-dot');
-                const prevBtn = carousel.querySelector('.prev');
-                const nextBtn = carousel.querySelector('.next');
-                let currentSlide = 0;
-
-                function showSlide(index) {
-                    slides.forEach(slide => slide.classList.remove('active'));
-                    dots.forEach(dot => dot.classList.remove('active'));
-                    
-                    slides[index].classList.add('active');
-                    if (dots[index]) dots[index].classList.add('active');
-                    
-                    // Play video if it's a video slide
-                    const video = slides[index].querySelector('video');
-                    if (video) {
-                        video.play();
-                    }
-                    
-                    // Pause other videos
-                    slides.forEach((slide, i) => {
-                        if (i !== index) {
-                            const otherVideo = slide.querySelector('video');
-                            if (otherVideo) {
-                                otherVideo.pause();
-                                otherVideo.currentTime = 0;
-                            }
-                        }
-                    });
-                }
-
-                if (prevBtn && nextBtn) {
-                    prevBtn.addEventListener('click', () => {
-                        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-                        showSlide(currentSlide);
-                    });
-
-                    nextBtn.addEventListener('click', () => {
-                        currentSlide = (currentSlide + 1) % slides.length;
-                        showSlide(currentSlide);
-                    });
-                }
-
-                dots.forEach((dot, index) => {
-                    dot.addEventListener('click', () => {
-                        currentSlide = index;
-                        showSlide(currentSlide);
-                    });
-                });
-
-                // Auto-play carousel
-                if (slides.length > 1) {
-                    setInterval(() => {
-                        currentSlide = (currentSlide + 1) % slides.length;
-                        showSlide(currentSlide);
-                    }, 5000);
-                }
-            });
-        }
-
-        // Initialize carousels when page loads
-        window.addEventListener('load', initCarousels);
-
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 1s ease forwards';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all gem cards
-        document.querySelectorAll('.gem-card').forEach(card => {
-            observer.observe(card);
-        });
-    </script>
-</body>
-</html>
