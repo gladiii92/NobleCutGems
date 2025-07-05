@@ -68,7 +68,7 @@
             color: var(--dark-bg);
         }
 
-        /* BESSERE Social Media Buttons */
+        /* Social Media Buttons */
         .social-media {
             position: fixed;
             bottom: 105px;
@@ -165,7 +165,7 @@
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
         }
 
-        /* STEIN DETAIL MODAL */
+        /* VERBESSERTES STEIN DETAIL MODAL */
         .stone-modal {
             display: none;
             position: fixed;
@@ -195,12 +195,14 @@
             border: 2px solid var(--primary-gold);
             border-radius: 20px;
             width: 90%;
-            max-width: 1000px;
-            max-height: 90%;
+            max-width: 900px;
+            max-height: 95%;
             overflow-y: auto;
             position: relative;
             animation: slideIn 0.3s ease;
             box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
+            display: flex;
+            flex-direction: column;
         }
 
         @keyframes slideIn {
@@ -239,12 +241,20 @@
             transform: rotate(90deg);
         }
 
-        .modal-carousel {
+        /* BILD BEREICH - OBEN */
+        .modal-image-section {
             width: 100%;
-            height: 500px;
+            height: 400px;
             position: relative;
             overflow: hidden;
             background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(244, 228, 193, 0.1));
+            border-radius: 18px 18px 0 0;
+        }
+
+        .modal-carousel {
+            width: 100%;
+            height: 100%;
+            position: relative;
         }
 
         .modal-carousel .carousel-slide {
@@ -267,30 +277,98 @@
             cursor: zoom-in;
         }
 
-        .modal-gem-info {
-            padding: 30px;
+        .modal-carousel .carousel-nav {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .modal-carousel .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-gold);
+        }
+
+        .modal-carousel .carousel-dot.active {
+            background: var(--primary-gold);
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        .modal-carousel .carousel-arrows {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            pointer-events: none;
+        }
+
+        .modal-carousel .carousel-arrow {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid var(--primary-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            pointer-events: all;
+            transition: all 0.3s ease;
+            color: var(--primary-gold);
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .modal-carousel .carousel-arrow:hover {
+            background: var(--primary-gold);
+            color: var(--dark-bg);
+            transform: scale(1.1);
+        }
+
+        /* INFO BEREICH - UNTEN */
+        .modal-info-section {
+            padding: 40px;
             text-align: center;
+            background: var(--dark-secondary);
+            border-radius: 0 0 18px 18px;
         }
 
         .modal-gem-name {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
             color: var(--primary-gold);
             text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+            font-weight: 700;
         }
 
         .modal-gem-details {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: var(--text-muted);
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             line-height: 1.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .modal-gem-price {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: var(--secondary-gold);
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             font-weight: bold;
+            text-shadow: 0 2px 10px rgba(244, 228, 193, 0.3);
         }
 
         .modal-action-buttons {
@@ -300,27 +378,27 @@
         }
 
         .modal-whatsapp-button {
-            padding: 15px 30px;
-            border: 2px solid #25d366;
+            padding: 18px 40px;
+            border: 3px solid #25d366;
             text-decoration: none;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             border-radius: 50px;
             transition: all 0.3s ease;
-            font-weight: 600;
+            font-weight: 700;
             letter-spacing: 1px;
             background: transparent;
             color: #25d366;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
         .modal-whatsapp-button:hover {
             background: #25d366;
             color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
         }
 
         nav {
@@ -853,6 +931,31 @@
                 width: 20px;
                 height: 20px;
             }
+
+            .modal-image-section {
+                height: 300px;
+            }
+
+            .modal-info-section {
+                padding: 20px;
+            }
+
+            .modal-gem-name {
+                font-size: 2rem;
+            }
+
+            .modal-gem-details {
+                font-size: 1.1rem;
+            }
+
+            .modal-gem-price {
+                font-size: 1.8rem;
+            }
+
+            .modal-whatsapp-button {
+                padding: 15px 25px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -935,18 +1038,48 @@
             
             <div class="category-filter">
                 <button class="category-btn active" data-category="all">
-                    Alle <span class="count">1</span>
+                    Alle <span class="count">11</span>
                 </button>
                 <button class="category-btn" data-category="sapphire">
-                    Saphire <span class="count">1</span>
+                    Saphire <span class="count">5</span>
+                </button>
+                <button class="category-btn" data-category="spinel">
+                    Spinelle <span class="count">3</span>
+                </button>
+                <button class="category-btn" data-category="ruby">
+                    Rubine <span class="count">1</span>
+                </button>
+                <button class="category-btn" data-category="emerald">
+                    Smaragde <span class="count">1</span>
+                </button>
+                <button class="category-btn" data-category="other">
+                    Restliche <span class="count">1</span>
                 </button>
             </div>
 
             <div class="gem-grid">
+                <!-- Sapphire 1 -->
                 <div class="gem-card show" data-category="sapphire">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
                             <img src="images/sapphire1-1.jpg" alt="Padparadscha Saphir">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/sapphire1-2.jpg" alt="Padparadscha Saphir">
+                        </div>
+                        <div class="carousel-slide">
+                            <video muted loop>
+                                <source src="videos/sapphire1.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                            <span class="carousel-dot" data-slide="1"></span>
+                            <span class="carousel-dot" data-slide="2"></span>
+                        </div>
+                        <div class="carousel-arrows">
+                            <div class="carousel-arrow prev">‹</div>
+                            <div class="carousel-arrow next">›</div>
                         </div>
                     </div>
                     <div class="gem-info">
@@ -958,6 +1091,296 @@
                         <p class="gem-price">Auf Anfrage</p>
                         <div class="action-buttons">
                             <a href="https://wa.me/4915168482909?text=Hallo%20NobleCutGems%2C%20ich%20interessiere%20mich%20für%20den%20Padparadscha%20Saphir%202.45ct" class="whatsapp-button">
+                                Auf Anfrage
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sapphire 2 -->
+                <div class="gem-card show" data-category="sapphire">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/sapphire2-1.jpg" alt="Kashmir Saphir">
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Kashmir Saphir</h3>
+                        <p class="gem-details">
+                            4.28 ct | Unbehandelt | Kashmir<br>
+                            Legendäre samtige Kornblumenfarbe
+                        </p>
+                        <p class="gem-price">Auf Anfrage</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Hallo%20NobleCutGems%2C%20ich%20interessiere%20mich%20für%20den%20Kashmir%20Saphir%204.28ct" class="whatsapp-button">
+                                Auf Anfrage
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sapphire 3 -->
+                <div class="gem-card show" data-category="sapphire">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/sapphire3-1.jpg" alt="Royal Blue Saphir">
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Royal Blue Saphir</h3>
+                        <p class="gem-details">
+                            3.65 ct | Unbehandelt | Burma<br>
+                            Intensives königsblau
+                        </p>
+                        <p class="gem-price">Auf Anfrage</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Hallo%20NobleCutGems%2C%20ich%20interessiere%20mich%20für%20den%20Royal%20Blue%20Saphir%203.65ct" class="whatsapp-button">
+                                Auf Anfrage
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sapphire 4 -->
+                <div class="gem-card show" data-category="sapphire">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/sapphire4-1.jpg" alt="Pink Saphir">
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Pink Saphir</h3>
+                        <p class="gem-details">
+                            2.18 ct | Unbehandelt | Madagascar<br>
+                            Lebhaftes Hot Pink
+                        </p>
+                        <p class="gem-price">Auf Anfrage</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Hallo%20NobleCutGems%2C%20ich%20interessiere%20mich%20für%20den%20Pink%20Saphir%202.18ct" class="whatsapp-button">
+                                Auf Anfrage
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sapphire 5 -->
+                <div class="gem-card show" data-category="sapphire">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/sapphire5-1.jpg" alt="Yellow Saphir">
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Yellow Saphir</h3>
+                        <p class="gem-details">
+                            5.42 ct | Unbehandelt | Sri Lanka<br>
+                            Brillantes Kanariengelb
+                        </p>
+                        <p class="gem-price">Auf Anfrage</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Hallo%20NobleCutGems%2C%20ich%20interessiere%20mich%20für%20den%20Yellow%20Saphir%205.42ct" class="whatsapp-button">
+                                Auf Anfrage
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spinel 1 -->
+                <div class="gem-card show" data-category="spinel">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/spinel1-1.jpg" alt="Mahenge Spinell">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/spinel1-2.jpg" alt="Mahenge Spinell">
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                            <span class="carousel-dot" data-slide="1"></span>
+                        </div>
+                        <div class="carousel-arrows">
+                            <div class="carousel-arrow prev">‹</div>
+                            <div class="carousel-arrow next">›</div>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Mahenge Spinell</h3>
+                        <p class="gem-details">
+                            3.21 ct | Neon Pink | Tanzania<br>
+                            Perfekte Kristallstruktur
+                        </p>
+                        <p class="gem-price">Auf Anfrage</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Hallo%20NobleCutGems%2C%20ich%20interessiere%20mich%20für%20den%20Mahenge%20Spinell%203.21ct" class="whatsapp-button">
+                                Auf Anfrage
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spinel 2 -->
+                <div class="gem-card show" data-category="spinel">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/spinel2-1.jpg" alt="Jedi Spinell">
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Jedi Spinell</h3>
+                        <p class="gem-details">
+                            1.85 ct | Neon Red | Burma<br>
+                            Außergewöhnliche Fluoreszenz
+                        </p>
+                        <p class="gem-price">Auf Anfrage</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Hallo%20NobleCutGems%2C%20ich%20interessiere%20mich%20für%20den%20Jedi%20Spinell%201.85ct" class="whatsapp-button">
+                                Auf Anfrage
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spinel 3 -->
+                <div class="gem-card show" data-category="spinel">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/spinel3-1.jpg" alt="Cobalt Spinell">
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Cobalt Spinell</h3>
+                        <p class="gem-details">
+                            2.47 ct | Vivid Blue | Vietnam<br>
+                            Seltene Kobaltfarbe
+                        </p>
+                        <p class="gem-price">Auf Anfrage</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Hallo%20NobleCutGems%2C%20ich%20interessiere%20mich%20für%20den%20Cobalt%20Spinell%202.47ct" class="whatsapp-button">
+                                Auf Anfrage
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ruby 1 -->
+                <div class="gem-card show" data-category="ruby">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/ruby1-1.jpg" alt="Burma Rubin">
+                        </div>
+                        <div class="carousel-slide">
+                            <video muted loop>
+                                <source src="videos/ruby1.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                            <span class="carousel-dot" data-slide="1"></span>
+                        </div>
+                        <div class="carousel-arrows">
+                            <div class="carousel-arrow prev">‹</div>
+                            <div class="carousel-arrow next">›</div>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Burma Rubin</h3>
+                        <p class="gem-details">
+                            2.15 ct | Pigeon Blood | Myanmar<br>
+                            GRS zertifiziert, unbehandelt
+                        </p>
+                        <p class="gem-price">Auf Anfrage</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Hallo%20NobleCutGems%2C%20ich%20interessiere%20mich%20für%20den%20Burma%20Rubin%202.15ct" class="whatsapp-button">
+                                Auf Anfrage
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Emerald 1 -->
+                <div class="gem-card show" data-category="emerald">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/emerald1-1.jpg" alt="Kolumbianischer Smaragd">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/emerald1-2.jpg" alt="Kolumbianischer Smaragd">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/emerald1-3.jpg" alt="Kolumbianischer Smaragd">
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                            <span class="carousel-dot" data-slide="1"></span>
+                            <span class="carousel-dot" data-slide="2"></span>
+                        </div>
+                        <div class="carousel-arrows">
+                            <div class="carousel-arrow prev">‹</div>
+                            <div class="carousel-arrow next">›</div>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Kolumbianischer Smaragd</h3>
+                        <p class="gem-details">
+                            3.12 ct | Minor Oil | Muzo Mine<br>
+                            Tiefgrün mit exzellenter Transparenz
+                        </p>
+                        <p class="gem-price">Auf Anfrage</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Hallo%20NobleCutGems%2C%20ich%20interessiere%20mich%20für%20den%20Kolumbianischen%20Smaragd%203.12ct" class="whatsapp-button">
+                                Auf Anfrage
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other Gem 1 -->
+                <div class="gem-card show" data-category="other">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/paraiba1-1.jpg" alt="Paraiba Turmalin">
+                        </div>
+                        <div class="carousel-slide">
+                            <video muted loop>
+                                <source src="videos/paraiba1.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                            <span class="carousel-dot" data-slide="1"></span>
+                        </div>
+                        <div class="carousel-arrows">
+                            <div class="carousel-arrow prev">‹</div>
+                            <div class="carousel-arrow next">›</div>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Paraiba Turmalin</h3>
+                        <p class="gem-details">
+                            1.87 ct | Neon-Blau | Brasilien<br>
+                            Elektrisierende Farbe, höchste Reinheit
+                        </p>
+                        <p class="gem-price">Auf Anfrage</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Hallo%20NobleCutGems%2C%20ich%20interessiere%20mich%20für%20den%20Paraiba%20Turmalin%201.87ct" class="whatsapp-button">
                                 Auf Anfrage
                             </a>
                         </div>
@@ -992,6 +1415,41 @@
                 <p>
                     E-Mail: NobleCutGems_official@gmx.de<br>
                     WhatsApp/Tel: +49 151 68482909
+                </p>
+                <h3>Umsatzsteuer-ID</h3>
+                <p>
+                    Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br>
+                    (Noch nicht vorhanden)
+                </p>
+                <h3>Gewerbeanmeldung</h3>
+                <p>
+                    Die Gewerbeanmeldung nach § 34c GewO wurde erteilt durch das Landratsamt Lichtenfels
+                </p>
+                <h3>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3>
+                <p>
+                    David Heinke<br>
+                    Friedrich-Ebert-Straße 85<br>
+                    96215 Lichtenfels
+                </p>
+                <h3>Haftungsausschluss</h3>
+                <p>
+                    <strong>Haftung für Inhalte:</strong>
+                    Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. 
+                    Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.
+                </p>
+                <h3>Datenschutz</h3>
+                <p>
+                    Die Nutzung unserer Webseite ist ohne Angabe personenbezogener Daten möglich. 
+                    Bei der Kontaktaufnahme per E-Mail werden Ihre Angaben zwecks Bearbeitung der Anfrage 
+                    und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht 
+                    ohne Ihre Einwilligung weiter.
+                </p>
+                <h3>Urheberrecht</h3>
+                <p>
+                    Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen 
+                    dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art 
+                    der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen 
+                    Zustimmung des jeweiligen Autors bzw. Erstellers.
                 </p>
             </div>
         </section>
@@ -1049,18 +1507,48 @@
             
             <div class="category-filter">
                 <button class="category-btn active" data-category="all">
-                    All <span class="count">1</span>
+                    All <span class="count">11</span>
                 </button>
                 <button class="category-btn" data-category="sapphire">
-                    Sapphires <span class="count">1</span>
+                    Sapphires <span class="count">5</span>
+                </button>
+                <button class="category-btn" data-category="spinel">
+                    Spinels <span class="count">3</span>
+                </button>
+                <button class="category-btn" data-category="ruby">
+                    Rubies <span class="count">1</span>
+                </button>
+                <button class="category-btn" data-category="emerald">
+                    Emeralds <span class="count">1</span>
+                </button>
+                <button class="category-btn" data-category="other">
+                    Others <span class="count">1</span>
                 </button>
             </div>
 
             <div class="gem-grid">
+                <!-- Englische Versionen aller Steine... -->
                 <div class="gem-card show" data-category="sapphire">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
                             <img src="images/sapphire1-1.jpg" alt="Padparadscha Sapphire">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/sapphire1-2.jpg" alt="Padparadscha Sapphire">
+                        </div>
+                        <div class="carousel-slide">
+                            <video muted loop>
+                                <source src="videos/sapphire1.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                            <span class="carousel-dot" data-slide="1"></span>
+                            <span class="carousel-dot" data-slide="2"></span>
+                        </div>
+                        <div class="carousel-arrows">
+                            <div class="carousel-arrow prev">‹</div>
+                            <div class="carousel-arrow next">›</div>
                         </div>
                     </div>
                     <div class="gem-info">
@@ -1072,6 +1560,286 @@
                         <p class="gem-price">On Request</p>
                         <div class="action-buttons">
                             <a href="https://wa.me/4915168482909?text=Hello%20NobleCutGems%2C%20I%20am%20interested%20in%20the%20Padparadscha%20Sapphire%202.45ct" class="whatsapp-button">
+                                On Request
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gem-card show" data-category="sapphire">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/sapphire2-1.jpg" alt="Kashmir Sapphire">
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Kashmir Sapphire</h3>
+                        <p class="gem-details">
+                            4.28 ct | Untreated | Kashmir<br>
+                            Legendary velvety cornflower blue
+                        </p>
+                        <p class="gem-price">On Request</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Hello%20NobleCutGems%2C%20I%20am%20interested%20in%20the%20Kashmir%20Sapphire%204.28ct" class="whatsapp-button">
+                                On Request
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gem-card show" data-category="sapphire">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/sapphire3-1.jpg" alt="Royal Blue Sapphire">
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Royal Blue Sapphire</h3>
+                        <p class="gem-details">
+                            3.65 ct | Untreated | Burma<br>
+                            Intense royal blue
+                        </p>
+                        <p class="gem-price">On Request</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Hello%20NobleCutGems%2C%20I%20am%20interested%20in%20the%20Royal%20Blue%20Sapphire%203.65ct" class="whatsapp-button">
+                                On Request
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gem-card show" data-category="sapphire">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/sapphire4-1.jpg" alt="Pink Sapphire">
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Pink Sapphire</h3>
+                        <p class="gem-details">
+                            2.18 ct | Untreated | Madagascar<br>
+                            Vivid hot pink
+                        </p>
+                        <p class="gem-price">On Request</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Hello%20NobleCutGems%2C%20I%20am%20interested%20in%20the%20Pink%20Sapphire%202.18ct" class="whatsapp-button">
+                                On Request
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gem-card show" data-category="sapphire">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/sapphire5-1.jpg" alt="Yellow Sapphire">
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Yellow Sapphire</h3>
+                        <p class="gem-details">
+                            5.42 ct | Untreated | Sri Lanka<br>
+                            Brilliant canary yellow
+                        </p>
+                        <p class="gem-price">On Request</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Hello%20NobleCutGems%2C%20I%20am%20interested%20in%20the%20Yellow%20Sapphire%205.42ct" class="whatsapp-button">
+                                On Request
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gem-card show" data-category="spinel">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/spinel1-1.jpg" alt="Mahenge Spinel">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/spinel1-2.jpg" alt="Mahenge Spinel">
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                            <span class="carousel-dot" data-slide="1"></span>
+                        </div>
+                        <div class="carousel-arrows">
+                            <div class="carousel-arrow prev">‹</div>
+                            <div class="carousel-arrow next">›</div>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Mahenge Spinel</h3>
+                        <p class="gem-details">
+                            3.21 ct | Neon Pink | Tanzania<br>
+                            Perfect crystal structure
+                        </p>
+                        <p class="gem-price">On Request</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Hello%20NobleCutGems%2C%20I%20am%20interested%20in%20the%20Mahenge%20Spinel%203.21ct" class="whatsapp-button">
+                                On Request
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gem-card show" data-category="spinel">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/spinel2-1.jpg" alt="Jedi Spinel">
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Jedi Spinel</h3>
+                        <p class="gem-details">
+                            1.85 ct | Neon Red | Burma<br>
+                            Exceptional fluorescence
+                        </p>
+                        <p class="gem-price">On Request</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Hello%20NobleCutGems%2C%20I%20am%20interested%20in%20the%20Jedi%20Spinel%201.85ct" class="whatsapp-button">
+                                On Request
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gem-card show" data-category="spinel">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/spinel3-1.jpg" alt="Cobalt Spinel">
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Cobalt Spinel</h3>
+                        <p class="gem-details">
+                            2.47 ct | Vivid Blue | Vietnam<br>
+                            Rare cobalt color
+                        </p>
+                        <p class="gem-price">On Request</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Hello%20NobleCutGems%2C%20I%20am%20interested%20in%20the%20Cobalt%20Spinel%202.47ct" class="whatsapp-button">
+                                On Request
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gem-card show" data-category="ruby">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/ruby1-1.jpg" alt="Burma Ruby">
+                        </div>
+                        <div class="carousel-slide">
+                            <video muted loop>
+                                <source src="videos/ruby1.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                            <span class="carousel-dot" data-slide="1"></span>
+                        </div>
+                        <div class="carousel-arrows">
+                            <div class="carousel-arrow prev">‹</div>
+                            <div class="carousel-arrow next">›</div>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Burma Ruby</h3>
+                        <p class="gem-details">
+                            2.15 ct | Pigeon Blood | Myanmar<br>
+                            GRS certified, untreated
+                        </p>
+                        <p class="gem-price">On Request</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Hello%20NobleCutGems%2C%20I%20am%20interested%20in%20the%20Burma%20Ruby%202.15ct" class="whatsapp-button">
+                                On Request
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gem-card show" data-category="emerald">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/emerald1-1.jpg" alt="Colombian Emerald">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/emerald1-2.jpg" alt="Colombian Emerald">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/emerald1-3.jpg" alt="Colombian Emerald">
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                            <span class="carousel-dot" data-slide="1"></span>
+                            <span class="carousel-dot" data-slide="2"></span>
+                        </div>
+                        <div class="carousel-arrows">
+                            <div class="carousel-arrow prev">‹</div>
+                            <div class="carousel-arrow next">›</div>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Colombian Emerald</h3>
+                        <p class="gem-details">
+                            3.12 ct | Minor Oil | Muzo Mine<br>
+                            Deep green with excellent transparency
+                        </p>
+                        <p class="gem-price">On Request</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Hello%20NobleCutGems%2C%20I%20am%20interested%20in%20the%20Colombian%20Emerald%203.12ct" class="whatsapp-button">
+                                On Request
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gem-card show" data-category="other">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/paraiba1-1.jpg" alt="Paraiba Tourmaline">
+                        </div>
+                        <div class="carousel-slide">
+                            <video muted loop>
+                                <source src="videos/paraiba1.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                            <span class="carousel-dot" data-slide="1"></span>
+                        </div>
+                        <div class="carousel-arrows">
+                            <div class="carousel-arrow prev">‹</div>
+                            <div class="carousel-arrow next">›</div>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Paraiba Tourmaline</h3>
+                        <p class="gem-details">
+                            1.87 ct | Neon Blue | Brazil<br>
+                            Electrifying color, highest clarity
+                        </p>
+                        <p class="gem-price">On Request</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Hello%20NobleCutGems%2C%20I%20am%20interested%20in%20the%20Paraiba%20Tourmaline%201.87ct" class="whatsapp-button">
                                 On Request
                             </a>
                         </div>
@@ -1106,6 +1874,15 @@
                 <p>
                     E-Mail: NobleCutGems_official@gmx.de<br>
                     WhatsApp/Tel: +49 151 68482909
+                </p>
+                <h3>VAT ID</h3>
+                <p>
+                    VAT identification number according to § 27 a VAT Act:<br>
+                    (Not yet available)
+                </p>
+                <h3>Trade License</h3>
+                <p>
+                    The trade license according to § 34c GewO was issued by the District Office Lichtenfels
                 </p>
             </div>
         </section>
@@ -1163,10 +1940,22 @@
             
             <div class="category-filter">
                 <button class="category-btn active" data-category="all">
-                    Tous <span class="count">1</span>
+                    Tous <span class="count">11</span>
                 </button>
                 <button class="category-btn" data-category="sapphire">
-                    Saphirs <span class="count">1</span>
+                    Saphirs <span class="count">5</span>
+                </button>
+                <button class="category-btn" data-category="spinel">
+                    Spinelles <span class="count">3</span>
+                </button>
+                <button class="category-btn" data-category="ruby">
+                    Rubis <span class="count">1</span>
+                </button>
+                <button class="category-btn" data-category="emerald">
+                    Émeraudes <span class="count">1</span>
+                </button>
+                <button class="category-btn" data-category="other">
+                    Autres <span class="count">1</span>
                 </button>
             </div>
 
@@ -1175,6 +1964,23 @@
                     <div class="carousel-container">
                         <div class="carousel-slide active">
                             <img src="images/sapphire1-1.jpg" alt="Saphir Padparadscha">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/sapphire1-2.jpg" alt="Saphir Padparadscha">
+                        </div>
+                        <div class="carousel-slide">
+                            <video muted loop>
+                                <source src="videos/sapphire1.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                            <span class="carousel-dot" data-slide="1"></span>
+                            <span class="carousel-dot" data-slide="2"></span>
+                        </div>
+                        <div class="carousel-arrows">
+                            <div class="carousel-arrow prev">‹</div>
+                            <div class="carousel-arrow next">›</div>
                         </div>
                     </div>
                     <div class="gem-info">
@@ -1186,6 +1992,286 @@
                         <p class="gem-price">Sur Demande</p>
                         <div class="action-buttons">
                             <a href="https://wa.me/4915168482909?text=Bonjour%20NobleCutGems%2C%20je%20suis%20intéressé%20par%20le%20Saphir%20Padparadscha%202.45ct" class="whatsapp-button">
+                                Sur Demande
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gem-card show" data-category="sapphire">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/sapphire2-1.jpg" alt="Saphir du Cachemire">
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Saphir du Cachemire</h3>
+                        <p class="gem-details">
+                            4.28 ct | Non traité | Cachemire<br>
+                            Bleu bleuet velouté légendaire
+                        </p>
+                        <p class="gem-price">Sur Demande</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Bonjour%20NobleCutGems%2C%20je%20suis%20intéressé%20par%20le%20Saphir%20du%20Cachemire%204.28ct" class="whatsapp-button">
+                                Sur Demande
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gem-card show" data-category="sapphire">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/sapphire3-1.jpg" alt="Saphir Bleu Royal">
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Saphir Bleu Royal</h3>
+                        <p class="gem-details">
+                            3.65 ct | Non traité | Birmanie<br>
+                            Bleu royal intense
+                        </p>
+                        <p class="gem-price">Sur Demande</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Bonjour%20NobleCutGems%2C%20je%20suis%20intéressé%20par%20le%20Saphir%20Bleu%20Royal%203.65ct" class="whatsapp-button">
+                                Sur Demande
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gem-card show" data-category="sapphire">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/sapphire4-1.jpg" alt="Saphir Rose">
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Saphir Rose</h3>
+                        <p class="gem-details">
+                            2.18 ct | Non traité | Madagascar<br>
+                            Rose vif intense
+                        </p>
+                        <p class="gem-price">Sur Demande</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Bonjour%20NobleCutGems%2C%20je%20suis%20intéressé%20par%20le%20Saphir%20Rose%202.18ct" class="whatsapp-button">
+                                Sur Demande
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gem-card show" data-category="sapphire">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/sapphire5-1.jpg" alt="Saphir Jaune">
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Saphir Jaune</h3>
+                        <p class="gem-details">
+                            5.42 ct | Non traité | Sri Lanka<br>
+                            Jaune canari brillant
+                        </p>
+                        <p class="gem-price">Sur Demande</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Bonjour%20NobleCutGems%2C%20je%20suis%20intéressé%20par%20le%20Saphir%20Jaune%205.42ct" class="whatsapp-button">
+                                Sur Demande
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gem-card show" data-category="spinel">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/spinel1-1.jpg" alt="Spinelle Mahenge">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/spinel1-2.jpg" alt="Spinelle Mahenge">
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                            <span class="carousel-dot" data-slide="1"></span>
+                        </div>
+                        <div class="carousel-arrows">
+                            <div class="carousel-arrow prev">‹</div>
+                            <div class="carousel-arrow next">›</div>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Spinelle Mahenge</h3>
+                        <p class="gem-details">
+                            3.21 ct | Rose Néon | Tanzanie<br>
+                            Structure cristalline parfaite
+                        </p>
+                        <p class="gem-price">Sur Demande</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Bonjour%20NobleCutGems%2C%20je%20suis%20intéressé%20par%20le%20Spinelle%20Mahenge%203.21ct" class="whatsapp-button">
+                                Sur Demande
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gem-card show" data-category="spinel">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/spinel2-1.jpg" alt="Spinelle Jedi">
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Spinelle Jedi</h3>
+                        <p class="gem-details">
+                            1.85 ct | Rouge Néon | Birmanie<br>
+                            Fluorescence exceptionnelle
+                        </p>
+                        <p class="gem-price">Sur Demande</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Bonjour%20NobleCutGems%2C%20je%20suis%20intéressé%20par%20le%20Spinelle%20Jedi%201.85ct" class="whatsapp-button">
+                                Sur Demande
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gem-card show" data-category="spinel">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/spinel3-1.jpg" alt="Spinelle Cobalt">
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Spinelle Cobalt</h3>
+                        <p class="gem-details">
+                            2.47 ct | Bleu Vif | Vietnam<br>
+                            Couleur cobalt rare
+                        </p>
+                        <p class="gem-price">Sur Demande</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Bonjour%20NobleCutGems%2C%20je%20suis%20intéressé%20par%20le%20Spinelle%20Cobalt%202.47ct" class="whatsapp-button">
+                                Sur Demande
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gem-card show" data-category="ruby">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/ruby1-1.jpg" alt="Rubis de Birmanie">
+                        </div>
+                        <div class="carousel-slide">
+                            <video muted loop>
+                                <source src="videos/ruby1.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                            <span class="carousel-dot" data-slide="1"></span>
+                        </div>
+                        <div class="carousel-arrows">
+                            <div class="carousel-arrow prev">‹</div>
+                            <div class="carousel-arrow next">›</div>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Rubis de Birmanie</h3>
+                        <p class="gem-details">
+                            2.15 ct | Sang de Pigeon | Myanmar<br>
+                            Certifié GRS, non traité
+                        </p>
+                        <p class="gem-price">Sur Demande</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Bonjour%20NobleCutGems%2C%20je%20suis%20intéressé%20par%20le%20Rubis%20de%20Birmanie%202.15ct" class="whatsapp-button">
+                                Sur Demande
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gem-card show" data-category="emerald">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/emerald1-1.jpg" alt="Émeraude Colombienne">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/emerald1-2.jpg" alt="Émeraude Colombienne">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/emerald1-3.jpg" alt="Émeraude Colombienne">
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                            <span class="carousel-dot" data-slide="1"></span>
+                            <span class="carousel-dot" data-slide="2"></span>
+                        </div>
+                        <div class="carousel-arrows">
+                            <div class="carousel-arrow prev">‹</div>
+                            <div class="carousel-arrow next">›</div>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Émeraude Colombienne</h3>
+                        <p class="gem-details">
+                            3.12 ct | Huile Mineure | Mine Muzo<br>
+                            Vert profond avec excellente transparence
+                        </p>
+                        <p class="gem-price">Sur Demande</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Bonjour%20NobleCutGems%2C%20je%20suis%20intéressé%20par%20l'Émeraude%20Colombienne%203.12ct" class="whatsapp-button">
+                                Sur Demande
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gem-card show" data-category="other">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/paraiba1-1.jpg" alt="Tourmaline Paraiba">
+                        </div>
+                        <div class="carousel-slide">
+                            <video muted loop>
+                                <source src="videos/paraiba1.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                            <span class="carousel-dot" data-slide="1"></span>
+                        </div>
+                        <div class="carousel-arrows">
+                            <div class="carousel-arrow prev">‹</div>
+                            <div class="carousel-arrow next">›</div>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Tourmaline Paraiba</h3>
+                        <p class="gem-details">
+                            1.87 ct | Bleu Néon | Brésil<br>
+                            Couleur électrisante, pureté maximale
+                        </p>
+                        <p class="gem-price">Sur Demande</p>
+                        <div class="action-buttons">
+                            <a href="https://wa.me/4915168482909?text=Bonjour%20NobleCutGems%2C%20je%20suis%20intéressé%20par%20la%20Tourmaline%20Paraiba%201.87ct" class="whatsapp-button">
                                 Sur Demande
                             </a>
                         </div>
@@ -1240,11 +2326,13 @@
         <div class="stone-modal-content">
             <span class="modal-close" id="modalClose">&times;</span>
             
-            <div class="modal-carousel" id="modalCarousel">
-                <!-- Slides werden hier dynamisch eingefügt -->
+            <div class="modal-image-section">
+                <div class="modal-carousel" id="modalCarousel">
+                    <!-- Slides werden hier dynamisch eingefügt -->
+                </div>
             </div>
             
-            <div class="modal-gem-info">
+            <div class="modal-info-section">
                 <h3 class="modal-gem-name" id="modalName"></h3>
                 <p class="modal-gem-details" id="modalDetails"></p>
                 <p class="modal-gem-price" id="modalPrice"></p>
@@ -1298,6 +2386,48 @@
                 });
             });
 
+            // Carousel functionality für normale Karten
+            const carousels = document.querySelectorAll('.carousel-container');
+            carousels.forEach(carousel => {
+                const slides = carousel.querySelectorAll('.carousel-slide');
+                const dots = carousel.querySelectorAll('.carousel-dot');
+                const prevArrow = carousel.querySelector('.carousel-arrow.prev');
+                const nextArrow = carousel.querySelector('.carousel-arrow.next');
+                let currentIndex = 0;
+
+                function showSlide(index) {
+                    slides.forEach((slide, i) => {
+                        slide.classList.toggle('active', i === index);
+                    });
+                    dots.forEach((dot, i) => {
+                        dot.classList.toggle('active', i === index);
+                    });
+                    currentIndex = index;
+                }
+
+                dots.forEach((dot, i) => {
+                    dot.addEventListener('click', () => showSlide(i));
+                });
+
+                if (prevArrow) {
+                    prevArrow.addEventListener('click', () => {
+                        let newIndex = currentIndex - 1;
+                        if (newIndex < 0) newIndex = slides.length - 1;
+                        showSlide(newIndex);
+                    });
+                }
+
+                if (nextArrow) {
+                    nextArrow.addEventListener('click', () => {
+                        let newIndex = currentIndex + 1;
+                        if (newIndex >= slides.length) newIndex = 0;
+                        showSlide(newIndex);
+                    });
+                }
+
+                if (slides.length > 0) showSlide(0);
+            });
+
             // STEIN MODAL SYSTEM
             const stoneModal = document.getElementById('stoneModal');
             const modalClose = document.getElementById('modalClose');
@@ -1323,7 +2453,7 @@
                     const whatsappLink = card.querySelector('.whatsapp-button').href;
                     const buttonText = card.querySelector('.whatsapp-button').textContent;
                     
-                    // Bilder sammeln
+                    // Bilder und Videos sammeln
                     const slides = card.querySelectorAll('.carousel-slide');
                     
                     // Modal befüllen
@@ -1336,19 +2466,48 @@
                     // Karussell neu aufbauen
                     modalCarousel.innerHTML = '';
                     let carouselHTML = '';
+                    let navHTML = '<div class="carousel-nav">';
+                    let arrowsHTML = '';
                     
                     slides.forEach((slide, i) => {
                         const img = slide.querySelector('img');
+                        const video = slide.querySelector('video');
+                        
                         if (img) {
                             carouselHTML += `
                                 <div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}">
-                                    <img src="${img.src}" alt="${img.alt}" style="cursor: zoom-in;">
+                                    <img src="${img.src}" alt="${img.alt}">
+                                </div>
+                            `;
+                        } else if (video) {
+                            carouselHTML += `
+                                <div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}">
+                                    <video muted loop controls>
+                                        <source src="${video.querySelector('source').src}" type="video/mp4">
+                                    </video>
                                 </div>
                             `;
                         }
+                        
+                        navHTML += `<span class="carousel-dot ${i === 0 ? 'active' : ''}" data-slide="${i}"></span>`;
                     });
                     
-                    modalCarousel.innerHTML = carouselHTML;
+                    navHTML += '</div>';
+                    
+                    // Pfeile hinzufügen wenn mehr als 1 Slide
+                    if (slides.length > 1) {
+                        arrowsHTML = `
+                            <div class="carousel-arrows">
+                                <div class="carousel-arrow prev">‹</div>
+                                <div class="carousel-arrow next">›</div>
+                            </div>
+                        `;
+                    }
+                    
+                    modalCarousel.innerHTML = carouselHTML + navHTML + arrowsHTML;
+                    
+                    // Modal-Karussell-Funktionalität hinzufügen
+                    setupModalCarousel();
                     
                     // Modal anzeigen
                     stoneModal.classList.add('show');
@@ -1378,6 +2537,52 @@
                     closeModal();
                 }
             });
+            
+            // Modal-Karussell-Funktionalität
+            function setupModalCarousel() {
+                const slides = modalCarousel.querySelectorAll('.carousel-slide');
+                const dots = modalCarousel.querySelectorAll('.carousel-dot');
+                const prevArrow = modalCarousel.querySelector('.carousel-arrow.prev');
+                const nextArrow = modalCarousel.querySelector('.carousel-arrow.next');
+                let currentIndex = 0;
+                
+                function showSlide(index) {
+                    slides.forEach((slide, i) => {
+                        slide.classList.toggle('active', i === index);
+                    });
+                    dots.forEach((dot, i) => {
+                        dot.classList.toggle('active', i === index);
+                    });
+                    currentIndex = index;
+                }
+                
+                dots.forEach((dot, i) => {
+                    dot.addEventListener('click', () => showSlide(i));
+                });
+                
+                if (prevArrow) {
+                    prevArrow.addEventListener('click', () => {
+                        let newIndex = currentIndex - 1;
+                        if (newIndex < 0) newIndex = slides.length - 1;
+                        showSlide(newIndex);
+                    });
+                }
+                
+                if (nextArrow) {
+                    nextArrow.addEventListener('click', () => {
+                        let newIndex = currentIndex + 1;
+                        if (newIndex >= slides.length) newIndex = 0;
+                        showSlide(newIndex);
+                    });
+                }
+                
+                // Videos auto-play im Modal
+                const videos = modalCarousel.querySelectorAll('video');
+                videos.forEach(video => {
+                    video.addEventListener('mouseenter', () => video.play());
+                    video.addEventListener('mouseleave', () => video.pause());
+                });
+            }
 
             // Navigation scroll effect
             const navbars = document.querySelectorAll('nav');
@@ -1389,6 +2594,13 @@
                         navbar.classList.remove('scrolled');
                     }
                 });
+            });
+
+            // Auto-play videos in carousel
+            const videos = document.querySelectorAll('.carousel-slide video');
+            videos.forEach(video => {
+                video.addEventListener('mouseenter', () => video.play());
+                video.addEventListener('mouseleave', () => video.pause());
             });
 
             // Smooth scrolling
