@@ -271,11 +271,17 @@
     
             .modal-carousel img,
             .modal-carousel video {
-                width: 100%;
-                height: 100%;
+                max-width: 70%; /* Noch kleiner - war 100% */
+                max-height: 70%; /* Noch kleiner - war 100% */
                 object-fit: contain;
                 cursor: zoom-in;
-                padding: 10px;
+                padding: 15px;
+                margin: 0 auto;
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%); /* Zentriert das Bild */
             }
     
             .modal-carousel .carousel-nav {
@@ -2441,7 +2447,7 @@
             const modalWhatsApp = document.getElementById('modalWhatsApp');
             const modalButtonText = document.getElementById('modalButtonText');
             
-            // Alle Stein-Karten finden
+            // SICHERER Gem Card Click Handler
             gemCards.forEach((card, index) => {
                 card.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -2449,74 +2455,89 @@
                     
                     console.log(`💎 STEIN ${index + 1} GEKLICKT`);
                     
-                    // Daten aus der Karte extrahieren
-                    const name = card.querySelector('.gem-name').textContent;
-                    const details = card.querySelector('.gem-details').innerHTML;
-                    const price = card.querySelector('.gem-price').textContent;
-                    const whatsappLink = card.querySelector('.whatsapp-button').href;
-                    const buttonText = card.querySelector('.whatsapp-button').textContent;
+                    // SICHERE Datenextraktion mit Null-Checks
+                    const nameElement = card.querySelector('.gem-name');
+                    const detailsElement = card.querySelector('.gem-details');
+                    const whatsappElement = card.querySelector('.whatsapp-button');
+                    
+                    // Prüfe ob alle wichtigen Elemente existieren
+                    if (!nameElement || !detailsElement || !whatsappElement) {
+                        console.error('❌ Wichtige Elemente in Gem-Card nicht gefunden!');
+                        return; // Beende die Funktion wenn etwas fehlt
+                    }
+                    
+                    // SICHERE Datenextraktion
+                    const name = nameElement.textContent || 'Unbekannter Stein';
+                    const details = detailsElement.innerHTML || 'Keine Details verfügbar';
+                    const whatsappLink = whatsappElement.href || '#';
+                    const buttonText = whatsappElement.textContent || 'Auf Anfrage';
                     
                     // Bilder und Videos sammeln
                     const slides = card.querySelectorAll('.carousel-slide');
                     
                     // Modal befüllen
-                    modalName.textContent = name;
-                    modalDetails.innerHTML = details;
-                    modalPrice.textContent = price;
-                    modalWhatsApp.href = whatsappLink;
-                    modalButtonText.textContent = buttonText;
+                    if (modalName) modalName.textContent = name;
+                    if (modalDetails) modalDetails.innerHTML = details;
+                    if (modalWhatsApp) modalWhatsApp.href = whatsappLink;
+                    if (modalButtonText) modalButtonText.textContent = buttonText;
                     
                     // Karussell neu aufbauen
-                    modalCarousel.innerHTML = '';
-                    let carouselHTML = '';
-                    let navHTML = '<div class="carousel-nav">';
-                    let arrowsHTML = '';
-                    
-                    slides.forEach((slide, i) => {
-                        const img = slide.querySelector('img');
-                        const video = slide.querySelector('video');
+                    if (modalCarousel) {
+                        modalCarousel.innerHTML = '';
+                        let carouselHTML = '';
+                        let navHTML = '<div class="carousel-nav">';
+                        let arrowsHTML = '';
                         
-                        if (img) {
-                            carouselHTML += `
-                                <div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}">
-                                    <img src="${img.src}" alt="${img.alt}">
-                                </div>
-                            `;
-                        } else if (video) {
-                            carouselHTML += `
-                                <div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}">
-                                    <video muted loop controls>
-                                        <source src="${video.querySelector('source').src}" type="video/mp4">
-                                    </video>
+                        slides.forEach((slide, i) => {
+                            const img = slide.querySelector('img');
+                            const video = slide.querySelector('video');
+                            
+                            if (img) {
+                                carouselHTML += `
+                                    <div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}">
+                                        <img src="${img.src}" alt="${img.alt || 'Edelstein'}">
+                                    </div>
+                                `;
+                            } else if (video) {
+                                const source = video.querySelector('source');
+                                if (source) {
+                                    carouselHTML += `
+                                        <div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}">
+                                            <video muted loop controls>
+                                                <source src="${source.src}" type="video/mp4">
+                                            </video>
+                                        </div>
+                                    `;
+                                }
+                            }
+                            
+                            navHTML += `<span class="carousel-dot ${i === 0 ? 'active' : ''}" data-slide="${i}"></span>`;
+                        });
+                        
+                        navHTML += '</div>';
+                        
+                        // Pfeile hinzufügen wenn mehr als 1 Slide
+                        if (slides.length > 1) {
+                            arrowsHTML = `
+                                <div class="carousel-arrows">
+                                    <div class="carousel-arrow prev">‹</div>
+                                    <div class="carousel-arrow next">›</div>
                                 </div>
                             `;
                         }
                         
-                        navHTML += `<span class="carousel-dot ${i === 0 ? 'active' : ''}" data-slide="${i}"></span>`;
-                    });
-                    
-                    navHTML += '</div>';
-                    
-                    // Pfeile hinzufügen wenn mehr als 1 Slide
-                    if (slides.length > 1) {
-                        arrowsHTML = `
-                            <div class="carousel-arrows">
-                                <div class="carousel-arrow prev">‹</div>
-                                <div class="carousel-arrow next">›</div>
-                            </div>
-                        `;
+                        modalCarousel.innerHTML = carouselHTML + navHTML + arrowsHTML;
+                        
+                        // Modal-Karussell-Funktionalität hinzufügen
+                        setupModalCarousel();
                     }
                     
-                    modalCarousel.innerHTML = carouselHTML + navHTML + arrowsHTML;
-                    
-                    // Modal-Karussell-Funktionalität hinzufügen
-                    setupModalCarousel();
-                    
                     // Modal anzeigen
-                    stoneModal.classList.add('show');
-                    document.body.style.overflow = 'hidden';
-                    
-                    console.log('✨ MODAL GEÖFFNET FÜR:', name);
+                    if (stoneModal) {
+                        stoneModal.classList.add('show');
+                        document.body.style.overflow = 'hidden';
+                        console.log('✨ MODAL GEÖFFNET FÜR:', name);
+                    }
                 });
             });
             
