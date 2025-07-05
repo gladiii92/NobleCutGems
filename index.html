@@ -269,7 +269,19 @@
                 opacity: 1;
             }
     
-            .modal-carousel img,
+            .modal-carousel img {
+                width: auto !important;      /* Breite automatisch */
+                height: 90% !important;      /* Höhe maximieren */
+                max-width: 100%;            /* Trotzdem nicht über Container hinaus */
+                object-fit: contain;
+                cursor: zoom-in;
+                margin: 0 auto;
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
             .modal-carousel video {
                 max-width: 70%; /* Noch kleiner - war 100% */
                 max-height: 70%; /* Noch kleiner - war 100% */
@@ -677,7 +689,19 @@
                 opacity: 1;
             }
     
-            .carousel-slide img,
+            .carousel-slide img {
+                width: auto !important;      /* Breite automatisch */
+                height: 100% !important;     /* Höhe ausfüllen */
+                max-width: 100%;            /* Nicht über Container */
+                object-fit: contain;
+                cursor: pointer;
+                margin: 0 auto;
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
             .carousel-slide video {
                 width: 100%;
                 height: 100%;
