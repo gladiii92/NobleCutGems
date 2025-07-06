@@ -1026,6 +1026,49 @@
                 
                 .hero-logo img {
                     height: clamp(120px, 30vw, 300px); /* Mobile: angepasste Größe */
+
+                .cert-carousel {
+                    position: relative;
+                    width: 100%;
+                    max-width: 320px;
+                    height: 220px;
+                    margin: 0 auto;
+                    overflow: hidden;
+                    background: rgba(255,255,255,0.04);
+                    border-radius: 16px;
+                    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                
+                .cert-carousel img {
+                    position: absolute;
+                    left: 0; top: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                    opacity: 0;
+                    transition: opacity 0.6s;
+                    z-index: 1;
+                    border-radius: 12px;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+                }
+                
+                .cert-carousel img.active {
+                    opacity: 1;
+                    z-index: 2;
+                }
+                
+                @media (max-width: 600px) {
+                    .cert-carousel {
+                        max-width: 95vw;
+                        height: 38vw;
+                        min-height: 120px;
+                    }
+                }
+
+                    
                 }
             }
     </style>
@@ -1095,15 +1138,26 @@
         </section>
 
         <section class="about" id="about">
-            <h2 class="section-title">Über </h2>
+            <h2 class="section-title">Über NobleCutGems</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>Bei  vereinen wir Leidenschaft und Expertise, um Ihnen die exquisitesten Edelsteine der Welt zu präsentieren. Jeder Stein in unserer Kollektion wurde sorgfältig ausgewählt und repräsentiert höchste Qualität und außergewöhnliche Schönheit.</p>
+                    <p>Bei NobleCutGems vereinen wir Leidenschaft und Expertise, um Ihnen die exquisitesten Edelsteine der Welt zu präsentieren. Jeder Stein in unserer Kollektion wurde sorgfältig ausgewählt und repräsentiert hohe Qualität und außergewöhnliche Schönheit.</p>
                     <br>
-                    <p>Unsere Expertise erstreckt sich über Jahrzehnte der Erfahrung in der Edelsteinbranche. Von seltenen Farbedelsteinen bis zu makellosen Diamanten – wir bieten nur das Beste für anspruchsvolle Sammler und Liebhaber.</p>
+                    <p>Unsere Expertise erstreckt sich über umfangreiche Erfahrung in der Edelsteinbranche. Von seltenen Farbedelsteinen bis zu makellosen Diamanten – wir bieten nur das Beste für anspruchsvolle Sammler und Liebhaber.</p>
                 </div>
                 <div class="about-image">
-                    <p>Platzhalter für About-Bild</p>
+                    <div class="cert-carousel" id="certCarousel">
+                        <img src="images/igs_aquamarine.png" alt="IGS Aquamarine Zertifikat" class="active">
+                        <img src="images/igs_ruby.png" alt="IGS Ruby Zertifikat">
+                        <img src="images/igs_sapphire.png" alt="IGS Sapphire Zertifikat">
+                        <img src="images/igs_emerald.png" alt="IGS Emerald Zertifikat">
+                        <img src="images/igs_citrine.png" alt="IGS Diamond Zertifikat">
+                        <img src="images/igs_garnet.png" alt="IGS Gemology Zertifikat">
+                        <img src="images/igs_spinel.png" alt="IGS Colored Stones Zertifikat">
+                        <img src="images/igs_topaz.png" alt="IGS Pearl Zertifikat">
+                        <img src="images/igs_tourmaline.png" alt="IGS Jade Zertifikat">
+                        <img src="images/igs_zircon.png" alt="IGS Opal Zertifikat">
+                    </div>
                 </div>
             </div>
         </section>
@@ -2714,7 +2768,7 @@
             
             console.log('✅ Event-Bubbling Fix angewendet!');
         }
-
+        
         // Nach dem DOM-Loading ausführen
         setTimeout(stopEventBubbling, 1000);
 
@@ -2727,7 +2781,19 @@
                     stopEventBubbling();
                 };
             }
-        });
+            
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.getElementById('certCarousel');
+            if (!carousel) return;
+                const images = carousel.querySelectorAll('img');
+                let idx = 0;
+                setInterval(() => {
+                    images[idx].classList.remove('active');
+                    idx = (idx + 1) % images.length;
+                    images[idx].classList.add('active');
+                }, 2200); // Alle 2,2 Sekunden wechseln
+            });
+            
     </script>
 
 </body>
