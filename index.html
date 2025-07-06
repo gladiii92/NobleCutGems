@@ -448,12 +448,23 @@
             }
     
             .logo {
-                font-size: 28px;
-                font-weight: 700;
-                background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                letter-spacing: 2px;
+                height: 40px; /* Passende Höhe für Header */
+                display: flex;
+                align-items: center;
+            }
+            
+            .logo img {
+                height: 100%;
+                width: auto; /* Behält Proportionen */
+                max-height: 40px;
+                object-fit: contain;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            
+            .logo img:hover {
+                transform: scale(1.05);
+                filter: brightness(1.1);
             }
     
             .nav-links {
@@ -1039,7 +1050,9 @@
     <div class="lang-content active" data-lang="de">
         <nav>
             <div class="nav-container">
-                <div class="logo">NobleCutGems</div>
+                <div class="logo">
+                    <img src="images/NobleCutGems.jpg" alt="NobleCutGems Logo">
+                </div>
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">Über uns</a></li>
@@ -1497,7 +1510,9 @@
     <div class="lang-content" data-lang="en">
         <nav>
             <div class="nav-container">
-                <div class="logo">NobleCutGems</div>
+                <div class="logo">
+                    <img src="images/NobleCutGems.jpg" alt="NobleCutGems Logo">
+                </div>
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
@@ -1919,7 +1934,9 @@
     <div class="lang-content" data-lang="fr">
         <nav>
             <div class="nav-container">
-                <div class="logo">NobleCutGems</div>
+                <div class="logo">
+                    <img src="images/NobleCutGems.jpg" alt="NobleCutGems Logo">
+                </div>
                 <ul class="nav-links">
                     <li><a href="#home">Accueil</a></li>
                     <li><a href="#about">À propos</a></li>
