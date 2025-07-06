@@ -269,19 +269,15 @@
                 opacity: 1;
             }
     
+            /* BILDER genauso wie VIDEOS machen */
             .modal-carousel img {
-                width: 70% !important;            /* Kleiner als 100% */
-                height: 70% !important;           /* Kleiner als 100% */
-                max-width: 100%;
-                object-fit: contain !important;     
-                object-position: center bottom;   /* BLEIBT - zeigt unteren Teil */
+                width: 100% !important;           /* GLEICH wie Videos */
+                height: 100% !important;          /* GLEICH wie Videos */
+                object-fit: contain !important;   /* GLEICH wie Videos */
+                object-position: center bottom;   /* ABER: bottom statt center (für deinen Stein) */
                 cursor: zoom-in;
-                margin: 0 auto;
-                display: block;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+                padding: 10px;                    /* GLEICH wie Videos */
+                /* ALLE anderen Eigenschaften LÖSCHEN */
             }
         
             .modal-carousel video {
@@ -691,19 +687,15 @@
                 opacity: 1;
             }
     
+            /* Auch für normale Karten */
             .carousel-slide img {
-                width: 70% !important;            /* Kleiner als 100% */
-                height: 70% !important;           /* Kleiner als 100% */
-                object-fit: contain !important;     
-                object-position: center bottom;   /* BLEIBT - zeigt unteren Teil */
+                width: 100% !important;           /* GLEICH wie Videos */
+                height: 100% !important;          /* GLEICH wie Videos */
+                object-fit: contain !important;   /* GLEICH wie Videos */
+                object-position: center bottom;   /* Zeigt den Stein (unten) */
                 cursor: pointer;
-                margin: 0 auto;
-                display: block;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
             }
+
         
             .carousel-slide video {
                 width: 100%;
