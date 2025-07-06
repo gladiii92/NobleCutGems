@@ -20,7 +20,7 @@
                 --text-light: #ffffff;
                 --text-muted: #a0a0a0;
             }
-            
+
             body {
                 font-family: 'Playfair Display', serif;
                 background-color: var(--dark-bg);
@@ -28,18 +28,20 @@
                 overflow-x: hidden;
                 line-height: 1.6;
             }
-            
+
             ::-webkit-scrollbar {
                 width: 10px;
             }
+
             ::-webkit-scrollbar-track {
                 background: var(--dark-bg);
             }
+
             ::-webkit-scrollbar-thumb {
                 background: var(--primary-gold);
                 border-radius: 5px;
             }
-            
+
             .language-switcher {
                 position: fixed;
                 top: 20px;
@@ -48,6 +50,7 @@
                 display: flex;
                 gap: 10px;
             }
+
             .lang-btn {
                 padding: 5px 15px;
                 background: var(--glass-bg);
@@ -58,12 +61,14 @@
                 transition: all 0.3s ease;
                 font-size: 14px;
             }
+
             .lang-btn:hover,
             .lang-btn.active {
                 background: var(--primary-gold);
                 color: var(--dark-bg);
             }
-            
+
+            /* Social Media Buttons */
             .social-media {
                 position: fixed;
                 bottom: 105px;
@@ -73,6 +78,7 @@
                 flex-direction: column;
                 gap: 12px;
             }
+
             .social-btn {
                 width: 55px;
                 height: 55px;
@@ -85,42 +91,50 @@
                 text-decoration: none;
                 border: 2px solid transparent;
             }
+
             .social-btn:hover {
                 transform: translateY(-5px) scale(1.1);
             }
+
             .instagram-btn {
                 background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
                 box-shadow: 0 5px 20px rgba(240, 148, 51, 0.4);
             }
+
             .instagram-btn:hover {
                 box-shadow: 0 10px 30px rgba(240, 148, 51, 0.6);
                 border-color: #f09433;
             }
+
             .tiktok-btn {
                 background: linear-gradient(45deg, #000000 0%, #ff0050 50%, #000000 100%);
                 box-shadow: 0 5px 20px rgba(255, 0, 80, 0.4);
                 border: 2px solid #ff0050;
             }
+
             .tiktok-btn:hover {
                 box-shadow: 0 10px 30px rgba(255, 0, 80, 0.6);
                 background: linear-gradient(45deg, #ff0050 0%, #000000 50%, #ff0050 100%);
             }
+
             .etsy-btn {
                 background: linear-gradient(45deg, #F16521 0%, #FF7F3F 50%, #F16521 100%);
                 box-shadow: 0 5px 20px rgba(241, 101, 33, 0.4);
                 border: 2px solid #F16521;
             }
+
             .etsy-btn:hover {
                 box-shadow: 0 10px 30px rgba(241, 101, 33, 0.6);
                 background: linear-gradient(45deg, #FF7F3F 0%, #F16521 50%, #FF7F3F 100%);
             }
+
             .social-btn svg {
                 width: 28px;
                 height: 28px;
                 fill: white;
                 filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
             }
-            
+
             .whatsapp-float {
                 position: fixed;
                 bottom: 30px;
@@ -138,17 +152,278 @@
                 z-index: 999;
                 border: 2px solid #25d366;
             }
+
             .whatsapp-float:hover {
                 transform: translateY(-5px) scale(1.1);
                 box-shadow: 0 10px 30px rgba(37, 211, 102, 0.6);
             }
+
             .whatsapp-float svg {
                 width: 28px;
                 height: 28px;
                 fill: white;
                 filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
             }
-            
+
+            /* ANGEPASSTES MODAL - 75% Bild / 25% Details */
+            .stone-modal {
+                display: none;
+                position: fixed;
+                z-index: 999999;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(10px);
+            }
+
+            .stone-modal.show {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                animation: fadeIn 0.3s ease;
+            }
+
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+
+            .stone-modal-content {
+                background: var(--dark-secondary);
+                border: 2px solid var(--primary-gold);
+                border-radius: 20px;
+                width: 90%;
+                max-width: 1000px;
+                height: 80vh;
+                overflow: hidden;
+                position: relative;
+                animation: slideIn 0.3s ease;
+                box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
+                display: flex;
+                flex-direction: column;
+            }
+
+            @keyframes slideIn {
+                from { 
+                    opacity: 0;
+                    transform: scale(0.8) translateY(-50px);
+                }
+                to { 
+                    opacity: 1;
+                    transform: scale(1) translateY(0);
+                }
+            }
+
+            .modal-close {
+                position: absolute;
+                top: 15px;
+                right: 20px;
+                color: var(--primary-gold);
+                font-size: 35px;
+                font-weight: bold;
+                cursor: pointer;
+                z-index: 1000000;
+                background: rgba(0, 0, 0, 0.7);
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+            }
+
+            .modal-close:hover {
+                background: var(--primary-gold);
+                color: var(--dark-bg);
+                transform: rotate(90deg);
+            }
+
+            /* BILD BEREICH - 75% */
+            .modal-image-section {
+                width: 100%;
+                height: 75%;
+                position: relative;
+                overflow: hidden;
+                background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(244, 228, 193, 0.1));
+                border-radius: 18px 18px 0 0;
+            }
+
+            .modal-carousel {
+                width: 100%;
+                height: 100%;
+                position: relative;
+            }
+
+            .modal-carousel .carousel-slide {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                transition: opacity 0.5s ease;
+            }
+
+            .modal-carousel .carousel-slide.active {
+                opacity: 1;
+            }
+
+            /* BILDER genauso wie VIDEOS machen */
+            .modal-carousel img {
+                width: 100% !important;           /* GLEICH wie Videos */
+                height: 100% !important;          /* GLEICH wie Videos */
+                object-fit: contain !important;   /* GLEICH wie Videos */
+                object-position: center bottom;   /* ABER: bottom statt center (für deinen Stein) */
+                cursor: zoom-in;
+                padding: 10px;                    /* GLEICH wie Videos */
+                /* ALLE anderen Eigenschaften LÖSCHEN */
+            }
+
+            .modal-carousel video {
+                max-width: 70%; /* Noch kleiner - war 100% */
+                max-height: 70%; /* Noch kleiner - war 100% */
+                object-fit: contain;
+                cursor: zoom-in;
+                padding: 15px;
+                margin: 0 auto;
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%); /* Zentriert das Bild */
+            }
+
+            .modal-carousel .carousel-nav {
+                position: absolute;
+                bottom: 15px;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                gap: 10px;
+                z-index: 10;
+            }
+
+            .modal-carousel .carousel-dot {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.5);
+                cursor: pointer;
+                transition: all 0.3s ease;
+                border: 2px solid var(--primary-gold);
+            }
+
+            .modal-carousel .carousel-dot.active {
+                background: var(--primary-gold);
+                width: 30px;
+                border-radius: 6px;
+            }
+
+            .modal-carousel .carousel-arrows {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                padding: 0 20px;
+                pointer-events: none;
+            }
+
+            .modal-carousel .carousel-arrow {
+                width: 50px;
+                height: 50px;
+                background: rgba(0, 0, 0, 0.7);
+                border: 2px solid var(--primary-gold);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                pointer-events: all;
+                transition: all 0.3s ease;
+                color: var(--primary-gold);
+                font-size: 24px;
+                font-weight: bold;
+            }
+
+            .modal-carousel .carousel-arrow:hover {
+                background: var(--primary-gold);
+                color: var(--dark-bg);
+                transform: scale(1.1);
+            }
+
+            /* INFO BEREICH - 25% */
+            .modal-info-section {
+                height: 25%;
+                padding: 20px 30px;
+                text-align: center;
+                background: var(--dark-secondary);
+                border-radius: 0 0 18px 18px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                overflow-y: auto;
+            }
+
+            .modal-gem-name {
+                font-size: 2.2rem;
+                margin-bottom: 10px;
+                color: var(--primary-gold);
+                text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+                font-weight: 700;
+                line-height: 1.2;
+            }
+
+            .modal-gem-details {
+                font-size: 1.1rem;
+                color: var(--text-muted);
+                margin-bottom: 15px;
+                line-height: 1.4;
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .modal-gem-price {
+                font-size: 1.8rem;
+                color: var(--secondary-gold);
+                margin-bottom: 15px;
+                font-weight: bold;
+                text-shadow: 0 2px 10px rgba(244, 228, 193, 0.3);
+            }
+
+            .modal-action-buttons {
+                display: flex;
+                gap: 15px;
+                justify-content: center;
+            }
+
+            .modal-whatsapp-button {
+                padding: 12px 30px;
+                border: 3px solid #25d366;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                border-radius: 50px;
+                transition: all 0.3s ease;
+                font-weight: 700;
+                letter-spacing: 1px;
+                background: transparent;
+                color: #25d366;
+                font-size: 1rem;
+            }
+
+            .modal-whatsapp-button:hover {
+                background: #25d366;
+                color: white;
+                transform: translateY(-2px);
+                box-shadow: 0 10px 20px rgba(37, 211, 102, 0.4);
+            }
+
             nav {
                 position: fixed;
                 width: 100%;
@@ -158,10 +433,12 @@
                 z-index: 1000;
                 transition: all 0.3s ease;
             }
+
             nav.scrolled {
                 padding: 15px 50px;
                 box-shadow: 0 5px 30px rgba(212, 175, 55, 0.1);
             }
+
             .nav-container {
                 max-width: 1400px;
                 margin: 0 auto;
@@ -169,19 +446,33 @@
                 justify-content: space-between;
                 align-items: center;
             }
+
             .logo {
-                font-size: 28px;
-                font-weight: 700;
-                background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                letter-spacing: 2px;
+                height: 100px; /* Passende Höhe für Header */
+                display: flex;
+                align-items: center;
             }
+
+            .logo img {
+                height: 100%;
+                width: auto; /* Behält Proportionen */
+                max-height: 100px;
+                object-fit: contain;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .logo img:hover {
+                transform: scale(1.05);
+                filter: brightness(1.1);
+            }
+
             .nav-links {
                 display: flex;
                 gap: 40px;
                 list-style: none;
             }
+
             .nav-links a {
                 color: var(--text-light);
                 text-decoration: none;
@@ -190,6 +481,7 @@
                 transition: all 0.3s ease;
                 position: relative;
             }
+
             .nav-links a::after {
                 content: '';
                 position: absolute;
@@ -200,10 +492,11 @@
                 background: var(--primary-gold);
                 transition: width 0.3s ease;
             }
+
             .nav-links a:hover::after {
                 width: 100%;
             }
-            
+
             .hero {
                 height: 100vh;
                 display: flex;
@@ -212,30 +505,44 @@
                 position: relative;
                 background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
             }
+
             .hero-content {
                 text-align: center;
                 z-index: 2;
                 animation: fadeInUp 1.5s ease;
             }
-            .hero h1 {
-                font-size: clamp(3rem, 8vw, 6rem);
+
+            /* GROSSES Logo für Hero-Bereich */
+            .hero-logo {
                 margin-bottom: 20px;
-                background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold), var(--primary-gold));
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                letter-spacing: 3px;
                 animation: shimmer 3s infinite;
             }
+
+            .hero-logo img {
+                height: clamp(180px, 23vw, 450px); /* Responsive: 120px bis 300px */
+                width: auto;
+                object-fit: contain;
+                filter: drop-shadow(0 10px 30px rgba(212, 175, 55, 0.3));
+                transition: all 0.3s ease;
+            }
+
+            .hero-logo img:hover {
+                transform: scale(1.05);
+                filter: drop-shadow(0 15px 40px rgba(212, 175, 55, 0.5));
+            }
+
             @keyframes shimmer {
                 0%, 100% { opacity: 1; }
                 50% { opacity: 0.8; }
             }
+
             .hero-subtitle {
                 font-size: 1.5rem;
                 color: var(--text-muted);
                 margin-bottom: 40px;
                 letter-spacing: 2px;
             }
+
             .cta-button {
                 display: inline-block;
                 padding: 15px 40px;
@@ -247,11 +554,12 @@
                 border-radius: 50px;
                 transition: all 0.3s ease;
             }
+
             .cta-button:hover {
                 transform: translateY(-2px);
                 box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
             }
-            
+
             .category-filter {
                 display: flex;
                 justify-content: center;
@@ -260,6 +568,7 @@
                 flex-wrap: wrap;
                 padding: 0 20px;
             }
+
             .category-btn {
                 padding: 10px 25px;
                 background: transparent;
@@ -273,6 +582,7 @@
                 font-family: inherit;
                 position: relative;
             }
+
             .category-btn .count {
                 position: absolute;
                 top: -8px;
@@ -288,22 +598,25 @@
                 font-size: 12px;
                 font-weight: bold;
             }
+
             .category-btn:hover,
             .category-btn.active {
                 background: var(--primary-gold);
                 color: var(--dark-bg);
             }
+
             .category-btn.active .count,
             .category-btn:hover .count {
                 background: var(--dark-bg);
                 color: var(--primary-gold);
             }
-            
+
             .about {
                 padding: 100px 50px;
                 max-width: 1200px;
                 margin: 0 auto;
             }
+
             .section-title {
                 font-size: 3rem;
                 text-align: center;
@@ -312,17 +625,20 @@
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
             }
+
             .about-content {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: 60px;
                 align-items: center;
             }
+
             .about-text {
                 font-size: 1.1rem;
                 line-height: 1.8;
                 color: var(--text-muted);
             }
+
             .about-image {
                 background: var(--glass-bg);
                 backdrop-filter: blur(10px);
@@ -335,11 +651,12 @@
                 align-items: center;
                 justify-content: center;
             }
-            
+
             .collection {
                 padding: 100px 50px;
                 background: var(--dark-secondary);
             }
+
             .gem-grid {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -347,6 +664,7 @@
                 max-width: 1400px;
                 margin: 0 auto;
             }
+
             .gem-card {
                 background: var(--glass-bg);
                 backdrop-filter: blur(10px);
@@ -357,15 +675,18 @@
                 cursor: pointer;
                 display: none;
             }
+
             .gem-card.show {
                 display: block;
             }
+
             .gem-card:hover {
                 transform: translateY(-10px);
                 box-shadow: 0 20px 40px rgba(212, 175, 55, 0.4);
                 border-color: var(--primary-gold);
                 cursor: pointer;
             }
+
             .carousel-container {
                 width: 100%;
                 height: 300px;
@@ -373,6 +694,7 @@
                 overflow: hidden;
                 background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(244, 228, 193, 0.1));
             }
+
             .carousel-slide {
                 position: absolute;
                 width: 100%;
@@ -380,16 +702,28 @@
                 opacity: 0;
                 transition: opacity 0.5s ease;
             }
+
             .carousel-slide.active {
                 opacity: 1;
             }
-            .carousel-slide img,
+
+            /* Auch für normale Karten */
+            .carousel-slide img {
+                width: 100% !important;           /* GLEICH wie Videos */
+                height: 100% !important;          /* GLEICH wie Videos */
+                object-fit: contain !important;   /* GLEICH wie Videos */
+                object-position: center bottom;   /* Zeigt den Stein (unten) */
+                cursor: pointer;
+            }
+
+
             .carousel-slide video {
                 width: 100%;
                 height: 100%;
-                object-fit: contain;
+                object-fit: cover;
                 cursor: pointer;
             }
+
             .carousel-nav {
                 position: absolute;
                 bottom: 10px;
@@ -399,6 +733,7 @@
                 gap: 8px;
                 z-index: 10;
             }
+
             .carousel-dot {
                 width: 8px;
                 height: 8px;
@@ -407,11 +742,13 @@
                 cursor: pointer;
                 transition: all 0.3s ease;
             }
+
             .carousel-dot.active {
                 background: var(--primary-gold);
                 width: 20px;
                 border-radius: 4px;
             }
+
             .carousel-arrows {
                 position: absolute;
                 top: 50%;
@@ -422,6 +759,7 @@
                 padding: 0 20px;
                 pointer-events: none;
             }
+
             .carousel-arrow {
                 width: 40px;
                 height: 40px;
@@ -437,32 +775,39 @@
                 color: var(--primary-gold);
                 font-size: 20px;
             }
+
             .carousel-arrow:hover {
                 background: var(--primary-gold);
                 color: var(--dark-bg);
             }
+
             .gem-info {
-                padding: 30px;
+                padding: 25px; /* Weniger Padding da kein Preis mehr */
             }
+
             .gem-name {
                 font-size: 1.8rem;
                 margin-bottom: 10px;
                 color: var(--primary-gold);
             }
+
             .gem-details {
                 color: var(--text-muted);
-                margin-bottom: 20px;
+                margin-bottom: 25px; /* Mehr Abstand zum Button */
                 line-height: 1.6;
             }
+
             .gem-price {
                 font-size: 1.5rem;
                 color: var(--secondary-gold);
                 margin-bottom: 20px;
             }
+
             .action-buttons {
                 display: flex;
                 gap: 10px;
             }
+
             .whatsapp-button {
                 flex: 1;
                 padding: 12px;
@@ -479,24 +824,28 @@
                 background: transparent;
                 color: #25d366;
             }
+
             .whatsapp-button:hover {
                 background: #25d366;
                 color: white;
             }
-            
+
             .contact {
                 padding: 100px 50px;
                 text-align: center;
             }
+
             .contact-content {
                 max-width: 600px;
                 margin: 0 auto;
             }
+
             .contact-info {
                 margin-top: 40px;
                 font-size: 1.2rem;
                 color: var(--text-muted);
             }
+
             .contact-email {
                 color: var(--primary-gold);
                 text-decoration: none;
@@ -505,49 +854,55 @@
                 font-size: 1.5rem;
                 transition: all 0.3s ease;
             }
+
             .contact-email:hover {
                 transform: translateY(-2px);
                 text-shadow: 0 5px 20px rgba(212, 175, 55, 0.5);
             }
-            
+
             .impressum {
                 padding: 100px 50px;
                 background: var(--dark-secondary);
                 max-width: 800px;
                 margin: 0 auto;
             }
+
             .impressum-content {
                 text-align: left;
                 color: var(--text-muted);
                 line-height: 1.8;
             }
+
             .impressum h3 {
                 color: var(--primary-gold);
                 margin-top: 30px;
                 margin-bottom: 15px;
             }
-            
+
             footer {
                 padding: 40px 50px;
                 text-align: center;
                 border-top: 1px solid rgba(212, 175, 55, 0.2);
                 color: var(--text-muted);
             }
+
             .footer-links {
                 display: flex;
                 justify-content: center;
                 gap: 30px;
                 margin-bottom: 20px;
             }
+
             .footer-links a {
                 color: var(--text-muted);
                 text-decoration: none;
                 transition: color 0.3s ease;
             }
+
             .footer-links a:hover {
                 color: var(--primary-gold);
             }
-            
+
             @keyframes fadeInUp {
                 from {
                     opacity: 0;
@@ -558,66 +913,205 @@
                     transform: translateY(0);
                 }
             }
-            @keyframes shimmer {
-                0%, 100% { opacity: 1; }
-                50% { opacity: 0.8; }
-            }
-            
+
             .lang-content {
                 display: none;
             }
+
             .lang-content.active {
                 display: block;
             }
+
+            .cert-carousel {
+                position: relative;
+                width: 100%;
+                max-width: 320px;
+                height: 220px;
+                margin: 0 auto;
+                overflow: hidden;
+                background: rgba(255,255,255,0.04);
+                border-radius: 16px;
+                box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
             
+            .cert-carousel img {
+                display: none;
+                position: absolute;
+                left: 0; top: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                opacity: 0;
+                transition: opacity 0.6s;
+                z-index: 1;
+                border-radius: 12px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            }
+            .cert-carousel img.active {
+                display: block;    /* DAS IST WICHTIG! */
+                opacity: 1;
+                z-index: 2;
+            }
+            
+            @media (max-width: 600px) {
+                .cert-carousel {
+                    max-width: 95vw;
+                    height: 38vw;
+                    min-height: 120px;
+                }
+            }
+
+            /* Responsive Anpassungen */
             @media (max-width: 768px) {
                 .language-switcher {
                     top: 10px;
                     right: 10px;
                 }
+
                 nav {
                     padding: 15px 20px;
                 }
+
                 .nav-links {
                     display: none;
                 }
+
                 .hero h1 {
                     font-size: 3rem;
                 }
+
                 .about-content {
                     grid-template-columns: 1fr;
                 }
+
                 .gem-grid {
                     grid-template-columns: 1fr;
                     padding: 0 20px;
                 }
+
                 .category-filter {
                     justify-content: center;
                 }
+
                 .category-btn {
                     font-size: 14px;
                     padding: 8px 20px;
                 }
+
                 .action-buttons {
                     flex-direction: column;
                 }
+
                 .whatsapp-float {
                     bottom: 20px;
                     right: 20px;
                     width: 50px;
                     height: 50px;
                 }
+
                 .social-media {
                     bottom: 80px;
                     right: 20px;
                 }
+
                 .social-btn {
                     width: 45px;
                     height: 45px;
                 }
+
                 .social-btn svg {
                     width: 20px;
                     height: 20px;
+                }
+
+                .stone-modal-content {
+                    height: 85vh;
+                    width: 95%;
+                }
+
+                .modal-image-section {
+                    height: 70%;
+                }
+
+                .modal-info-section {
+                    height: 30%;
+                    padding: 15px 20px;
+                }
+
+                .modal-gem-name {
+                    font-size: 1.8rem;
+                }
+
+                .modal-gem-details {
+                    font-size: 1rem;
+                }
+
+                .modal-gem-price {
+                    font-size: 1.5rem;
+                }
+
+                .modal-whatsapp-button {
+                    padding: 10px 20px;
+                    font-size: 0.9rem;
+                }
+
+                .logo {
+                    height: 45px; /* Mobile: etwas kleiner */
+                }
+
+                .logo img {
+                    max-height: 45px;
+                }
+
+                .hero-logo img {
+                    height: clamp(120px, 30vw, 300px); /* Mobile: angepasste Größe */
+
+                .cert-carousel {
+                    position: relative;
+                    width: 100%;
+                    max-width: 320px;
+                    height: 220px;
+                    margin: 0 auto;
+                    overflow: hidden;
+                    background: rgba(255,255,255,0.04);
+                    border-radius: 16px;
+                    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                
+                .cert-carousel img {
+                    display: none;
+                    position: absolute;
+                    left: 0; top: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                    opacity: 0;
+                    transition: opacity 0.6s;
+                    z-index: 1;
+                    border-radius: 12px;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+                }
+                .cert-carousel img.active {
+                    display: block;    /* DAS IST WICHTIG! */
+                    opacity: 1;
+                    z-index: 2;
+                }
+                
+                @media (max-width: 600px) {
+                    .cert-carousel {
+                        max-width: 95vw;
+                        height: 38vw;
+                        min-height: 120px;
+                    }
+                }
+
+                    
                 }
             }
     </style>
