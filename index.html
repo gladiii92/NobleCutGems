@@ -448,7 +448,7 @@
             }
     
             .logo {
-                height: 40px; /* Passende Höhe für Header */
+                height: 80px; /* Passende Höhe für Header */
                 display: flex;
                 align-items: center;
             }
@@ -456,7 +456,7 @@
             .logo img {
                 height: 100%;
                 width: auto; /* Behält Proportionen */
-                max-height: 40px;
+                max-height: 80px;
                 object-fit: contain;
                 cursor: pointer;
                 transition: all 0.3s ease;
@@ -512,14 +512,23 @@
                 animation: fadeInUp 1.5s ease;
             }
     
-            .hero h1 {
-                font-size: clamp(3rem, 8vw, 6rem);
+            /* GROSSES Logo für Hero-Bereich */
+            .hero-logo {
                 margin-bottom: 20px;
-                background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold), var(--primary-gold));
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                letter-spacing: 3px;
                 animation: shimmer 3s infinite;
+            }
+            
+            .hero-logo img {
+                height: clamp(120px, 15vw, 300px); /* Responsive: 120px bis 300px */
+                width: auto;
+                object-fit: contain;
+                filter: drop-shadow(0 10px 30px rgba(212, 175, 55, 0.3));
+                transition: all 0.3s ease;
+            }
+            
+            .hero-logo img:hover {
+                transform: scale(1.05);
+                filter: drop-shadow(0 15px 40px rgba(212, 175, 55, 0.5));
             }
     
             @keyframes shimmer {
@@ -1065,7 +1074,9 @@
 
         <section class="hero" id="home">
             <div class="hero-content">
-                <h1>NobleCutGems</h1>
+                <div class="hero-logo">
+                    <img src="images/NobleCutGems.jpg" alt="NobleCutGems Logo">
+                </div>
                 <p class="hero-subtitle">Exklusive Edelsteine von außergewöhnlicher Qualität</p>
                 <a href="#collection" class="cta-button">Kollektion entdecken</a>
             </div>
@@ -1525,7 +1536,9 @@
 
         <section class="hero" id="home">
             <div class="hero-content">
-                <h1>NobleCutGems</h1>
+                <div class="hero-logo">
+                    <img src="images/NobleCutGems.jpg" alt="NobleCutGems Logo">
+                </div>
                 <p class="hero-subtitle">Exclusive Gemstones of Exceptional Quality</p>
                 <a href="#collection" class="cta-button">Discover Collection</a>
             </div>
@@ -1949,7 +1962,9 @@
 
         <section class="hero" id="home">
             <div class="hero-content">
-                <h1>NobleCutGems</h1>
+                <div class="hero-logo">
+                    <img src="images/NobleCutGems.jpg" alt="NobleCutGems Logo">
+                </div>
                 <p class="hero-subtitle">Pierres Précieuses Exclusives de Qualité Exceptionnelle</p>
                 <a href="#collection" class="cta-button">Découvrir la Collection</a>
             </div>
