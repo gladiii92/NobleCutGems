@@ -1043,6 +1043,7 @@
                 }
                 
                 .cert-carousel img {
+                    display: none;
                     position: absolute;
                     left: 0; top: 0;
                     width: 100%;
@@ -1054,8 +1055,8 @@
                     border-radius: 12px;
                     box-shadow: 0 2px 8px rgba(0,0,0,0.12);
                 }
-                
                 .cert-carousel img.active {
+                    display: block;    /* DAS IST WICHTIG! */
                     opacity: 1;
                     z-index: 2;
                 }
@@ -2698,9 +2699,9 @@
             });
         });
     
-        // IGS Zertifikate Karussell (About Us)
-        const certCarousel = document.getElementById('certCarousel');
-        if (certCarousel) {
+        function startCertCarousel() {
+            const certCarousel = document.getElementById('certCarousel');
+            if (!certCarousel) return;
             const images = certCarousel.querySelectorAll('img');
             if (images.length === 0) return;
             let idx = 0;
@@ -2711,6 +2712,7 @@
                 images[idx].classList.add('active');
             }, 2200);
         }
+        document.addEventListener('DOMContentLoaded', startCertCarousel);
     });
     </script>
 
