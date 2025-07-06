@@ -2779,19 +2779,19 @@
                 window.setupModalCarousel = function() {
                     originalSetupModalCarousel();
                     stopEventBubbling();
-                };
-            }
+                
             
-        document.addEventListener('DOMContentLoaded', function() {
-            const carousel = document.getElementById('certCarousel');
-            if (!carousel) return;
-            const images = carousel.querySelectorAll('img');
-            let idx = 0;
-            setInterval(() => {
-                images[idx].classList.remove('active');
-                idx = (idx + 1) % images.length;
-                images[idx].classList.add('active');
-            }, 2200);
+            // Zertifikate-Karussell (NICHT verschachteln!)
+            const certCarousel = document.getElementById('certCarousel');
+            if (certCarousel) {
+                const images = certCarousel.querySelectorAll('img');
+                let idx = 0;
+                setInterval(() => {
+                    images[idx].classList.remove('active');
+                    idx = (idx + 1) % images.length;
+                    images[idx].classList.add('active');
+                }, 2200);
+            }
         });
             
     </script>
