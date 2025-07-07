@@ -2677,50 +2677,51 @@
         const modalButtonText = document.getElementById('modalButtonText');
         gemCards.forEach((card, index) => {
             card.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                const nameElement = card.querySelector('.gem-name');
-                const detailsElement = card.querySelector('.gem-details');
-                const whatsappElement = card.querySelector('.whatsapp-button');
-                if (!nameElement || !detailsElement || !whatsappElement) return;
-                const name = nameElement.textContent || '';
-                const details = detailsElement.innerHTML || '';
-                const whatsappLink = `https://wa.me/4915168482909?text=${encodeURIComponent(whatsappElement.dataset.whatsapp || '')}`;
-                const buttonText = whatsappElement.textContent || '';
-                const slides = card.querySelectorAll('.carousel-slide');
-                if (modalName) modalName.textContent = name;
-                if (modalDetails) modalDetails.innerHTML = details;
-                if (modalWhatsApp) modalWhatsApp.href = whatsappLink;
-                if (modalButtonText) modalButtonText.textContent = buttonText;
-                if (modalCarousel) {
-                    modalCarousel.innerHTML = '';
-                    let carouselHTML = '';
-                    let navHTML = '<div class="carousel-nav">';
-                    let arrowsHTML = '';
-                    slides.forEach((slide, i) => {
-                        const img = slide.querySelector('img');
-                        const video = slide.querySelector('video');
-                        if (img) {
-                            carouselHTML += `
-                                <div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}">
-                                    <img src="${img.src}" alt="${img.alt || 'Edelstein'}">
-                                </div>
-                            `;
-                        } else if (video) {
-                            const source = video.querySelector('source');
-                            if (source) {
+                if (e.target.closest('.whatsapp-button')) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const nameElement = card.querySelector('.gem-name');
+                    const detailsElement = card.querySelector('.gem-details');
+                    const whatsappElement = card.querySelector('.whatsapp-button');
+                    if (!nameElement || !detailsElement || !whatsappElement) return;
+                    const name = nameElement.textContent || '';
+                    const details = detailsElement.innerHTML || '';
+                    const whatsappLink = `https://wa.me/4915168482909?text=${encodeURIComponent(whatsappElement.dataset.whatsapp || '')}`;
+                    const buttonText = whatsappElement.textContent || '';
+                    const slides = card.querySelectorAll('.carousel-slide');
+                    if (modalName) modalName.textContent = name;
+                    if (modalDetails) modalDetails.innerHTML = details;
+                    if (modalWhatsApp) modalWhatsApp.href = whatsappLink;
+                    if (modalButtonText) modalButtonText.textContent = buttonText;
+                    if (modalCarousel) {
+                        modalCarousel.innerHTML = '';
+                        let carouselHTML = '';
+                        let navHTML = '<div class="carousel-nav">';
+                        let arrowsHTML = '';
+                        slides.forEach((slide, i) => {
+                            const img = slide.querySelector('img');
+                            const video = slide.querySelector('video');
+                            if (img) {
                                 carouselHTML += `
                                     <div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}">
-                                        <video muted loop controls>
-                                            <source src="${source.src}" type="video/mp4">
-                                        </video>
+                                        <img src="${img.src}" alt="${img.alt || 'Edelstein'}">
                                     </div>
                                 `;
+                            } else if (video) {
+                                const source = video.querySelector('source');
+                                if (source) {
+                                    carouselHTML += `
+                                        <div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}">
+                                            <video muted loop controls>
+                                                <source src="${source.src}" type="video/mp4">
+                                            </video>
+                                        </div>
+                                    `;
+                                }
                             }
-                        }
-                        navHTML += `<span class="carousel-dot ${i === 0 ? 'active' : ''}" data-slide="${i}"></span>`;
-                    });
-                    navHTML += '</div>';
+                            navHTML += `<span class="carousel-dot ${i === 0 ? 'active' : ''}" data-slide="${i}"></span>`;
+                        });
+                        navHTML += '</div>';
                     if (slides.length > 1) {
                         arrowsHTML = `
                             <div class="carousel-arrows">
@@ -2843,6 +2844,21 @@
             });
         }
         setTimeout(stopEventBubbling, 1000);
+    });
+    </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.gem-card .whatsapp-button').forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.stopPropagation(); // Verhindert Modal-Öffnung
+          e.preventDefault();  // Verhindert Seitenwechsel
+    
+          const message = this.dataset.whatsapp;
+          const link = `https://wa.me/4915168482909?text=${encodeURIComponent(message)}`;
+          window.open(link, '_blank'); // Öffnet WhatsApp in neuem Tab
+        });
+      });
     });
     </script>
 
