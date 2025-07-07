@@ -2819,6 +2819,9 @@
                     if (!nameElement || !detailsElement || !whatsappElement) return;
                     const name = nameElement.textContent || '';
                     const details = detailsElement.innerHTML || '';
+                    const lang = document.querySelector('.lang-btn.active')?.getAttribute('data-lang') || 'de';
+                    const whatsappMessage = whatsappElement.dataset[`whatsapp${lang}`] || '';
+                    const whatsappLink = `https://wa.me/4915168482909?text=${encodeURIComponent(whatsappMessage)}`;
                     const whatsappLink = `https://wa.me/4915168482909?text=${encodeURIComponent(whatsappElement.dataset.whatsapp || '')}`;
                     const buttonText = whatsappElement.textContent || '';
                     const slides = card.querySelectorAll('.carousel-slide');
