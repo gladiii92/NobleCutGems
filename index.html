@@ -2685,7 +2685,7 @@
                 if (!nameElement || !detailsElement || !whatsappElement) return;
                 const name = nameElement.textContent || '';
                 const details = detailsElement.innerHTML || '';
-                const whatsappLink = whatsappElement.href || '#';
+                const whatsappLink = `https://wa.me/4915168482909?text=${encodeURIComponent(whatsappElement.dataset.whatsapp || '')}`;
                 const buttonText = whatsappElement.textContent || '';
                 const slides = card.querySelectorAll('.carousel-slide');
                 if (modalName) modalName.textContent = name;
@@ -2845,28 +2845,6 @@
         setTimeout(stopEventBubbling, 1000);
     });
     </script>
-
-    <script>
-    // WhatsApp-Link beim Öffnen der Modal-Ansicht setzen
-    document.querySelectorAll(".gem-card .whatsapp-button").forEach(button => {
-        button.addEventListener("click", (e) => {
-            e.preventDefault(); // Verhindert, dass der Link sofort öffnet
-    
-            const gemCard = button.closest(".gem-card");
-            const whatsappText = button.dataset.whatsapp;
-    
-            const modalWhatsApp = document.getElementById("modalWhatsApp");
-            const modalButtonText = document.getElementById("modalButtonText");
-    
-            // WhatsApp-Link dynamisch setzen
-            modalWhatsApp.href = `https://wa.me/4915168482909?text=${encodeURIComponent(whatsappText)}`;
-            modalButtonText.textContent = "Auf Anfrage";
-    
-            // Falls nötig, hier dein Modal anzeigen (falls noch nicht automatisch passiert)
-            document.querySelector(".stone-modal").classList.add("show");
-        });
-    });
-</script>
 
 
 </body>
