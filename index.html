@@ -2813,7 +2813,10 @@
         const gemCards = document.querySelectorAll('.gem-card');
         gemCards.forEach((card, index) => {
           card.addEventListener('click', function (e) {
-            if (e.target.closest('.whatsapp-button')) return;
+            // Nur Modal verhindern, wenn wirklich auf WhatsApp-Button geklickt wurde
+            if (e.target.classList.contains('whatsapp-button') || e.target.closest('.whatsapp-button')) {
+              return; // WhatsApp-Button übernimmt Verhalten selbst
+            }
         
             e.preventDefault();
             e.stopPropagation();
@@ -2832,10 +2835,6 @@
             const lang = document.querySelector('.lang-btn.active')?.getAttribute('data-lang')?.toLowerCase() || 'de';
             const key = `whatsapp${lang}`;
             const whatsappMessage = whatsappElement.dataset[key] || whatsappElement.dataset.whatsapp || '';
-        
-            if (!whatsappMessage) {
-              console.warn("WhatsApp-Nachricht fehlt für Sprache:", lang);
-            }
         
             const whatsappLink = `https://wa.me/4915168482909?text=${encodeURIComponent(whatsappMessage)}`;
         
