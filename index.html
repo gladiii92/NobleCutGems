@@ -2808,16 +2808,13 @@
         const modalDetails = document.getElementById('modalDetails');
         const modalWhatsApp = document.getElementById('modalWhatsApp');
         const modalButtonText = document.getElementById('modalButtonText');
-
+        
         // Karten durchgehen
         const gemCards = document.querySelectorAll('.gem-card');
         gemCards.forEach((card, index) => {
           card.addEventListener('click', function (e) {
+            // Klick auf WhatsApp-Button ignorieren (öffnet externen Link)
             if (e.target.closest('.whatsapp-button')) return;
-            // Nur Modal verhindern, wenn wirklich auf WhatsApp-Button geklickt wurde
-            if (e.target.classList.contains('whatsapp-button') || e.target.closest('.whatsapp-button')) {
-              return; // WhatsApp-Button übernimmt Verhalten selbst
-            }
 
             e.preventDefault();
             e.stopPropagation();
@@ -2840,7 +2837,7 @@
             if (!whatsappMessage) {
               console.warn("WhatsApp-Nachricht fehlt für Sprache:", lang);
             }
-        
+
             const whatsappLink = `https://wa.me/4915168482909?text=${encodeURIComponent(whatsappMessage)}`;
 
             const slides = card.querySelectorAll('.carousel-slide');
@@ -2870,6 +2867,7 @@
                   if (source) {
                     carouselHTML += `
                       <div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}">
+                        <video muted loop controls>
                         <video muted autoplay loop playsinline>
                           <source src="${source.src}" type="video/mp4">
                         </video>
