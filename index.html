@@ -2899,108 +2899,135 @@
         });
       });
     
-      // Modal öffnen
-      const stoneModal = document.getElementById('stoneModal');
-      const modalClose = document.getElementById('modalClose');
-      const modalCarousel = document.getElementById('modalCarousel');
-      const modalName = document.getElementById('modalName');
-      const modalDetails = document.getElementById('modalDetails');
-      const modalWhatsApp = document.getElementById('modalWhatsApp');
-      const modalButtonText = document.getElementById('modalButtonText');
+    // Modal öffnen
+    const stoneModal = document.getElementById('stoneModal');
+    const modalClose = document.getElementById('modalClose');
+    const modalCarousel = document.getElementById('modalCarousel');
+    const modalName = document.getElementById('modalName');
+    const modalDetails = document.getElementById('modalDetails');
+    const modalWhatsApp = document.getElementById('modalWhatsApp');
+    const modalButtonText = document.getElementById('modalButtonText');
     
-      document.querySelectorAll('.gem-card').forEach((card, index) => {
-        card.addEventListener('click', function (e) {
-          if (
-            e.target.closest('.whatsapp-button') ||
-            e.target.closest('.carousel-arrow') ||
-            e.target.closest('.carousel-dot')
-          ) return;
-          e.preventDefault();
-          e.stopPropagation();
-          const name = card.querySelector('.gem-name')?.textContent || '';
-          const details = card.querySelector('.gem-details')?.innerHTML || '';
-          const whatsappElement = card.querySelector('.whatsapp-button');
-          const buttonText = whatsappElement?.textContent || '';
-          const lang = document.querySelector('.lang-btn.active')?.dataset.lang?.toLowerCase() || 'de';
-          const key = `whatsapp${lang.charAt(0).toUpperCase() + lang.slice(1)}`;
-          const whatsappMessage = whatsappElement?.dataset[key] || whatsappElement?.dataset.whatsapp || '';
-          const whatsappLink = `https://wa.me/4915168482909?text=${encodeURIComponent(whatsappMessage)}`;
-          const slides = card.querySelectorAll('.carousel-slide');
-          modalName.textContent = name;
-          modalDetails.innerHTML = details;
-          modalWhatsApp.href = whatsappLink;
-          modalButtonText.textContent = buttonText;
-          modalCarousel.innerHTML = '';
-          let carouselHTML = '';
-          let navHTML = '<div class="carousel-nav">';
-          let arrowsHTML = '';
-          slides.forEach((slide, i) => {
-            const img = slide.querySelector('img');
-            const video = slide.querySelector('video');
-            if (img) {
-              carouselHTML += `<div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}"><img src="${img.src}" alt="${img.alt || 'Edelstein'}"></div>`;
-            } else if (video) {
-              const source = video.querySelector('source');
-              if (source) {
-                carouselHTML += `<div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}"><video muted autoplay loop playsinline><source src="${source.src}" type="video/mp4"></video></div>`;
-              }
+    document.querySelectorAll('.gem-card').forEach(card => {
+        card.addEventListener('click', function(e) {
+            if (
+                e.target.closest('.whatsapp-button') ||
+                e.target.closest('.carousel-arrow') ||
+                e.target.closest('.carousel-dot')
+            ) return;
+            
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const whatsappElement = card.querySelector('.whatsapp-button');
+            
+            // KORRIGIERT: Liest jetzt aus data-modal-* Attributen
+            const name = whatsappElement?.getAttribute('data-modal-name') || card.querySelector('.gem-name')?.textContent || '';
+            const details = whatsappElement?.getAttribute('data-modal-details') || card.querySelector('.gem-details')?.innerHTML || '';
+            
+            const buttonText = whatsappElement?.textContent || '';
+            const lang = document.querySelector('.lang-btn.active')?.dataset.lang?.toLowerCase() || 'de';
+            const key = `whatsapp${lang.charAt(0).toUpperCase() + lang.slice(1)}`;
+            const whatsappMessage = whatsappElement?.dataset[key] || whatsappElement?.dataset.whatsapp || '';
+            const whatsappLink = `https://wa.me/4915168482909?text=${encodeURIComponent(whatsappMessage)}`;
+            const slides = card.querySelectorAll('.carousel-slide');
+            
+            modalName.textContent = name;
+            modalDetails.innerHTML = details;
+            modalWhatsApp.href = whatsappLink;
+            modalButtonText.textContent = buttonText;
+            
+            modalCarousel.innerHTML = '';
+            let carouselHTML = '';
+            let navHTML = '<div class="carousel-nav">';
+            let arrowsHTML = '';
+            
+            slides.forEach((slide, i) => {
+                const img = slide.querySelector('img');
+                const video = slide.querySelector('video');
+                if (img) {
+                    carouselHTML += `<div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}"><img src="${img.src}" alt="${img.alt || 'Edelstein'}"></div>`;
+                } else if (video) {
+                    const source = video.querySelector('source');
+                    if (source) {
+                        carouselHTML += `<div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}"><video muted autoplay loop playsinline><source src="${source.src}" type="video/mp4"></video></div>`;
+                    }
+                }
+                navHTML += `<span class="carousel-dot ${i === 0 ? 'active' : ''}" data-slide="${i}"></span>`;
+            });
+            
+            navHTML += '</div>';
+            if (slides.length > 1) {
+                arrowsHTML = `<div class="carousel-arrows"><div class="carousel-arrow prev">‹</div><div class="carousel-arrow next">›</div></div>`;
             }
-            navHTML += `<span class="carousel-dot ${i === 0 ? 'active' : ''}" data-slide="${i}"></span>`;
-          });
-          navHTML += '</div>';
-          if (slides.length > 1) {
-            arrowsHTML = `<div class="carousel-arrows"><div class="carousel-arrow prev">‹</div><div class="carousel-arrow next">›</div></div>`;
-          }
-          modalCarousel.innerHTML = carouselHTML + navHTML + arrowsHTML;
-          setupModalCarousel();
-          stoneModal.classList.add('show');
-          document.body.style.overflow = 'hidden';
+            
+            modalCarousel.innerHTML = carouselHTML + navHTML + arrowsHTML;
+            setupModalCarousel();
+            stoneModal.classList.add('show');
+            document.body.style.overflow = 'hidden';
         });
-      });
+    });
     
-      function setupModalCarousel() {
+    function setupModalCarousel() {
         const slides = modalCarousel.querySelectorAll('.carousel-slide');
         const dots = modalCarousel.querySelectorAll('.carousel-dot');
         const prevArrow = modalCarousel.querySelector('.carousel-arrow.prev');
         const nextArrow = modalCarousel.querySelector('.carousel-arrow.next');
         let currentIndex = 0;
+        
         function showSlide(index) {
-          slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
-          dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-          currentIndex = index;
+            slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+            currentIndex = index;
         }
+        
         dots.forEach((dot, i) => {
-          dot.addEventListener('click', e => {
-            e.stopPropagation();
-            showSlide(i);
-          });
+            dot.addEventListener('click', function(e) {
+                e.stopPropagation();
+                showSlide(i);
+            });
         });
-        prevArrow?.addEventListener('click', e => {
-          e.stopPropagation();
-          let newIndex = currentIndex - 1;
-          if (newIndex < 0) newIndex = slides.length - 1;
-          showSlide(newIndex);
-        });
-        nextArrow?.addEventListener('click', e => {
-          e.stopPropagation();
-          let newIndex = currentIndex + 1;
-          if (newIndex >= slides.length) newIndex = 0;
-          showSlide(newIndex);
-        });
+        
+        if (prevArrow) {
+            prevArrow.addEventListener('click', function(e) {
+                e.stopPropagation();
+                let newIndex = currentIndex - 1;
+                if (newIndex < 0) newIndex = slides.length - 1;
+                showSlide(newIndex);
+            });
+        }
+        
+        if (nextArrow) {
+            nextArrow.addEventListener('click', function(e) {
+                e.stopPropagation();
+                let newIndex = currentIndex + 1;
+                if (newIndex >= slides.length) newIndex = 0;
+                showSlide(newIndex);
+            });
+        }
+        
         if (slides.length > 0) showSlide(0);
-      }
+    }
     
-      function closeModal() {
+    function closeModal() {
         stoneModal.classList.remove('show');
         document.body.style.overflow = 'auto';
-      }
-      modalClose?.addEventListener('click', closeModal);
-      stoneModal?.addEventListener('click', function(e) {
-        if (e.target === stoneModal) closeModal();
-      });
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && stoneModal?.classList.contains('show')) closeModal();
-      });
+    }
+    
+    if (modalClose) {
+        modalClose.addEventListener('click', closeModal);
+    }
+    
+    if (stoneModal) {
+        stoneModal.addEventListener('click', function(e) {
+            if (e.target === stoneModal) closeModal();
+        });
+    }
+    
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && stoneModal?.classList.contains('show')) {
+            closeModal();
+        }
     });
     </script>
 
