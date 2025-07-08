@@ -2768,6 +2768,8 @@
         card.addEventListener('click', function (e) {
           if (
             e.target.closest('.whatsapp-button') ||
+            e.target.classList.contains('carousel-arrow') ||
+            e.target.classList.contains('carousel-dot') ||
             e.target.closest('.carousel-arrow') ||
             e.target.closest('.carousel-dot')
           ) return;
@@ -2859,6 +2861,7 @@
       });
     });
     </script>
+
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
