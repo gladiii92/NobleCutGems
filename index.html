@@ -180,18 +180,43 @@
                 font-style: italic;
             }
             
-            /* Kaufen-Button Styling */
+            /* Button mit Preis und Text */
             .whatsapp-button.purchase-button {
-                background: #4CAF50; /* Grüner Hintergrund */
-                border-color: #4CAF50;
+                background: #4CAF50;
+                border: 2px solid #4CAF50;
                 color: white;
+                padding: 12px 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                border-radius: 50px;
+                transition: all 0.3s ease;
+            }
+            
+            .button-price {
+                font-weight: bold;
+                font-size: 1.1rem;
+                background: rgba(255, 255, 255, 0.2);
+                padding: 4px 12px;
+                border-radius: 20px;
+                border: 1px solid rgba(255, 255, 255, 0.3);
+            }
+            
+            .button-text {
+                font-weight: 600;
+                letter-spacing: 0.5px;
             }
             
             .whatsapp-button.purchase-button:hover {
                 background: #45a049;
-                border-color: #45a049;
                 transform: translateY(-2px);
                 box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+            }
+            
+            .whatsapp-button.purchase-button:hover .button-price {
+                background: rgba(255, 255, 255, 0.3);
+                transform: scale(1.05);
             }
 
             /* MODAL STYLES */
@@ -1289,17 +1314,18 @@
                       Natürliche helle Gelbfärbung
                     </p>
                     <!-- NEU: Preis hinzugefügt -->
-                    <p class="gem-price full-price">750€</p>
+                    <p class="gem-price full-price">850€</p>
                     <div class="action-buttons">
-                      <a href="#"
-                         class="whatsapp-button purchase-button"
-                         data-whatsapp-de="Hallo NobleCutGems, ich möchte den gelben Saphir (1.43 ct) für 750€ kaufen. Ist er noch verfügbar?"
-                         data-whatsapp-en="Hello NobleCutGems, I want to buy the yellow sapphire (1.43 ct) for 750€. Is it still available?"
-                         data-whatsapp-fr="Bonjour NobleCutGems, je veux acheter le saphir jaune (1.43 ct) pour 750€. Est-il encore disponible ?"
-                         data-modal-name="Gelber Saphir Ceylon - 1.43 Karat Premium Qualität"
-                         data-modal-details="<strong>Herkunft:</strong> Ceylon (Sri Lanka) - Ratnapura District<br><strong>Gewicht:</strong> 1.43 ct (exakt 0.286 Gramm)<br><strong>Behandlung:</strong> Vollständig unbehandelt (No Heat)<br><strong>Reinheit:</strong> Eyeclean (VS) - Lupenrein für das bloße Auge<br><strong>Farbe:</strong> Helles natürliches Gelb (Light Yellow)<br><strong>Schliff:</strong> Fancy Cut mit exzellenter Politur<br><strong>Fluoreszenz:</strong> Keine UV-Fluoreszenz<br><strong>Preis:</strong> 750€<br><strong>Besonderheiten:</strong> Seltene natürliche Gelbfärbung durch Eisenspuren, mikroskopisch nur minimale Fingerprints sichtbar, außergewöhnliche Brillanz und Feuer, ideal für Verlobungsringe oder Sammler premium Edelsteine">
-                         Jetzt kaufen
-                      </a>
+                    <a href="#"
+                       class="whatsapp-button purchase-button"
+                       data-whatsapp-de="Hallo NobleCutGems, ich möchte den gelben Saphir (1.43 ct) für 750€ kaufen. Ist er noch verfügbar?"
+                       data-whatsapp-en="Hello NobleCutGems, I want to buy the yellow sapphire (1.43 ct) for 750€. Is it still available?"
+                       data-whatsapp-fr="Bonjour NobleCutGems, je veux acheter le saphir jaune (1.43 ct) pour 750€. Est-il encore disponible ?"
+                       data-modal-name="Gelber Saphir Ceylon - 1.43 Karat Premium Qualität"
+                       data-modal-details="<strong>Herkunft:</strong> Ceylon (Sri Lanka) - Ratnapura District<br><strong>Gewicht:</strong> 1.43 ct (exakt 0.286 Gramm)<br><strong>Behandlung:</strong> Vollständig unbehandelt (No Heat)<br><strong>Reinheit:</strong> Eyeclean (VS) - Lupenrein für das bloße Auge<br><strong>Farbe:</strong> Helles natürliches Gelb (Light Yellow)<br><strong>Schliff:</strong> Fancy Cut mit exzellenter Politur<br><strong>Fluoreszenz:</strong> Keine UV-Fluoreszenz<br><strong>Preis:</strong> 750€<br><strong>Besonderheiten:</strong> Seltene natürliche Gelbfärbung durch Eisenspuren, mikroskopisch nur minimale Fingerprints sichtbar, außergewöhnliche Brillanz und Feuer, ideal für Verlobungsringe oder Sammler premium Edelsteine">
+                       <span class="button-price">850€</span>
+                       <span class="button-text">Jetzt kaufen</span>
+                    </a>
                     </div>
                   </div>
                 </div>
