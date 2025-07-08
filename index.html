@@ -2678,195 +2678,182 @@
     </div>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        // Sprachumschaltung wieder aktivieren
-        const langBtns = document.querySelectorAll('.lang-btn');
-        const langContents = document.querySelectorAll('.lang-content');
-        langBtns.forEach(btn => {
-          btn.addEventListener('click', () => {
-            const lang = btn.getAttribute('data-lang');
-            langBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            langContents.forEach(content => {
-              content.classList.remove('active');
-              if (content.getAttribute('data-lang') === lang) {
-                content.classList.add('active');
-              }
-            });
-          });
-        });
-    
-        // Zertifikat-Karussells neu aktivieren
-        function setupCertCarousel(carouselId) {
-          const carousel = document.getElementById(carouselId);
-          if (!carousel) return;
-          const images = carousel.querySelectorAll(".cert-carousel-inner img");
-          const left = carousel.querySelector(".cert-arrow-left");
-          const right = carousel.querySelector(".cert-arrow-right");
-          let currentIndex = 0;
-          let interval;
-          function updateCarousel() {
-            images.forEach((img, i) => img.classList.toggle("active", i === currentIndex));
-          }
-          function next() {
-            currentIndex = (currentIndex + 1) % images.length;
-            updateCarousel();
-          }
-          function prev() {
-            currentIndex = (currentIndex - 1 + images.length) % images.length;
-            updateCarousel();
-          }
-          function startAuto() {
-            interval = setInterval(next, 2200);
-          }
-          function stopAuto() {
-            clearInterval(interval);
-          }
-          if (left && right) {
-            left.addEventListener("click", () => { stopAuto(); prev(); startAuto(); });
-            right.addEventListener("click", () => { stopAuto(); next(); startAuto(); });
-          }
-          updateCarousel();
-          startAuto();
-        }
-    
-        setupCertCarousel("certCarousel-de");
-        setupCertCarousel("certCarousel-en");
-        setupCertCarousel("certCarousel-fr");
-    
-        // Karten-Click für Modal
-        const gemCards = document.querySelectorAll('.gem-card');
-        const stoneModal = document.getElementById('stoneModal');
-        const modalClose = document.getElementById('modalClose');
-        const modalCarousel = document.getElementById('modalCarousel');
-        const modalName = document.getElementById('modalName');
-        const modalDetails = document.getElementById('modalDetails');
-        const modalWhatsApp = document.getElementById('modalWhatsApp');
-        const modalButtonText = document.getElementById('modalButtonText');
-    
-        gemCards.forEach(card => {
-          card.addEventListener('click', function (e) {
-            if (e.target.closest('.whatsapp-button')) return;
-            e.preventDefault();
-            const nameElement = card.querySelector('.gem-name');
-            const detailsElement = card.querySelector('.gem-details');
-            const whatsappElement = card.querySelector('.whatsapp-button');
-            const lang = document.querySelector('.lang-btn.active')?.getAttribute('data-lang')?.toLowerCase() || 'de';
-            const key = `whatsapp${lang}`;
-            const whatsappMessage = whatsappElement?.dataset[key] || whatsappElement?.dataset.whatsapp || '';
-            const whatsappLink = `https://wa.me/4915168482909?text=${encodeURIComponent(whatsappMessage)}`;
-            if (modalName) modalName.textContent = nameElement?.textContent || '';
-            if (modalDetails) modalDetails.innerHTML = detailsElement?.innerHTML || '';
-            if (modalWhatsApp) modalWhatsApp.href = whatsappLink;
-            if (modalButtonText) modalButtonText.textContent = whatsappElement?.textContent || 'Auf Anfrage';
-    
-            if (modalCarousel) {
-              const slides = card.querySelectorAll('.carousel-slide');
-              let carouselHTML = '';
-              let navHTML = '<div class="carousel-nav">';
-              let arrowsHTML = '';
-              slides.forEach((slide, i) => {
-                const img = slide.querySelector('img');
-                const video = slide.querySelector('video');
-                if (img) {
-                  carouselHTML += `<div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}"><img src="${img.src}" alt="${img.alt || 'Edelstein'}"></div>`;
-                } else if (video) {
-                  const source = video.querySelector('source');
-                  if (source) {
-                    carouselHTML += `<div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}"><video muted autoplay loop playsinline><source src="${source.src}" type="video/mp4"></video></div>`;
-                  }
-                }
-                navHTML += `<span class="carousel-dot ${i === 0 ? 'active' : ''}" data-slide="${i}"></span>`;
-              });
-              navHTML += '</div>';
-              if (slides.length > 1) {
-                arrowsHTML = `<div class="carousel-arrows"><div class="carousel-arrow prev">‹</div><div class="carousel-arrow next">›</div></div>`;
-              }
-              modalCarousel.innerHTML = carouselHTML + navHTML + arrowsHTML;
-              setupModalCarousel();
+    document.addEventListener('DOMContentLoaded', function() {
+      // Sprachumschaltung
+      const langBtns = document.querySelectorAll('.lang-btn');
+      const langContents = document.querySelectorAll('.lang-content');
+      langBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lang = btn.getAttribute('data-lang');
+          langBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          langContents.forEach(content => {
+            content.classList.remove('active');
+            if (content.getAttribute('data-lang') === lang) {
+              content.classList.add('active');
             }
-    
-            if (stoneModal) {
-              stoneModal.classList.add('show');
-              document.body.style.overflow = 'hidden';
-            }
-          });
-        });
-    
-        // Modal schließen
-        if (modalClose) {
-          modalClose.addEventListener('click', () => {
-            stoneModal?.classList.remove('show');
-            document.body.style.overflow = 'auto';
-          });
-        }
-    
-        if (stoneModal) {
-          stoneModal.addEventListener('click', function (e) {
-            if (e.target === stoneModal) {
-              stoneModal.classList.remove('show');
-              document.body.style.overflow = 'auto';
-            }
-          });
-        }
-    
-        document.addEventListener('keydown', function (e) {
-          if (e.key === 'Escape' && stoneModal?.classList.contains('show')) {
-            stoneModal.classList.remove('show');
-            document.body.style.overflow = 'auto';
-          }
-        });
-    
-        // Modal-Karussell
-        function setupModalCarousel() {
-          const slides = modalCarousel.querySelectorAll('.carousel-slide');
-          const dots = modalCarousel.querySelectorAll('.carousel-dot');
-          const prevArrow = modalCarousel.querySelector('.carousel-arrow.prev');
-          const nextArrow = modalCarousel.querySelector('.carousel-arrow.next');
-          let currentIndex = 0;
-          function showSlide(index) {
-            slides.forEach((slide, i) => {
-              slide.classList.toggle('active', i === index);
-            });
-            dots.forEach((dot, i) => {
-              dot.classList.toggle('active', i === index);
-            });
-            currentIndex = index;
-          }
-          dots.forEach((dot, i) => {
-            dot.addEventListener('click', (e) => {
-              e.stopPropagation();
-              showSlide(i);
-            });
-          });
-          if (prevArrow) {
-            prevArrow.addEventListener('click', (e) => {
-              e.stopPropagation();
-              showSlide((currentIndex - 1 + slides.length) % slides.length);
-            });
-          }
-          if (nextArrow) {
-            nextArrow.addEventListener('click', (e) => {
-              e.stopPropagation();
-              showSlide((currentIndex + 1) % slides.length);
-            });
-          }
-          if (slides.length > 0) showSlide(0);
-        }
-    
-        // WhatsApp direkt
-        document.querySelectorAll('.gem-card .whatsapp-button').forEach(button => {
-          button.addEventListener('click', function (e) {
-            e.stopPropagation();
-            e.preventDefault();
-            const lang = document.querySelector('.lang-btn.active')?.getAttribute('data-lang')?.toLowerCase() || 'de';
-            const key = `whatsapp${lang}`;
-            const message = this.dataset[key] || this.dataset.whatsapp || '';
-            const link = `https://wa.me/4915168482909?text=${encodeURIComponent(message)}`;
-            window.open(link, '_blank');
           });
         });
       });
+    
+      // Zertifikat-Karussell
+      function setupCertCarousel(carouselId) {
+        const carousel = document.getElementById(carouselId);
+        if (!carousel) return;
+        const images = carousel.querySelectorAll('.cert-carousel-inner img');
+        const left = carousel.querySelector('.cert-arrow-left');
+        const right = carousel.querySelector('.cert-arrow-right');
+        let currentIndex = 0;
+        let interval;
+        function updateCarousel() {
+          images.forEach((img, i) => img.classList.toggle('active', i === currentIndex));
+        }
+        function next() {
+          currentIndex = (currentIndex + 1) % images.length;
+          updateCarousel();
+        }
+        function prev() {
+          currentIndex = (currentIndex - 1 + images.length) % images.length;
+          updateCarousel();
+        }
+        function startAuto() {
+          interval = setInterval(next, 2200);
+        }
+        function stopAuto() {
+          clearInterval(interval);
+        }
+        left.addEventListener("click", () => { stopAuto(); prev(); startAuto(); });
+        right.addEventListener("click", () => { stopAuto(); next(); startAuto(); });
+        updateCarousel();
+        startAuto();
+      }
+    
+      setupCertCarousel("certCarousel-de");
+      setupCertCarousel("certCarousel-en");
+      setupCertCarousel("certCarousel-fr");
+    
+      // Stein-Karussells aktivieren inkl. Videos automatisch stumm abspielen
+      document.querySelectorAll('.gem-card').forEach(card => {
+        card.querySelectorAll('video').forEach(video => {
+          video.muted = true;
+          video.autoplay = true;
+          video.loop = true;
+          video.playsInline = true;
+          video.play().catch(() => {});
+        });
+      });
+    
+      // WhatsApp-Klick (außerhalb des Modals)
+      document.querySelectorAll('.gem-card .whatsapp-button').forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.stopPropagation();
+          e.preventDefault();
+          const message = this.dataset[`whatsapp${document.querySelector('.lang-btn.active')?.dataset.lang?.toLowerCase()}`] || this.dataset.whatsapp;
+          if (!message) return;
+          const link = `https://wa.me/4915168482909?text=${encodeURIComponent(message)}`;
+          window.open(link, '_blank');
+        });
+      });
+    
+      // Modal öffnen
+      const stoneModal = document.getElementById('stoneModal');
+      const modalClose = document.getElementById('modalClose');
+      const modalCarousel = document.getElementById('modalCarousel');
+      const modalName = document.getElementById('modalName');
+      const modalDetails = document.getElementById('modalDetails');
+      const modalWhatsApp = document.getElementById('modalWhatsApp');
+      const modalButtonText = document.getElementById('modalButtonText');
+    
+      document.querySelectorAll('.gem-card').forEach((card, index) => {
+        card.addEventListener('click', function (e) {
+          if (e.target.closest('.whatsapp-button')) return;
+          e.preventDefault();
+          e.stopPropagation();
+          const name = card.querySelector('.gem-name')?.textContent || '';
+          const details = card.querySelector('.gem-details')?.innerHTML || '';
+          const whatsappElement = card.querySelector('.whatsapp-button');
+          const buttonText = whatsappElement?.textContent || '';
+          const lang = document.querySelector('.lang-btn.active')?.dataset.lang?.toLowerCase() || 'de';
+          const key = `whatsapp${lang}`;
+          const whatsappMessage = whatsappElement?.dataset[key] || whatsappElement?.dataset.whatsapp || '';
+          const whatsappLink = `https://wa.me/4915168482909?text=${encodeURIComponent(whatsappMessage)}`;
+          const slides = card.querySelectorAll('.carousel-slide');
+          modalName.textContent = name;
+          modalDetails.innerHTML = details;
+          modalWhatsApp.href = whatsappLink;
+          modalButtonText.textContent = buttonText;
+          modalCarousel.innerHTML = '';
+          let carouselHTML = '';
+          let navHTML = '<div class="carousel-nav">';
+          let arrowsHTML = '';
+          slides.forEach((slide, i) => {
+            const img = slide.querySelector('img');
+            const video = slide.querySelector('video');
+            if (img) {
+              carouselHTML += `<div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}"><img src="${img.src}" alt="${img.alt || 'Edelstein'}"></div>`;
+            } else if (video) {
+              const source = video.querySelector('source');
+              if (source) {
+                carouselHTML += `<div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}"><video muted autoplay loop playsinline><source src="${source.src}" type="video/mp4"></video></div>`;
+              }
+            }
+            navHTML += `<span class="carousel-dot ${i === 0 ? 'active' : ''}" data-slide="${i}"></span>`;
+          });
+          navHTML += '</div>';
+          if (slides.length > 1) {
+            arrowsHTML = `<div class="carousel-arrows"><div class="carousel-arrow prev">‹</div><div class="carousel-arrow next">›</div></div>`;
+          }
+          modalCarousel.innerHTML = carouselHTML + navHTML + arrowsHTML;
+          setupModalCarousel();
+          stoneModal.classList.add('show');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+    
+      function setupModalCarousel() {
+        const slides = modalCarousel.querySelectorAll('.carousel-slide');
+        const dots = modalCarousel.querySelectorAll('.carousel-dot');
+        const prevArrow = modalCarousel.querySelector('.carousel-arrow.prev');
+        const nextArrow = modalCarousel.querySelector('.carousel-arrow.next');
+        let currentIndex = 0;
+        function showSlide(index) {
+          slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+          dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+          currentIndex = index;
+        }
+        dots.forEach((dot, i) => {
+          dot.addEventListener('click', e => {
+            e.stopPropagation();
+            showSlide(i);
+          });
+        });
+        prevArrow?.addEventListener('click', e => {
+          e.stopPropagation();
+          let newIndex = currentIndex - 1;
+          if (newIndex < 0) newIndex = slides.length - 1;
+          showSlide(newIndex);
+        });
+        nextArrow?.addEventListener('click', e => {
+          e.stopPropagation();
+          let newIndex = currentIndex + 1;
+          if (newIndex >= slides.length) newIndex = 0;
+          showSlide(newIndex);
+        });
+        if (slides.length > 0) showSlide(0);
+      }
+    
+      function closeModal() {
+        stoneModal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+      }
+      modalClose?.addEventListener('click', closeModal);
+      stoneModal?.addEventListener('click', function(e) {
+        if (e.target === stoneModal) closeModal();
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && stoneModal?.classList.contains('show')) closeModal();
+      });
+    });
     </script>
 
     <script>
