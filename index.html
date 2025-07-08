@@ -2737,20 +2737,24 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Sprachumschaltung
-      const langBtns = document.querySelectorAll('.lang-btn');
-      langBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const lang = btn.getAttribute('data-lang');
-          langBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          
-          document.querySelectorAll('.lang-content').forEach(content => {
-            content.classList.remove('active');
-          });
-          document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
+        
+    // Sprachumschaltung
+    const langBtns = document.querySelectorAll('.lang-btn');
+    langBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.getAttribute('data-lang');
+        
+        // Button-Status ändern
+        langBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // SPRACHINHALTE WECHSELN - DAS HAT GEFEHLT!
+        document.querySelectorAll('.lang-content').forEach(content => {
+          content.classList.remove('active');
         });
+        document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
       });
+    });
     
       // Kategorie-Filter (KORRIGIERT)
       document.querySelectorAll('.category-btn').forEach(button => {
