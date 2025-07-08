@@ -165,7 +165,7 @@
                 filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
             }
 
-            /* ANGEPASSTES MODAL - 75% Bild / 25% Details */
+            /* MODAL STYLES */
             .stone-modal {
                 display: none;
                 position: fixed;
@@ -194,13 +194,13 @@
                 background: var(--dark-secondary);
                 border: 2px solid var(--primary-gold);
                 border-radius: 20px;
-                width: 90%;
-                max-width: 1000px;
-                height: 80vh;
+                width: 95%;
+                max-width: 1200px;
+                height: 85vh;
                 overflow: hidden;
                 position: relative;
                 animation: slideIn 0.3s ease;
-                box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
+                box-shadow: 0 20px 60px rgba(212, 175, 55, 0.4);
                 display: flex;
                 flex-direction: column;
             }
@@ -241,10 +241,10 @@
                 transform: rotate(90deg);
             }
 
-            /* BILD BEREICH - 75% */
+            /* BILD BEREICH - 70% */
             .modal-image-section {
                 width: 100%;
-                height: 75%;
+                height: 70%;
                 position: relative;
                 overflow: hidden;
                 background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(244, 228, 193, 0.1));
@@ -269,20 +269,20 @@
                 opacity: 1;
             }
 
-            /* BILDER genauso wie VIDEOS machen */
             .modal-carousel img {
-                width: 100% !important;           /* GLEICH wie Videos */
-                height: 100% !important;          /* GLEICH wie Videos */
-                object-fit: contain !important;   /* GLEICH wie Videos */
-                object-position: center bottom;   /* ABER: bottom statt center (für deinen Stein) */
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: contain !important;
+                object-position: center !important;
                 cursor: zoom-in;
-                padding: 10px;                    /* GLEICH wie Videos */
-                /* ALLE anderen Eigenschaften LÖSCHEN */
+                padding: 10px;
+                display: block;
+                margin: 0 auto;
             }
 
             .modal-carousel video {
-                max-width: 70%; /* Noch kleiner - war 100% */
-                max-height: 70%; /* Noch kleiner - war 100% */
+                width: 90% !important;
+                height: 90% !important;
                 object-fit: contain;
                 cursor: zoom-in;
                 padding: 15px;
@@ -291,7 +291,7 @@
                 position: absolute;
                 top: 50%;
                 left: 50%;
-                transform: translate(-50%, -50%); /* Zentriert das Bild */
+                transform: translate(-50%, -50%);
             }
 
             .modal-carousel .carousel-nav {
@@ -354,22 +354,22 @@
                 transform: scale(1.1);
             }
 
-            /* INFO BEREICH - 25% */
+            /* INFO BEREICH - 30% */
             .modal-info-section {
-                height: 25%;
-                padding: 20px 30px;
+                height: 30%;
+                padding: 25px 40px;
                 text-align: center;
                 background: var(--dark-secondary);
                 border-radius: 0 0 18px 18px;
                 display: flex;
                 flex-direction: column;
-                justify-content: center;
+                justify-content: space-between;
                 overflow-y: auto;
             }
 
             .modal-gem-name {
-                font-size: 2.2rem;
-                margin-bottom: 10px;
+                font-size: 2.5rem;
+                margin-bottom: 15px;
                 color: var(--primary-gold);
                 text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
                 font-weight: 700;
@@ -377,11 +377,11 @@
             }
 
             .modal-gem-details {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
                 color: var(--text-muted);
-                margin-bottom: 15px;
-                line-height: 1.4;
-                max-width: 600px;
+                margin-bottom: 20px;
+                line-height: 1.6;
+                max-width: 800px;
                 margin-left: auto;
                 margin-right: auto;
             }
@@ -401,20 +401,21 @@
             }
 
             .modal-whatsapp-button {
-                padding: 12px 30px;
+                padding: 15px 40px;
                 border: 3px solid #25d366;
                 text-decoration: none;
-                display: flex;
+                display: inline-flex;
                 align-items: center;
                 justify-content: center;
-                gap: 8px;
+                gap: 10px;
                 border-radius: 50px;
                 transition: all 0.3s ease;
                 font-weight: 700;
                 letter-spacing: 1px;
                 background: transparent;
                 color: #25d366;
-                font-size: 1rem;
+                font-size: 1.1rem;
+                margin-top: 10px;
             }
 
             .modal-whatsapp-button:hover {
@@ -448,14 +449,14 @@
             }
 
             .logo {
-                height: 100px; /* Passende Höhe für Header */
+                height: 100px;
                 display: flex;
                 align-items: center;
             }
 
             .logo img {
                 height: 100%;
-                width: auto; /* Behält Proportionen */
+                width: auto;
                 max-height: 100px;
                 object-fit: contain;
                 cursor: pointer;
@@ -512,14 +513,13 @@
                 animation: fadeInUp 1.5s ease;
             }
 
-            /* GROSSES Logo für Hero-Bereich */
             .hero-logo {
                 margin-bottom: 20px;
                 animation: shimmer 3s infinite;
             }
 
             .hero-logo img {
-                height: clamp(180px, 23vw, 450px); /* Responsive: 120px bis 300px */
+                height: clamp(180px, 23vw, 450px);
                 width: auto;
                 object-fit: contain;
                 filter: drop-shadow(0 10px 30px rgba(212, 175, 55, 0.3));
@@ -707,21 +707,26 @@
                 opacity: 1;
             }
 
-            /* Auch für normale Karten */
             .carousel-slide img {
-                width: 100% !important;           /* GLEICH wie Videos */
-                height: 100% !important;          /* GLEICH wie Videos */
-                object-fit: contain !important;   /* GLEICH wie Videos */
-                object-position: center bottom;   /* Zeigt den Stein (unten) */
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: contain !important;
+                object-position: center !important;
                 cursor: pointer;
+                padding: 10px;
+                display: block;
+                margin: 0 auto;
             }
 
-
             .carousel-slide video {
-              width: 125%;
-              height: auto;
-              object-fit: contain; /* statt "cover" */
-              max-height: 300px; /* Optional: maximale Video-Höhe */
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: contain !important;
+                object-position: center !important;
+                cursor: pointer;
+                padding: 10px;
+                display: block;
+                margin: 0 auto;
             }
 
             .carousel-nav {
@@ -782,7 +787,7 @@
             }
 
             .gem-info {
-                padding: 25px; /* Weniger Padding da kein Preis mehr */
+                padding: 25px;
             }
 
             .gem-name {
@@ -793,7 +798,7 @@
 
             .gem-details {
                 color: var(--text-muted);
-                margin-bottom: 25px; /* Mehr Abstand zum Button */
+                margin-bottom: 25px;
                 line-height: 1.6;
             }
 
@@ -937,11 +942,13 @@
                 align-items: center;
                 justify-content: center;
             }
+
             .cert-carousel-inner {
                 position: relative;
                 width: 100%;
                 height: 100%;
             }
+
             .cert-carousel-inner img {
                 display: none;
                 position: absolute;
@@ -955,11 +962,13 @@
                 border-radius: 12px;
                 box-shadow: 0 2px 8px rgba(0,0,0,0.12);
             }
+
             .cert-carousel-inner img.active {
                 display: block;
                 opacity: 1;
                 z-index: 2;
             }
+
             .cert-arrow {
                 background: rgba(0,0,0,0.12);
                 border: none;
@@ -974,16 +983,10 @@
                 margin: 0 8px;
                 transition: background 0.2s;
             }
+
             .cert-arrow:hover {
                 background: #d4af37;
                 color: #1a1a1a;
-            }
-            @media (max-width: 600px) {
-                .cert-carousel {
-                    max-width: 95vw;
-                    height: 38vw;
-                    min-height: 120px;
-                }
             }
 
             /* Responsive Anpassungen */
@@ -1081,7 +1084,7 @@
                 }
 
                 .logo {
-                    height: 45px; /* Mobile: etwas kleiner */
+                    height: 45px;
                 }
 
                 .logo img {
@@ -1089,51 +1092,13 @@
                 }
 
                 .hero-logo img {
-                    height: clamp(120px, 30vw, 300px); /* Mobile: angepasste Größe */
+                    height: clamp(120px, 30vw, 300px);
+                }
 
                 .cert-carousel {
-                    position: relative;
-                    width: 100%;
-                    max-width: 320px;
-                    height: 220px;
-                    margin: 0 auto;
-                    overflow: hidden;
-                    background: rgba(255,255,255,0.04);
-                    border-radius: 16px;
-                    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
-
-                .cert-carousel img {
-                    display: none;
-                    position: absolute;
-                    left: 0; top: 0;
-                    width: 100%;
-                    height: 100%;
-                    object-fit: contain;
-                    opacity: 0;
-                    transition: opacity 0.6s;
-                    z-index: 1;
-                    border-radius: 12px;
-                    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-                }
-                .cert-carousel img.active {
-                    display: block;    /* DAS IST WICHTIG! */
-                    opacity: 1;
-                    z-index: 2;
-                }
-
-                @media (max-width: 600px) {
-                    .cert-carousel {
-                        max-width: 95vw;
-                        height: 38vw;
-                        min-height: 120px;
-                    }
-                }
-
-
+                    max-width: 95vw;
+                    height: 38vw;
+                    min-height: 120px;
                 }
             }
     </style>
@@ -1208,11 +1173,11 @@
                 <div class="about-text">
                     <p>Bei NobleCutGems vereinen wir Leidenschaft und Expertise, um Ihnen die exquisitesten Edelsteine der Welt zu präsentieren. Jeder Stein in unserer Kollektion wurde sorgfältig ausgewählt und repräsentiert hohe Qualität und außergewöhnliche Schönheit.</p>
                     <br>
-                    <p>Unsere Expertise erstreckt sich über umfangreiche Erfahrung in der Edelsteinbranche. Farbedelsteine seltener als Diamenten – wir bieten nur das Beste für anspruchsvolle Sammler und Liebhaber.</p>
+                    <p>Unsere Expertise erstreckt sich über umfangreiche Erfahrung in der Edelsteinbranche. Farbedelsteine seltener als Diamanten – wir bieten nur das Beste für anspruchsvolle Sammler und Liebhaber.</p>
                 </div>
                 <div class="about-image">
                     <div class="cert-carousel" id="certCarousel-de">
-                        <button class="cert-arrow cert-arrow-left">&#8592;</button>
+                        <button class="cert-arrow cert-arrow-left">←</button>
                         <div class="cert-carousel-inner">
                             <img src="images/igs_aquamarine.png" alt="IGS Aquamarine Zertifikat" class="active">
                             <img src="images/igs_ruby.png" alt="IGS Ruby Zertifikat">
@@ -1225,9 +1190,10 @@
                             <img src="images/igs_tourmaline.png" alt="IGS Tourmaline Zertifikat">
                             <img src="images/igs_zircon.png" alt="IGS Zircon Zertifikat">
                         </div>
-                        <button class="cert-arrow cert-arrow-right">&#8594;</button>
+                        <button class="cert-arrow cert-arrow-right">→</button>
                     </div>
                 </div>
+            </div>
         </section>
 
         <section class="collection" id="collection">
@@ -1255,7 +1221,7 @@
             </div>
 
             <div class="gem-grid">
-                <!-- Sapphire 1 -->
+                <!-- Gelber Saphir - Sapphire 1 -->
                 <div class="gem-card show" data-category="sapphire">
                   <div class="carousel-container">
                     <div class="carousel-slide active">
@@ -1306,7 +1272,49 @@
                   </div>
                 </div>
 
-                <!-- Sapphire 2 -->
+                <!-- Padparadscha Saphir - Sapphire 2 -->
+                <div class="gem-card show" data-category="sapphire">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="images/sapphire1-1.jpg" alt="Padparadscha Saphir">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/sapphire1-2.jpg" alt="Padparadscha Saphir">
+                        </div>
+                        <div class="carousel-slide">
+                            <video muted autoplay loop playsinline>
+                                <source src="videos/sapphire1.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="carousel-nav">
+                            <span class="carousel-dot active" data-slide="0"></span>
+                            <span class="carousel-dot" data-slide="1"></span>
+                            <span class="carousel-dot" data-slide="2"></span>
+                        </div>
+                        <div class="carousel-arrows">
+                            <div class="carousel-arrow prev">‹</div>
+                            <div class="carousel-arrow next">›</div>
+                        </div>
+                    </div>
+                    <div class="gem-info">
+                        <h3 class="gem-name">Padparadscha Saphir</h3>
+                        <p class="gem-details">
+                            2.45 ct | Unbehandelt | Ceylon<br>
+                            Außergewöhnliche Pink-Orange Farbe
+                        </p>
+                        <div class="action-buttons">
+                            <a href="#" 
+                               class="whatsapp-button" 
+                               data-whatsapp-de="Hallo NobleCutGems, ich interessiere mich für diesen Stein." 
+                               data-whatsapp-en="Hello NobleCutGems, I am interested in this gem." 
+                               data-whatsapp-fr="Bonjour NobleCutGems, je suis intéressé par cette gemme.">
+                               Auf Anfrage
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kashmir Saphir - Sapphire 3 -->
                 <div class="gem-card show" data-category="sapphire">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
@@ -1334,7 +1342,7 @@
                     </div>
                 </div>
 
-                <!-- Sapphire 3 -->
+                <!-- Royal Blue Saphir - Sapphire 4 -->
                 <div class="gem-card show" data-category="sapphire">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
@@ -1362,7 +1370,7 @@
                     </div>
                 </div>
 
-                <!-- Sapphire 4 -->
+                <!-- Pink Saphir - Sapphire 5 -->
                 <div class="gem-card show" data-category="sapphire">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
@@ -1390,35 +1398,7 @@
                     </div>
                 </div>
 
-                <!-- Sapphire 5 -->
-                <div class="gem-card show" data-category="sapphire">
-                    <div class="carousel-container">
-                        <div class="carousel-slide active">
-                            <img src="images/sapphire5-1.jpg" alt="Yellow Saphir">
-                        </div>
-                        <div class="carousel-nav">
-                            <span class="carousel-dot active" data-slide="0"></span>
-                        </div>
-                    </div>
-                    <div class="gem-info">
-                        <h3 class="gem-name">Yellow Saphir</h3>
-                        <p class="gem-details">
-                            5.42 ct | Unbehandelt | Sri Lanka<br>
-                            Brillantes Kanariengelb
-                        </p>
-                        <div class="action-buttons">
-                            <a href="#" 
-                               class="whatsapp-button" 
-                               data-whatsapp-de="Hallo NobleCutGems, ich interessiere mich für diesen Stein." 
-                               data-whatsapp-en="Hello NobleCutGems, I am interested in this gem." 
-                               data-whatsapp-fr="Bonjour NobleCutGems, je suis intéressé par cette gemme.">
-                               Auf Anfrage
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Spinel 1 -->
+                <!-- Mahenge Spinell - Spinel 1 -->
                 <div class="gem-card show" data-category="spinel">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
@@ -1454,7 +1434,7 @@
                     </div>
                 </div>
 
-                <!-- Spinel 2 -->
+                <!-- Jedi Spinell - Spinel 2 -->
                 <div class="gem-card show" data-category="spinel">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
@@ -1482,7 +1462,7 @@
                     </div>
                 </div>
 
-                <!-- Spinel 3 -->
+                <!-- Cobalt Spinell - Spinel 3 -->
                 <div class="gem-card show" data-category="spinel">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
@@ -1510,14 +1490,14 @@
                     </div>
                 </div>
 
-                <!-- Ruby 1 -->
+                <!-- Burma Rubin - Ruby 1 -->
                 <div class="gem-card show" data-category="ruby">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
                             <img src="images/ruby1-1.jpg" alt="Burma Rubin">
                         </div>
                         <div class="carousel-slide">
-                            <video muted loop>
+                            <video muted autoplay loop playsinline>
                                 <source src="videos/ruby1.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -1548,7 +1528,7 @@
                     </div>
                 </div>
 
-                <!-- Emerald 1 -->
+                <!-- Kolumbianischer Smaragd - Emerald 1 -->
                 <div class="gem-card show" data-category="emerald">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
@@ -1588,14 +1568,14 @@
                     </div>
                 </div>
 
-                <!-- Other Gem 1 -->
+                <!-- Paraiba Turmalin - Other 1 -->
                 <div class="gem-card show" data-category="other">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
                             <img src="images/paraiba1-1.jpg" alt="Paraiba Turmalin">
                         </div>
                         <div class="carousel-slide">
-                            <video muted loop>
+                            <video muted autoplay loop playsinline>
                                 <source src="videos/paraiba1.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -1741,22 +1721,23 @@
                 </div>
                 <div class="about-image">
                     <div class="cert-carousel" id="certCarousel-en">
-                        <button class="cert-arrow cert-arrow-left">&#8592;</button>
+                        <button class="cert-arrow cert-arrow-left">←</button>
                         <div class="cert-carousel-inner">
-                            <img src="images/igs_aquamarine.png" alt="IGS Aquamarine Zertifikat" class="active">
-                            <img src="images/igs_ruby.png" alt="IGS Ruby Zertifikat">
-                            <img src="images/igs_sapphire.png" alt="IGS Sapphire Zertifikat">
-                            <img src="images/igs_emerald.png" alt="IGS Emerald Zertifikat">
-                            <img src="images/igs_citrine.png" alt="IGS Citrine Zertifikat">
-                            <img src="images/igs_garnet.png" alt="IGS Garnet Zertifikat">
-                            <img src="images/igs_spinel.png" alt="IGS Spinel Zertifikat">
-                            <img src="images/igs_topaz.png" alt="IGS Topaz Zertifikat">
-                            <img src="images/igs_tourmaline.png" alt="IGS Tourmaline Zertifikat">
-                            <img src="images/igs_zircon.png" alt="IGS Zircon Zertifikat">
+                            <img src="images/igs_aquamarine.png" alt="IGS Aquamarine Certificate" class="active">
+                            <img src="images/igs_ruby.png" alt="IGS Ruby Certificate">
+                            <img src="images/igs_sapphire.png" alt="IGS Sapphire Certificate">
+                            <img src="images/igs_emerald.png" alt="IGS Emerald Certificate">
+                            <img src="images/igs_citrine.png" alt="IGS Citrine Certificate">
+                            <img src="images/igs_garnet.png" alt="IGS Garnet Certificate">
+                            <img src="images/igs_spinel.png" alt="IGS Spinel Certificate">
+                            <img src="images/igs_topaz.png" alt="IGS Topaz Certificate">
+                            <img src="images/igs_tourmaline.png" alt="IGS Tourmaline Certificate">
+                            <img src="images/igs_zircon.png" alt="IGS Zircon Certificate">
                         </div>
-                        <button class="cert-arrow cert-arrow-right">&#8594;</button>
+                        <button class="cert-arrow cert-arrow-right">→</button>
                     </div>
                 </div>
+            </div>
         </section>
 
         <section class="collection" id="collection">
@@ -1784,7 +1765,58 @@
             </div>
 
             <div class="gem-grid">
-                <!-- Englische Versionen aller Steine... -->
+                <!-- Gelber Saphir - Sapphire 1 (EN) -->
+                <div class="gem-card show" data-category="sapphire">
+                  <div class="carousel-container">
+                    <div class="carousel-slide active">
+                      <img src="images/gelber-saphir-1-43ct-ceylon.jpg" alt="Yellow Sapphire 1.43 ct Ceylon">
+                    </div>
+                    <div class="carousel-slide">
+                      <video muted autoplay loop playsinline>
+                        <source src="videos/gelber-saphir-1-43ct-finger.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="carousel-slide">
+                      <video muted autoplay loop playsinline>
+                        <source src="videos/gelber-saphir-1-43ct-pinzette.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="carousel-slide">
+                      <video muted autoplay loop playsinline>
+                        <source src="videos/gelber-saphir-1-43ct-360.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="carousel-nav">
+                      <span class="carousel-dot active" data-slide="0"></span>
+                      <span class="carousel-dot" data-slide="1"></span>
+                      <span class="carousel-dot" data-slide="2"></span>
+                      <span class="carousel-dot" data-slide="3"></span>
+                    </div>
+                    <div class="carousel-arrows">
+                      <div class="carousel-arrow prev">‹</div>
+                      <div class="carousel-arrow next">›</div>
+                    </div>
+                  </div>
+                  <div class="gem-info">
+                    <h3 class="gem-name">Yellow Sapphire, 1.43 ct</h3>
+                    <p class="gem-details">
+                      Ceylon (Sri Lanka) · Untreated · Eyeclean (VS)<br>
+                      Intensely glowing yellow with fine cut<br>
+                      Visibly clear under microscope – only slight fingerprints
+                    </p>
+                    <div class="action-buttons">
+                      <a href="#"
+                         class="whatsapp-button"
+                         data-whatsapp-de="Hallo NobleCutGems, ich interessiere mich für den gelben Saphir mit 1.43 ct. Ist er noch verfügbar?"
+                         data-whatsapp-en="Hello NobleCutGems, I'm interested in the yellow sapphire (1.43 ct). Is it still available?"
+                         data-whatsapp-fr="Bonjour NobleCutGems, je suis intéressé par le saphir jaune de 1.43 ct. Est-il encore disponible ?">
+                         On Request
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Padparadscha Sapphire - Sapphire 2 (EN) -->
                 <div class="gem-card show" data-category="sapphire">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
@@ -1794,7 +1826,7 @@
                             <img src="images/sapphire1-2.jpg" alt="Padparadscha Sapphire">
                         </div>
                         <div class="carousel-slide">
-                            <video muted loop>
+                            <video muted autoplay loop playsinline>
                                 <source src="videos/sapphire1.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -1826,6 +1858,7 @@
                     </div>
                 </div>
 
+                <!-- Kashmir Sapphire - Sapphire 3 (EN) -->
                 <div class="gem-card show" data-category="sapphire">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
@@ -1853,6 +1886,7 @@
                     </div>
                 </div>
 
+                <!-- Royal Blue Sapphire - Sapphire 4 (EN) -->
                 <div class="gem-card show" data-category="sapphire">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
@@ -1880,6 +1914,7 @@
                     </div>
                 </div>
 
+                <!-- Pink Sapphire - Sapphire 5 (EN) -->
                 <div class="gem-card show" data-category="sapphire">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
@@ -1907,33 +1942,7 @@
                     </div>
                 </div>
 
-                <div class="gem-card show" data-category="sapphire">
-                    <div class="carousel-container">
-                        <div class="carousel-slide active">
-                            <img src="images/sapphire5-1.jpg" alt="Yellow Sapphire">
-                        </div>
-                        <div class="carousel-nav">
-                            <span class="carousel-dot active" data-slide="0"></span>
-                        </div>
-                    </div>
-                    <div class="gem-info">
-                        <h3 class="gem-name">Yellow Sapphire</h3>
-                        <p class="gem-details">
-                            5.42 ct | Untreated | Sri Lanka<br>
-                            Brilliant canary yellow
-                        </p>
-                        <div class="action-buttons">
-                            <a href="#" 
-                               class="whatsapp-button" 
-                               data-whatsapp-de="Hallo NobleCutGems, ich interessiere mich für diesen Stein." 
-                               data-whatsapp-en="Hello NobleCutGems, I am interested in this gem." 
-                               data-whatsapp-fr="Bonjour NobleCutGems, je suis intéressé par cette gemme.">
-                               On Request
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
+                <!-- Mahenge Spinel - Spinel 1 (EN) -->
                 <div class="gem-card show" data-category="spinel">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
@@ -1969,6 +1978,7 @@
                     </div>
                 </div>
 
+                <!-- Jedi Spinel - Spinel 2 (EN) -->
                 <div class="gem-card show" data-category="spinel">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
@@ -1996,6 +2006,7 @@
                     </div>
                 </div>
 
+                <!-- Cobalt Spinel - Spinel 3 (EN) -->
                 <div class="gem-card show" data-category="spinel">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
@@ -2023,13 +2034,14 @@
                     </div>
                 </div>
 
+                <!-- Burma Ruby - Ruby 1 (EN) -->
                 <div class="gem-card show" data-category="ruby">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
                             <img src="images/ruby1-1.jpg" alt="Burma Ruby">
                         </div>
                         <div class="carousel-slide">
-                            <video muted loop>
+                            <video muted autoplay loop playsinline>
                                 <source src="videos/ruby1.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -2060,6 +2072,7 @@
                     </div>
                 </div>
 
+                <!-- Colombian Emerald - Emerald 1 (EN) -->
                 <div class="gem-card show" data-category="emerald">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
@@ -2099,13 +2112,14 @@
                     </div>
                 </div>
 
+                <!-- Paraiba Tourmaline - Other 1 (EN) -->
                 <div class="gem-card show" data-category="other">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
                             <img src="images/paraiba1-1.jpg" alt="Paraiba Tourmaline">
                         </div>
                         <div class="carousel-slide">
-                            <video muted loop>
+                            <video muted autoplay loop playsinline>
                                 <source src="videos/paraiba1.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -2224,21 +2238,22 @@
                     <p>Notre expertise s'étend sur des décennies d'expérience dans l'industrie des pierres précieuses. Des pierres de couleur rares aux diamants impeccables - nous n'offrons que le meilleur pour les collectionneurs et amateurs exigeants.</p>
                 </div>
                 <div class="about-image">
-                <div class="cert-carousel" id="certCarousel-fr">
-                    <button class="cert-arrow cert-arrow-left">&#8592;</button>
-                    <div class="cert-carousel-inner">
-                        <img src="images/igs_aquamarine.png" alt="IGS Aquamarine Zertifikat" class="active">
-                        <img src="images/igs_ruby.png" alt="IGS Ruby Zertifikat">
-                        <img src="images/igs_sapphire.png" alt="IGS Sapphire Zertifikat">
-                        <img src="images/igs_emerald.png" alt="IGS Emerald Zertifikat">
-                        <img src="images/igs_citrine.png" alt="IGS Citrine Zertifikat">
-                        <img src="images/igs_garnet.png" alt="IGS Garnet Zertifikat">
-                        <img src="images/igs_spinel.png" alt="IGS Spinel Zertifikat">
-                        <img src="images/igs_topaz.png" alt="IGS Topaz Zertifikat">
-                        <img src="images/igs_tourmaline.png" alt="IGS Tourmaline Zertifikat">
-                        <img src="images/igs_zircon.png" alt="IGS Zircon Zertifikat">
+                    <div class="cert-carousel" id="certCarousel-fr">
+                        <button class="cert-arrow cert-arrow-left">←</button>
+                        <div class="cert-carousel-inner">
+                            <img src="images/igs_aquamarine.png" alt="IGS Aquamarine Certificate" class="active">
+                            <img src="images/igs_ruby.png" alt="IGS Ruby Certificate">
+                            <img src="images/igs_sapphire.png" alt="IGS Sapphire Certificate">
+                            <img src="images/igs_emerald.png" alt="IGS Emerald Certificate">
+                            <img src="images/igs_citrine.png" alt="IGS Citrine Certificate">
+                            <img src="images/igs_garnet.png" alt="IGS Garnet Certificate">
+                            <img src="images/igs_spinel.png" alt="IGS Spinel Certificate">
+                            <img src="images/igs_topaz.png" alt="IGS Topaz Certificate">
+                            <img src="images/igs_tourmaline.png" alt="IGS Tourmaline Certificate">
+                            <img src="images/igs_zircon.png" alt="IGS Zircon Certificate">
+                        </div>
+                        <button class="cert-arrow cert-arrow-right">→</button>
                     </div>
-                    <button class="cert-arrow cert-arrow-right">&#8594;</button>
                 </div>
             </div>
         </section>
@@ -2268,6 +2283,58 @@
             </div>
 
             <div class="gem-grid">
+                <!-- Gelber Saphir - Sapphire 1 (FR) -->
+                <div class="gem-card show" data-category="sapphire">
+                  <div class="carousel-container">
+                    <div class="carousel-slide active">
+                      <img src="images/gelber-saphir-1-43ct-ceylon.jpg" alt="Saphir Jaune 1.43 ct Ceylon">
+                    </div>
+                    <div class="carousel-slide">
+                      <video muted autoplay loop playsinline>
+                        <source src="videos/gelber-saphir-1-43ct-finger.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="carousel-slide">
+                      <video muted autoplay loop playsinline>
+                        <source src="videos/gelber-saphir-1-43ct-pinzette.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="carousel-slide">
+                      <video muted autoplay loop playsinline>
+                        <source src="videos/gelber-saphir-1-43ct-360.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="carousel-nav">
+                      <span class="carousel-dot active" data-slide="0"></span>
+                      <span class="carousel-dot" data-slide="1"></span>
+                      <span class="carousel-dot" data-slide="2"></span>
+                      <span class="carousel-dot" data-slide="3"></span>
+                    </div>
+                    <div class="carousel-arrows">
+                      <div class="carousel-arrow prev">‹</div>
+                      <div class="carousel-arrow next">›</div>
+                    </div>
+                  </div>
+                  <div class="gem-info">
+                    <h3 class="gem-name">Saphir Jaune, 1.43 ct</h3>
+                    <p class="gem-details">
+                      Ceylon (Sri Lanka) · Non traité · Eyeclean (VS)<br>
+                      Jaune intensément lumineux avec taille fine<br>
+                      Visiblement clair sous microscope – seulement de légères empreintes
+                    </p>
+                    <div class="action-buttons">
+                      <a href="#"
+                         class="whatsapp-button"
+                         data-whatsapp-de="Hallo NobleCutGems, ich interessiere mich für den gelben Saphir mit 1.43 ct. Ist er noch verfügbar?"
+                         data-whatsapp-en="Hello NobleCutGems, I'm interested in the yellow sapphire (1.43 ct). Is it still available?"
+                         data-whatsapp-fr="Bonjour NobleCutGems, je suis intéressé par le saphir jaune de 1.43 ct. Est-il encore disponible ?">
+                         Sur Demande
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Padparadscha Sapphire - Sapphire 2 (FR) -->
                 <div class="gem-card show" data-category="sapphire">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
@@ -2277,7 +2344,7 @@
                             <img src="images/sapphire1-2.jpg" alt="Saphir Padparadscha">
                         </div>
                         <div class="carousel-slide">
-                            <video muted loop>
+                            <video muted autoplay loop playsinline>
                                 <source src="videos/sapphire1.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -2309,6 +2376,7 @@
                     </div>
                 </div>
 
+                <!-- Kashmir Sapphire - Sapphire 3 (FR) -->
                 <div class="gem-card show" data-category="sapphire">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
@@ -2336,6 +2404,7 @@
                     </div>
                 </div>
 
+                <!-- Royal Blue Sapphire - Sapphire 4 (FR) -->
                 <div class="gem-card show" data-category="sapphire">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
@@ -2363,6 +2432,7 @@
                     </div>
                 </div>
 
+                <!-- Pink Sapphire - Sapphire 5 (FR) -->
                 <div class="gem-card show" data-category="sapphire">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
@@ -2390,33 +2460,7 @@
                     </div>
                 </div>
 
-                <div class="gem-card show" data-category="sapphire">
-                    <div class="carousel-container">
-                        <div class="carousel-slide active">
-                            <img src="images/sapphire5-1.jpg" alt="Saphir Jaune">
-                        </div>
-                        <div class="carousel-nav">
-                            <span class="carousel-dot active" data-slide="0"></span>
-                        </div>
-                    </div>
-                    <div class="gem-info">
-                        <h3 class="gem-name">Saphir Jaune</h3>
-                        <p class="gem-details">
-                            5.42 ct | Non traité | Sri Lanka<br>
-                            Jaune canari brillant
-                        </p>
-                        <div class="action-buttons">
-                            <a href="#" 
-                               class="whatsapp-button" 
-                               data-whatsapp-de="Hallo NobleCutGems, ich interessiere mich für diesen Stein." 
-                               data-whatsapp-en="Hello NobleCutGems, I am interested in this gem." 
-                               data-whatsapp-fr="Bonjour NobleCutGems, je suis intéressé par cette gemme.">
-                               Sur Demande
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
+                <!-- Mahenge Spinel - Spinel 1 (FR) -->
                 <div class="gem-card show" data-category="spinel">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
@@ -2452,6 +2496,7 @@
                     </div>
                 </div>
 
+                <!-- Jedi Spinel - Spinel 2 (FR) -->
                 <div class="gem-card show" data-category="spinel">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
@@ -2479,6 +2524,7 @@
                     </div>
                 </div>
 
+                <!-- Cobalt Spinel - Spinel 3 (FR) -->
                 <div class="gem-card show" data-category="spinel">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
@@ -2506,13 +2552,14 @@
                     </div>
                 </div>
 
+                <!-- Burma Ruby - Ruby 1 (FR) -->
                 <div class="gem-card show" data-category="ruby">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
                             <img src="images/ruby1-1.jpg" alt="Rubis de Birmanie">
                         </div>
                         <div class="carousel-slide">
-                            <video muted loop>
+                            <video muted autoplay loop playsinline>
                                 <source src="videos/ruby1.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -2543,6 +2590,7 @@
                     </div>
                 </div>
 
+                <!-- Colombian Emerald - Emerald 1 (FR) -->
                 <div class="gem-card show" data-category="emerald">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
@@ -2582,13 +2630,14 @@
                     </div>
                 </div>
 
+                <!-- Paraiba Tourmaline - Other 1 (FR) -->
                 <div class="gem-card show" data-category="other">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
                             <img src="images/paraiba1-1.jpg" alt="Tourmaline Paraiba">
                         </div>
                         <div class="carousel-slide">
-                            <video muted loop>
+                            <video muted autoplay loop playsinline>
                                 <source src="videos/paraiba1.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -2695,20 +2744,28 @@
           const lang = btn.getAttribute('data-lang');
           langBtns.forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
+          
+          document.querySelectorAll('.lang-content').forEach(content => {
+            content.classList.remove('active');
+          });
+          document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
         });
       });
     
-      // Filterbuttons (Reiter)
-      document.querySelectorAll('.filter-button').forEach(button => {
+      // Kategorie-Filter (KORRIGIERT)
+      document.querySelectorAll('.category-btn').forEach(button => {
         button.addEventListener('click', () => {
-          const filter = button.getAttribute('data-filter');
-          document.querySelectorAll('.filter-button').forEach(b => b.classList.remove('active'));
+          const filter = button.getAttribute('data-category');
+          document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
           button.classList.add('active');
+          
           document.querySelectorAll('.gem-card').forEach(card => {
             const category = card.getAttribute('data-category');
             if (filter === 'all' || category === filter) {
+              card.classList.add('show');
               card.style.display = 'block';
             } else {
+              card.classList.remove('show');
               card.style.display = 'none';
             }
           });
@@ -2799,7 +2856,8 @@
           e.stopPropagation();
           e.preventDefault();
           const lang = document.querySelector('.lang-btn.active')?.dataset.lang?.toLowerCase() || 'de';
-          const message = this.dataset[`whatsapp${lang}`] || this.dataset.whatsapp;
+          const key = `whatsapp${lang.charAt(0).toUpperCase() + lang.slice(1)}`;
+          const message = this.dataset[key] || this.dataset.whatsapp;
           if (!message) return;
           const link = `https://wa.me/4915168482909?text=${encodeURIComponent(message)}`;
           window.open(link, '_blank');
@@ -2829,7 +2887,7 @@
           const whatsappElement = card.querySelector('.whatsapp-button');
           const buttonText = whatsappElement?.textContent || '';
           const lang = document.querySelector('.lang-btn.active')?.dataset.lang?.toLowerCase() || 'de';
-          const key = `whatsapp${lang}`;
+          const key = `whatsapp${lang.charAt(0).toUpperCase() + lang.slice(1)}`;
           const whatsappMessage = whatsappElement?.dataset[key] || whatsappElement?.dataset.whatsapp || '';
           const whatsappLink = `https://wa.me/4915168482909?text=${encodeURIComponent(whatsappMessage)}`;
           const slides = card.querySelectorAll('.carousel-slide');
@@ -2910,27 +2968,6 @@
       });
     });
     </script>
-
-
-
-
-
-
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      document.querySelectorAll('.gem-card .whatsapp-button').forEach(button => {
-        button.addEventListener('click', function(e) {
-          e.stopPropagation(); // Verhindert Modal-Öffnung
-          e.preventDefault();  // Verhindert Seitenwechsel
-
-          const message = this.dataset.whatsapp;
-          const link = `https://wa.me/4915168482909?text=${encodeURIComponent(message)}`;
-          window.open(link, '_blank'); // Öffnet WhatsApp in neuem Tab
-        });
-      });
-    });
-    </script>
-
 
 </body>
 </html>
