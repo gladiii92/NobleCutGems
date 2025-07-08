@@ -130,11 +130,11 @@
                 font-style: italic;
             }
             
-            /* Button mit Preis und Text */
+            /* Dezenter Purchase Button - Outline Stil */
             .whatsapp-button.purchase-button {
-                background: #4CAF50;
-                border: 2px solid #4CAF50;
-                color: white;
+                background: transparent; /* Nicht gefüllt */
+                border: 2px solid #4CAF50; /* Grüner Rand */
+                color: #4CAF50; /* Grüner Text */
                 padding: 12px 20px;
                 display: flex;
                 align-items: center;
@@ -142,15 +142,24 @@
                 gap: 8px;
                 border-radius: 50px;
                 transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
             }
             
             .button-price {
                 font-weight: bold;
                 font-size: 1.1rem;
-                background: rgba(255, 255, 255, 0.2);
+                background: rgba(76, 175, 80, 0.1); /* Sehr leichte grüne Tönung */
                 padding: 4px 12px;
                 border-radius: 20px;
-                border: 1px solid rgba(255, 255, 255, 0.3);
+                border: 1px solid rgba(76, 175, 80, 0.3);
+            }
+            
+            .separator {
+                color: #4CAF50;
+                font-weight: bold;
+                opacity: 0.7;
+                margin: 0 4px;
             }
             
             .button-text {
@@ -158,15 +167,21 @@
                 letter-spacing: 0.5px;
             }
             
+            /* Hover-Effekt - Dezent gefüllt */
             .whatsapp-button.purchase-button:hover {
-                background: #45a049;
+                background: rgba(76, 175, 80, 0.1); /* Leichte Füllung */
                 transform: translateY(-2px);
-                box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+                box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+                border-color: #45a049;
             }
             
             .whatsapp-button.purchase-button:hover .button-price {
-                background: rgba(255, 255, 255, 0.3);
+                background: rgba(76, 175, 80, 0.2);
                 transform: scale(1.05);
+            }
+            
+            .whatsapp-button.purchase-button:hover .separator {
+                opacity: 1;
             }
 
             /* MODAL STYLES */
@@ -404,9 +419,12 @@
                 justify-content: center;
             }
 
+            /* Modal Button - gleicher dezenter Stil */
             .modal-whatsapp-button {
                 padding: 15px 40px;
-                border: 3px solid #25d366;
+                border: 3px solid #25d366; /* WhatsApp Grün */
+                background: transparent; /* Nicht gefüllt */
+                color: #25d366;
                 text-decoration: none;
                 display: inline-flex;
                 align-items: center;
@@ -416,17 +434,15 @@
                 transition: all 0.3s ease;
                 font-weight: 700;
                 letter-spacing: 1px;
-                background: transparent;
-                color: #25d366;
                 font-size: 1.1rem;
                 margin-top: 10px;
             }
-
+            
             .modal-whatsapp-button:hover {
-                background: #25d366;
-                color: white;
+                background: rgba(37, 211, 102, 0.1); /* Leichte Füllung */
+                color: #25d366;
                 transform: translateY(-2px);
-                box-shadow: 0 10px 20px rgba(37, 211, 102, 0.4);
+                box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
             }
 
             nav {
@@ -1269,6 +1285,7 @@
                        data-modal-name="Gelber Saphir Ceylon - 1.43 Karat Premium Qualität"
                        data-modal-details="<strong>Herkunft:</strong> Ceylon (Sri Lanka) - Ratnapura District<br><strong>Gewicht:</strong> 1.43 ct (exakt 0.286 Gramm)<br><strong>Behandlung:</strong> Vollständig unbehandelt (No Heat)<br><strong>Reinheit:</strong> Eyeclean (VS) - Lupenrein für das bloße Auge<br><strong>Farbe:</strong> Helles natürliches Gelb (Light Yellow)<br><strong>Schliff:</strong> Fancy Cut mit exzellenter Politur<br><strong>Fluoreszenz:</strong> Keine UV-Fluoreszenz<br><strong>Preis:</strong> 750€<br><strong>Besonderheiten:</strong> Seltene natürliche Gelbfärbung durch Eisenspuren, mikroskopisch nur minimale Fingerprints sichtbar, außergewöhnliche Brillanz und Feuer, ideal für Verlobungsringe oder Sammler premium Edelsteine">
                        <span class="button-price">850€</span>
+                       <span class="separator">•</span>
                        <span class="button-text">Jetzt kaufen</span>
                     </a>
                     </div>
