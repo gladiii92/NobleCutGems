@@ -2687,7 +2687,7 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Sprachumschaltung
+      // Sprachumschaltung (bleibt wie gehabt)
       const langBtns = document.querySelectorAll('.lang-btn');
       const langContents = document.querySelectorAll('.lang-content');
       langBtns.forEach(btn => {
@@ -2695,29 +2695,28 @@
           const lang = btn.getAttribute('data-lang');
           langBtns.forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
-          langContents.forEach(content => {
-            content.classList.remove('active');
-            if (content.getAttribute('data-lang') === lang) {
-              content.classList.add('active');
+        });
+      });
+    
+      // Kategorie-Reiter umschalten (Saphir, Spinell etc.)
+      const categoryButtons = document.querySelectorAll('.filter-button');
+      const gemCards = document.querySelectorAll('.gem-card');
+      categoryButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const selected = btn.getAttribute('data-filter');
+          categoryButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          gemCards.forEach(card => {
+            if (selected === 'all' || card.dataset.category === selected) {
+              card.classList.add('show');
+            } else {
+              card.classList.remove('show');
             }
           });
         });
       });
     
-      // Filter-Reiter (Alle, Saphire, Spinelle usw.)
-      document.querySelectorAll('.filter-button').forEach(button => {
-        button.addEventListener('click', () => {
-          const category = button.dataset.category;
-          document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
-          button.classList.add('active');
-          document.querySelectorAll('.gem-card').forEach(card => {
-            const show = category === 'all' || card.dataset.category === category;
-            card.style.display = show ? 'block' : 'none';
-          });
-        });
-      });
-    
-      // Zertifikat-Karussell
+      // Zertifikat-Karussell (wie gehabt)
       function setupCertCarousel(carouselId) {
         const carousel = document.getElementById(carouselId);
         if (!carousel) return;
@@ -2753,13 +2752,16 @@
       setupCertCarousel("certCarousel-en");
       setupCertCarousel("certCarousel-fr");
     
-      // Stein-Karussells inkl. autoplay + Video
+      // Stein-Karussells aktivieren inkl. Videos automatisch abspielen + responsive Video-Scaling
       document.querySelectorAll('.gem-card').forEach(card => {
         card.querySelectorAll('video').forEach(video => {
           video.muted = true;
           video.autoplay = true;
           video.loop = true;
           video.playsInline = true;
+          video.style.objectFit = 'contain';
+          video.style.width = '100%';
+          video.style.height = '100%';
           video.play().catch(() => {});
         });
     
@@ -2795,7 +2797,7 @@
         if (slides.length > 0) showSlide(0);
       });
     
-      // WhatsApp (außerhalb Modal)
+      // WhatsApp-Klick (außerhalb des Modals)
       document.querySelectorAll('.gem-card .whatsapp-button').forEach(button => {
         button.addEventListener('click', function(e) {
           e.stopPropagation();
@@ -2851,7 +2853,7 @@
             } else if (video) {
               const source = video.querySelector('source');
               if (source) {
-                carouselHTML += `<div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}"><video muted autoplay loop playsinline><source src="${source.src}" type="video/mp4"></video></div>`;
+                carouselHTML += `<div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}"><video muted autoplay loop playsinline style="object-fit: contain; width: 100%; height: 100%;"><source src="${source.src}" type="video/mp4"></video></div>`;
               }
             }
             navHTML += `<span class="carousel-dot ${i === 0 ? 'active' : ''}" data-slide="${i}"></span>`;
