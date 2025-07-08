@@ -2741,6 +2741,16 @@
           video.playsInline = true;
           video.play().catch(() => {});
         });
+        card.querySelectorAll('.carousel-arrow').forEach(arrow => {
+          arrow.addEventListener('click', e => {
+            e.stopPropagation();
+          });
+        });
+        card.querySelectorAll('.carousel-dot').forEach(dot => {
+          dot.addEventListener('click', e => {
+            e.stopPropagation();
+          });
+        });
       });
     
       // WhatsApp-Klick (außerhalb des Modals)
@@ -2768,8 +2778,6 @@
         card.addEventListener('click', function (e) {
           if (
             e.target.closest('.whatsapp-button') ||
-            e.target.classList.contains('carousel-arrow') ||
-            e.target.classList.contains('carousel-dot') ||
             e.target.closest('.carousel-arrow') ||
             e.target.closest('.carousel-dot')
           ) return;
@@ -2861,6 +2869,7 @@
       });
     });
     </script>
+
 
 
     <script>
