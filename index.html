@@ -2736,45 +2736,74 @@
     </div>
 
     <script>
+    <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // === SPRACHUMSCHALTUNG - VOLLSTÄNDIG KORRIGIERT ===
+        const langBtns = document.querySelectorAll('.lang-btn');
         
-    // Sprachumschaltung
-    const langBtns = document.querySelectorAll('.lang-btn');
-    langBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const lang = btn.getAttribute('data-lang');
-        
-        // Button-Status ändern
-        langBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        
-        // SPRACHINHALTE WECHSELN - DAS HAT GEFEHLT!
-        document.querySelectorAll('.lang-content').forEach(content => {
-          content.classList.remove('active');
-        });
-        document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
-      });
-    });
-    
-      // Kategorie-Filter (KORRIGIERT)
-      document.querySelectorAll('.category-btn').forEach(button => {
-        button.addEventListener('click', () => {
-          const filter = button.getAttribute('data-category');
-          document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
-          button.classList.add('active');
-          
-          document.querySelectorAll('.gem-card').forEach(card => {
-            const category = card.getAttribute('data-category');
-            if (filter === 'all' || category === filter) {
-              card.classList.add('show');
-              card.style.display = 'block';
-            } else {
-              card.classList.remove('show');
-              card.style.display = 'none';
+        // Funktion zum Wechseln der Sprache
+        function switchLanguage(targetLang) {
+            console.log('Switching to:', targetLang); // Debug-Info
+            
+            // 1. Alle Button-Status zurücksetzen
+            langBtns.forEach(btn => btn.classList.remove('active'));
+            
+            // 2. Aktiven Button markieren
+            const activeBtn = document.querySelector(`[data-lang="${targetLang}"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
             }
-          });
+            
+            // 3. Alle Sprachinhalte verstecken
+            const allContent = document.querySelectorAll('.lang-content');
+            allContent.forEach(content => {
+                content.classList.remove('active');
+                content.style.display = 'none'; // Zusätzliche Sicherheit
+            });
+            
+            // 4. Gewählten Sprachinhalt anzeigen
+            const targetContent = document.querySelector(`.lang-content[data-lang="${targetLang}"]`);
+            if (targetContent) {
+                targetContent.classList.add('active');
+                targetContent.style.display = 'block'; // Zusätzliche Sicherheit
+                console.log('Language switched successfully to:', targetLang); // Debug-Info
+            } else {
+                console.error('Language content not found for:', targetLang); // Fehler-Info
+            }
+        }
+        
+        // Event Listener für Sprachbuttons
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const lang = this.getAttribute('data-lang');
+                switchLanguage(lang);
+            });
         });
-      });
+        
+        // Standardsprache setzen (Deutsch)
+        switchLanguage('de');
+        
+        // === REST DES CODES (unverändert) ===
+        // Kategorie-Filter
+        document.querySelectorAll('.category-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-category');
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                button.classList.add('active');
+                
+                document.querySelectorAll('.gem-card').forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    if (filter === 'all' || category === filter) {
+                        card.classList.add('show');
+                        card.style.display = 'block';
+                    } else {
+                        card.classList.remove('show');
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
     
       // Zertifikat-Karussell
       function setupCertCarousel(carouselId) {
