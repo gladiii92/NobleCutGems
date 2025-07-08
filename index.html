@@ -89,16 +89,14 @@
                 cursor: pointer;
                 transition: all 0.3s ease;
                 text-decoration: none;
-                border: 2px solid transparent;
+                background-color: #2f2f2f; /* Anthrazit Hintergrund */
+                border: 2px solid #d4af37; /* Goldener Rand */
             }
 
             .social-btn:hover {
+                background-color: #3f3f3f; /* Etwas helleres Anthrazit beim Hover */
                 transform: translateY(-5px) scale(1.1);
-            }
-
-            .instagram-btn {
-                background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-                box-shadow: 0 5px 20px rgba(240, 148, 51, 0.4);
+                box-shadow: 0 0 10px #d4af37; /* Goldener Glow-Effekt */
             }
 
             .instagram-btn:hover {
@@ -106,22 +104,12 @@
                 border-color: #f09433;
             }
 
-            .tiktok-btn {
-                background: linear-gradient(45deg, #000000 0%, #ff0050 50%, #000000 100%);
-                box-shadow: 0 5px 20px rgba(255, 0, 80, 0.4);
-                border: 2px solid #ff0050;
-            }
 
             .tiktok-btn:hover {
                 box-shadow: 0 10px 30px rgba(255, 0, 80, 0.6);
                 background: linear-gradient(45deg, #ff0050 0%, #000000 50%, #ff0050 100%);
             }
 
-            .etsy-btn {
-                background: linear-gradient(45deg, #F16521 0%, #FF7F3F 50%, #F16521 100%);
-                box-shadow: 0 5px 20px rgba(241, 101, 33, 0.4);
-                border: 2px solid #F16521;
-            }
 
             .etsy-btn:hover {
                 box-shadow: 0 10px 30px rgba(241, 101, 33, 0.6);
@@ -131,15 +119,14 @@
             .social-btn svg {
                 width: 28px;
                 height: 28px;
-                fill: white;
-                filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+                fill: #d4af37; /* Goldene Logos */
+                filter: drop-shadow(0 2px 4px rgba(212, 175, 55, 0.8));
             }
 
             .whatsapp-float {
                 position: fixed;
                 bottom: 30px;
                 right: 30px;
-                background: linear-gradient(45deg, #25d366 0%, #128C7E 100%);
                 width: 55px;
                 height: 55px;
                 border-radius: 50%;
@@ -147,22 +134,24 @@
                 align-items: center;
                 justify-content: center;
                 cursor: pointer;
-                box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+                background-color: #2f2f2f; /* Anthrazit Hintergrund */
+                border: 2px solid #d4af37; /* Goldener Rand */
+                box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
                 transition: all 0.3s ease;
                 z-index: 999;
-                border: 2px solid #25d366;
             }
-
+            
             .whatsapp-float:hover {
+                background-color: #3f3f3f; /* Etwas helleres Anthrazit beim Hover */
                 transform: translateY(-5px) scale(1.1);
-                box-shadow: 0 10px 30px rgba(37, 211, 102, 0.6);
+                box-shadow: 0 0 15px #d4af37; /* Goldener Glow-Effekt */
             }
-
+            
             .whatsapp-float svg {
                 width: 28px;
                 height: 28px;
-                fill: white;
-                filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+                fill: #d4af37; /* Goldene Logos */
+                filter: drop-shadow(0 2px 4px rgba(212, 175, 55, 0.8));
             }
 
             /* MODAL STYLES */
