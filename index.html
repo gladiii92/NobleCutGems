@@ -2715,17 +2715,15 @@
         });
       });
     
-      // Filter-Buttons (Reiter)
-      const filterButtons = document.querySelectorAll('[data-filter]');
-      const gemCards = document.querySelectorAll('.gem-card');
-      filterButtons.forEach(button => {
+      // Filter-Reiter (Alle, Saphire, Spinelle usw.)
+      document.querySelectorAll('.filter-button').forEach(button => {
         button.addEventListener('click', () => {
-          const category = button.getAttribute('data-filter');
-          filterButtons.forEach(btn => btn.classList.remove('active'));
+          const category = button.dataset.category;
+          document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
           button.classList.add('active');
-          gemCards.forEach(card => {
-            const matches = category === 'all' || card.getAttribute('data-category') === category;
-            card.style.display = matches ? 'block' : 'none';
+          document.querySelectorAll('.gem-card').forEach(card => {
+            const show = category === 'all' || card.dataset.category === category;
+            card.style.display = show ? 'block' : 'none';
           });
         });
       });
@@ -2766,16 +2764,13 @@
       setupCertCarousel("certCarousel-en");
       setupCertCarousel("certCarousel-fr");
     
-      // Stein-Karussells aktivieren inkl. Videos automatisch stumm abspielen
+      // Stein-Karussells inkl. autoplay + Video
       document.querySelectorAll('.gem-card').forEach(card => {
         card.querySelectorAll('video').forEach(video => {
           video.muted = true;
           video.autoplay = true;
           video.loop = true;
           video.playsInline = true;
-          video.style.objectFit = 'cover';
-          video.style.height = '300px';
-          video.style.width = '100%';
           video.play().catch(() => {});
         });
     
@@ -2811,12 +2806,13 @@
         if (slides.length > 0) showSlide(0);
       });
     
-      // WhatsApp-Klick (außerhalb des Modals)
+      // WhatsApp (außerhalb Modal)
       document.querySelectorAll('.gem-card .whatsapp-button').forEach(button => {
         button.addEventListener('click', function(e) {
           e.stopPropagation();
           e.preventDefault();
-          const message = this.dataset[`whatsapp${document.querySelector('.lang-btn.active')?.dataset.lang?.toLowerCase()}`] || this.dataset.whatsapp;
+          const lang = document.querySelector('.lang-btn.active')?.dataset.lang?.toLowerCase() || 'de';
+          const message = this.dataset[`whatsapp${lang}`] || this.dataset.whatsapp;
           if (!message) return;
           const link = `https://wa.me/4915168482909?text=${encodeURIComponent(message)}`;
           window.open(link, '_blank');
@@ -2866,7 +2862,7 @@
             } else if (video) {
               const source = video.querySelector('source');
               if (source) {
-                carouselHTML += `<div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}"><video muted autoplay loop playsinline style="max-height:400px;width:100%;object-fit:cover;"><source src="${source.src}" type="video/mp4"></video></div>`;
+                carouselHTML += `<div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}"><video muted autoplay loop playsinline><source src="${source.src}" type="video/mp4"></video></div>`;
               }
             }
             navHTML += `<span class="carousel-dot ${i === 0 ? 'active' : ''}" data-slide="${i}"></span>`;
