@@ -1259,20 +1259,20 @@
                 <div class="gem-card show" data-category="sapphire">
                   <div class="carousel-container">
                     <div class="carousel-slide active">
-                      <img src="images/gelber-saphir-1-43ct-ceylon.jpg" alt="Gelber Saphir 1.43 ct Edelstein Nahaufnahme">
+                      <img src="images/gelber-saphir-1-43ct-ceylon.jpg" alt="Gelber Saphir 1.43 ct Ceylon">
                     </div>
                     <div class="carousel-slide">
-                      <video muted loop playsinline>
+                      <video muted autoplay loop playsinline>
                         <source src="videos/gelber-saphir-1-43ct-finger.mp4" type="video/mp4">
                       </video>
                     </div>
                     <div class="carousel-slide">
-                      <video muted loop playsinline>
+                      <video muted autoplay loop playsinline>
                         <source src="videos/gelber-saphir-1-43ct-pinzette.mp4" type="video/mp4">
                       </video>
                     </div>
                     <div class="carousel-slide">
-                      <video muted loop playsinline>
+                      <video muted autoplay loop playsinline>
                         <source src="videos/gelber-saphir-1-43ct-360.mp4" type="video/mp4">
                       </video>
                     </div>
@@ -1290,15 +1290,16 @@
                   <div class="gem-info">
                     <h3 class="gem-name">Gelber Saphir, 1.43 ct</h3>
                     <p class="gem-details">
-                      Ceylon | Unbehandelt | VS (Eye-Clean)<br>
-                      Intensives, sonnengelbes Funkeln – perfekt für ein individuelles Schmuckstück
+                      Ceylon (Sri Lanka) · Unbehandelt · Eyeclean (VS)<br>
+                      Intensiv leuchtendes Gelb mit feinem Schliff<br>
+                      Sichtbar klar unter dem Mikroskop – nur leichte Fingerprints
                     </p>
                     <div class="action-buttons">
                       <a href="#"
                          class="whatsapp-button"
-                         data-whatsapp-de="Hallo NobleCutGems, ich interessiere mich für den 1.43 ct gelben Saphir aus Ceylon (unbehandelt). Könnten Sie mir bitte mehr Informationen senden?"
-                         data-whatsapp-en="Hello NobleCutGems, I’m interested in the 1.43 ct yellow sapphire from Ceylon (untreated). Could you please send me more details?"
-                         data-whatsapp-fr="Bonjour NobleCutGems, je suis intéressé par le saphir jaune de 1.43 ct de Ceylan (non traité). Pourriez-vous m’envoyer plus d’informations ?">
+                         data-whatsapp-de="Hallo NobleCutGems, ich interessiere mich für den gelben Saphir mit 1.43 ct. Ist er noch verfügbar?"
+                         data-whatsapp-en="Hello NobleCutGems, I'm interested in the yellow sapphire (1.43 ct). Is it still available?"
+                         data-whatsapp-fr="Bonjour NobleCutGems, je suis intéressé par le saphir jaune de 1.43 ct. Est-il encore disponible ?">
                          Auf Anfrage
                       </a>
                     </div>
@@ -2687,9 +2688,8 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Sprachumschaltung (bleibt wie gehabt)
+      // Sprachumschaltung
       const langBtns = document.querySelectorAll('.lang-btn');
-      const langContents = document.querySelectorAll('.lang-content');
       langBtns.forEach(btn => {
         btn.addEventListener('click', () => {
           const lang = btn.getAttribute('data-lang');
@@ -2698,27 +2698,24 @@
         });
       });
     
-
-    // Reiter-Klicks für Edelstein-Kategorien (z.B. Saphire, Spinelle)
-    document.querySelectorAll('.filter-button').forEach(button => {
-      button.addEventListener('click', () => {
-        const filter = button.getAttribute('data-filter');
-    
-        document.querySelectorAll('.filter-button').forEach(b => b.classList.remove('active'));
-        button.classList.add('active');
-    
-        document.querySelectorAll('.gem-card').forEach(card => {
-          const category = card.getAttribute('data-category');
-          if (filter === 'all' || category === filter) {
-            card.style.display = 'block';
-          } else {
-            card.style.display = 'none';
-          }
+      // Filterbuttons (Reiter)
+      document.querySelectorAll('.filter-button').forEach(button => {
+        button.addEventListener('click', () => {
+          const filter = button.getAttribute('data-filter');
+          document.querySelectorAll('.filter-button').forEach(b => b.classList.remove('active'));
+          button.classList.add('active');
+          document.querySelectorAll('.gem-card').forEach(card => {
+            const category = card.getAttribute('data-category');
+            if (filter === 'all' || category === filter) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          });
         });
       });
-    });
     
-      // Zertifikat-Karussell (wie gehabt)
+      // Zertifikat-Karussell
       function setupCertCarousel(carouselId) {
         const carousel = document.getElementById(carouselId);
         if (!carousel) return;
@@ -2754,16 +2751,13 @@
       setupCertCarousel("certCarousel-en");
       setupCertCarousel("certCarousel-fr");
     
-      // Stein-Karussells aktivieren inkl. Videos automatisch abspielen + responsive Video-Scaling
+      // Stein-Karussells aktivieren inkl. Videos automatisch stumm abspielen
       document.querySelectorAll('.gem-card').forEach(card => {
         card.querySelectorAll('video').forEach(video => {
           video.muted = true;
           video.autoplay = true;
           video.loop = true;
           video.playsInline = true;
-          video.style.objectFit = 'contain';
-          video.style.width = '100%';
-          video.style.height = '100%';
           video.play().catch(() => {});
         });
     
@@ -2805,7 +2799,7 @@
           e.stopPropagation();
           e.preventDefault();
           const lang = document.querySelector('.lang-btn.active')?.dataset.lang?.toLowerCase() || 'de';
-          const message = button.dataset[`whatsapp${lang}`] || button.dataset.whatsapp;
+          const message = this.dataset[`whatsapp${lang}`] || this.dataset.whatsapp;
           if (!message) return;
           const link = `https://wa.me/4915168482909?text=${encodeURIComponent(message)}`;
           window.open(link, '_blank');
@@ -2855,7 +2849,7 @@
             } else if (video) {
               const source = video.querySelector('source');
               if (source) {
-                carouselHTML += `<div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}"><video muted autoplay loop playsinline style="object-fit: contain; width: 100%; height: 100%;"><source src="${source.src}" type="video/mp4"></video></div>`;
+                carouselHTML += `<div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}"><video muted autoplay loop playsinline><source src="${source.src}" type="video/mp4"></video></div>`;
               }
             }
             navHTML += `<span class="carousel-dot ${i === 0 ? 'active' : ''}" data-slide="${i}"></span>`;
