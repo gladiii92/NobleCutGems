@@ -130,11 +130,11 @@
                 font-style: italic;
             }
             
-            /* Dezenter Purchase Button - Outline Stil */
+            /* Normaler Button - Schriftgrößen angleichen */
             .whatsapp-button.purchase-button {
-                background: transparent; /* Nicht gefüllt */
-                border: 2px solid #4CAF50; /* Grüner Rand */
-                color: #4CAF50; /* Grüner Text */
+                background: transparent;
+                border: 2px solid #4CAF50;
+                color: #4CAF50;
                 padding: 12px 20px;
                 display: flex;
                 align-items: center;
@@ -144,27 +144,28 @@
                 transition: all 0.3s ease;
                 position: relative;
                 overflow: hidden;
+                font-size: 1.1rem; /* Explizite Schriftgröße für Button */
             }
             
-            /* Button-Preis - Einfacher Text ohne Kreis */
             .button-price {
                 font-weight: bold;
-                font-size: 1.1rem;
-                color: #4CAF50; /* Nur grüne Textfarbe */
-                /* ENTFERNT: background, padding, border-radius, border */
+                font-size: 1.1rem; /* Gleiche Größe wie Modal */
+                color: #4CAF50;
             }
             
             .separator {
                 color: #4CAF50;
                 font-weight: bold;
                 opacity: 0.7;
-                margin: 0 6px; /* Etwas mehr Abstand für bessere Lesbarkeit */
+                margin: 0 6px;
+                font-size: 1.1rem; /* Explizite Größe für Bullet Point */
             }
             
             .button-text {
                 font-weight: 600;
                 letter-spacing: 0.5px;
-                color: #4CAF50; /* Gleiche grüne Farbe */
+                color: #4CAF50;
+                font-size: 1.1rem; /* WICHTIG: Explizite Schriftgröße für "Jetzt kaufen" */
             }
             
             /* Hover-Effekt - Dezent gefüllt */
@@ -419,12 +420,12 @@
                 justify-content: center;
             }
 
-            /* Modal Button - gleicher dezenter Stil */
+            /* Modal Button - Dunkleres Grün */
             .modal-whatsapp-button {
                 padding: 15px 40px;
-                border: 3px solid #25d366; /* WhatsApp Grün */
-                background: transparent; /* Nicht gefüllt */
-                color: #25d366;
+                border: 3px solid #45a049; /* Dunkleres Grün statt #25d366 */
+                background: transparent;
+                color: #45a049; /* Dunkleres Grün statt #25d366 */
                 text-decoration: none;
                 display: inline-flex;
                 align-items: center;
@@ -439,10 +440,10 @@
             }
             
             .modal-whatsapp-button:hover {
-                background: rgba(37, 211, 102, 0.1); /* Leichte Füllung */
-                color: #25d366;
+                background: rgba(69, 160, 73, 0.1); /* Angepasste Hover-Farbe */
+                color: #45a049;
                 transform: translateY(-2px);
-                box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+                box-shadow: 0 10px 20px rgba(69, 160, 73, 0.3); /* Angepasster Schatten */
             }
 
             nav {
