@@ -2722,8 +2722,8 @@
         function stopAuto() {
           clearInterval(interval);
         }
-        left.addEventListener("click", () => { stopAuto(); prev(); startAuto(); });
-        right.addEventListener("click", () => { stopAuto(); next(); startAuto(); });
+        left.addEventListener("click", (e) => { e.stopPropagation(); stopAuto(); prev(); startAuto(); });
+        right.addEventListener("click", (e) => { e.stopPropagation(); stopAuto(); next(); startAuto(); });
         updateCarousel();
         startAuto();
       }
@@ -2766,7 +2766,11 @@
     
       document.querySelectorAll('.gem-card').forEach((card, index) => {
         card.addEventListener('click', function (e) {
-          if (e.target.closest('.whatsapp-button')) return;
+          if (
+            e.target.closest('.whatsapp-button') ||
+            e.target.closest('.carousel-arrow') ||
+            e.target.closest('.carousel-dot')
+          ) return;
           e.preventDefault();
           e.stopPropagation();
           const name = card.querySelector('.gem-name')?.textContent || '';
