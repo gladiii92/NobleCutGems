@@ -2741,16 +2741,37 @@
           video.playsInline = true;
           video.play().catch(() => {});
         });
-        card.querySelectorAll('.carousel-arrow').forEach(arrow => {
+    
+        const slides = card.querySelectorAll('.carousel-slide');
+        const arrows = card.querySelectorAll('.carousel-arrow');
+        const dots = card.querySelectorAll('.carousel-dot');
+        let currentIndex = 0;
+    
+        function showSlide(index) {
+          slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+          dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+          currentIndex = index;
+        }
+    
+        arrows.forEach(arrow => {
           arrow.addEventListener('click', e => {
             e.stopPropagation();
+            const direction = arrow.classList.contains('prev') ? -1 : 1;
+            let newIndex = currentIndex + direction;
+            if (newIndex < 0) newIndex = slides.length - 1;
+            if (newIndex >= slides.length) newIndex = 0;
+            showSlide(newIndex);
           });
         });
-        card.querySelectorAll('.carousel-dot').forEach(dot => {
+    
+        dots.forEach((dot, i) => {
           dot.addEventListener('click', e => {
             e.stopPropagation();
+            showSlide(i);
           });
         });
+    
+        if (slides.length > 0) showSlide(0);
       });
     
       // WhatsApp-Klick (außerhalb des Modals)
@@ -2869,6 +2890,7 @@
       });
     });
     </script>
+
 
 
 
