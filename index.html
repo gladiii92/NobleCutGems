@@ -2698,38 +2698,17 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Sprachumschaltung
+      // Sprachumschaltung FIX
       const langBtns = document.querySelectorAll('.lang-btn');
       const langContents = document.querySelectorAll('.lang-content');
       langBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
           const lang = btn.getAttribute('data-lang');
           langBtns.forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
           langContents.forEach(content => {
-            content.classList.remove('active');
-            if (content.getAttribute('data-lang') === lang) {
-              content.classList.add('active');
-            }
-          });
-        });
-      });
-    
-      // Filterfunktion für Edelstein-Kategorien
-      const filterButtons = document.querySelectorAll('.filter-button');
-      filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          const category = button.dataset.category;
-          document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
-          button.classList.add('active');
-          document.querySelectorAll('.gem-card').forEach(card => {
-            if (category === 'all' || card.dataset.category === category) {
-              card.classList.add('show');
-              card.classList.remove('hide');
-            } else {
-              card.classList.add('hide');
-              card.classList.remove('show');
-            }
+            content.classList.toggle('active', content.getAttribute('data-lang') === lang);
           });
         });
       });
@@ -2770,13 +2749,16 @@
       setupCertCarousel("certCarousel-en");
       setupCertCarousel("certCarousel-fr");
     
-      // Stein-Karussells aktivieren inkl. Videos automatisch stumm abspielen
+      // Stein-Karussells aktivieren inkl. Videos automatisch stumm abspielen + Styles fixen
       document.querySelectorAll('.gem-card').forEach(card => {
         card.querySelectorAll('video').forEach(video => {
           video.muted = true;
           video.autoplay = true;
           video.loop = true;
           video.playsInline = true;
+          video.style.maxHeight = '300px';
+          video.style.width = '100%';
+          video.style.objectFit = 'cover';
           video.play().catch(() => {});
         });
     
@@ -2867,7 +2849,7 @@
             } else if (video) {
               const source = video.querySelector('source');
               if (source) {
-                carouselHTML += `<div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}"><video muted autoplay loop playsinline><source src="${source.src}" type="video/mp4"></video></div>`;
+                carouselHTML += `<div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}"><video muted autoplay loop playsinline style="max-height:400px; width:100%; object-fit:cover;"><source src="${source.src}" type="video/mp4"></video></div>`;
               }
             }
             navHTML += `<span class="carousel-dot ${i === 0 ? 'active' : ''}" data-slide="${i}"></span>`;
@@ -2928,6 +2910,7 @@
       });
     });
     </script>
+
 
 
 
