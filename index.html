@@ -219,11 +219,19 @@
                 border-radius: 20px;
             }
             
-            /* Qualitäts-Indikatoren */
+            /* Qualitäts-Indikator Layout verbessern */
             .quality-indicator {
                 display: flex;
-                align-items: center;
-                gap: 10px;
+                flex-direction: column; /* Übereinander statt nebeneinander */
+                align-items: flex-start; /* Links ausrichten */
+                gap: 8px;
+            }
+            
+            .quality-indicator small {
+                color: var(--text-muted);
+                font-size: 0.9rem;
+                font-style: italic;
+                margin-left: 0; /* Kein Einzug */
             }
             
             .quality-badge {
@@ -463,16 +471,6 @@
                 text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
                 font-weight: 700;
                 line-height: 1.2;
-            }
-
-            .modal-gem-details {
-                font-size: 1.2rem;
-                color: var(--text-muted);
-                margin-bottom: 20px;
-                line-height: 1.6;
-                max-width: 800px;
-                margin-left: auto;
-                margin-right: auto;
             }
 
             .modal-gem-price {
@@ -1170,24 +1168,48 @@
                     padding: 15px 20px;
                 }
 
-                /* Modal-Inhalte besser strukturieren */
                 .modal-gem-name {
-                    font-size: 2.2rem; /* Etwas kleiner: 2.2rem statt 2.5rem */
-                    margin-bottom: 10px; /* Weniger Abstand */
-                    color: var(--primary-gold);
-                    text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
-                    font-weight: 700;
-                    line-height: 1.1; /* Kompaktere Zeilenhöhe */
+                    font-size: 1.8rem;
                 }
                 
+                /* Besonderheiten auf gleiche Größe wie Preis pro Karat */
                 .modal-gem-details {
-                    font-size: 1.1rem; /* Etwas kleiner: 1.1rem statt 1.2rem */
+                    font-size: 1.1rem;
                     color: var(--text-muted);
-                    margin-bottom: 15px; /* Weniger Abstand */
-                    line-height: 1.5; /* Kompaktere Zeilenhöhe */
-                    max-width: 100%; /* Volle Breite nutzen */
-                    text-align: left; /* Linksbündig für bessere Lesbarkeit */
+                    margin-bottom: 15px;
+                    line-height: 1.5;
+                    max-width: 100%;
+                    text-align: left;
                 }
+                
+                .modal-gem-details strong {
+                    font-size: 1.1rem;
+                    color: var(--primary-gold);
+                }
+
+               /* Qualitäts-Indikator auf Mobile */
+                .quality-indicator {
+                    flex-direction: row;
+                    align-items: center;
+                    gap: 10px;
+                }
+                
+                /* Performance-Optimierungen - HIER EINFÜGEN */
+                .carousel-slide video {
+                    max-height: 250px;
+                    object-fit: cover;
+                }
+                
+                .carousel-slide:not(.active) video {
+                    display: none;
+                }
+            
+                /* Reduzierte Animationen für bessere Performance */
+                * {
+                    animation-duration: 0.2s !important;
+                    transition-duration: 0.2s !important;
+                }
+                
 
                 /* Wert-Information kompakter */
                 .modal-info-section .stone-value-info {
@@ -1215,7 +1237,8 @@
                 }
 
                 .hero-logo img {
-                    height: clamp(120px, 30vw, 300px);
+                    height: clamp(220px, 35vw, 350px);
+                    max-width: 90vw;
                 }
 
                 .cert-carousel {
@@ -1449,7 +1472,7 @@
                   </div>
                 </div>
 
-                <!-- Electric Blue Sapphire - Sapphire 3 (DE) - MIT PREIS UND WERT-INFO -->
+                <!-- Electric Blue Sapphire - Sapphire (DE) - MIT PREIS UND WERT-INFO -->
                 <div class="gem-card show" data-category="sapphire">
                   <div class="carousel-container">
                     <div class="carousel-slide active">
@@ -1494,7 +1517,7 @@
                          data-whatsapp-en="Hello NobleCutGems, I want to buy the Electric Blue Sapphire (0.58 ct) for 200€. Is it still available?"
                          data-whatsapp-fr="Bonjour NobleCutGems, je veux acheter le Saphir Bleu Électrique (0.58 ct) pour 200€. Est-il encore disponible ?"
                          data-modal-name="Electric Blue Saphir Madagaskar - 0.58 Karat Premium Qualität"
-                         data-modal-details="<strong>Herkunft:</strong> Madagaskar - Ilakaka Region<br><strong>Gewicht:</strong> 0.58 ct (exakt 0.116 Gramm)<br><strong>Behandlung:</strong> Vollständig unbehandelt (No Heat - No Treat)<br><strong>Reinheit:</strong> Sehr gute Reinheit mit natürlicher Klarheit<br><strong>Farbe:</strong> Intensives Electric Blue - leuchtend und lebendig<br><strong>Schliff:</strong> Ovaler Schliff mit exzellenter Politur<br><strong>Fluoreszenz:</strong> Keine UV-Fluoreszenz<br><strong>Preis:</strong> 200€<br><div class='stone-value-info'><div class='price-per-carat'><span class='ppc-label'>Preis pro Karat:</span><span class='ppc-value'>345€/ct</span></div><div class='quality-indicator'><span class='quality-badge premium'>Top 25% Marktqualität</span><small>Unbehandelte Madagaskar-Qualität</small></div></div><strong>Besonderheiten:</strong> Seltene natürliche Electric Blue Färbung ohne jegliche Behandlung, intensive Sättigung und außergewöhnliche Brillanz, madagassische Saphire sind bekannt für ihre lebendigen Farben, perfekt für moderne Schmuckdesigns oder als Sammlerstück für Liebhaber unbehandelter Edelsteine">
+                         data-modal-details="<strong>Herkunft:</strong> Madagaskar - Ilakaka Region<br><strong>Gewicht:</strong> 0.58 ct (exakt 0.116 Gramm)<br><strong>Behandlung:</strong> Vollständig unbehandelt (No Heat - No Treat)<br><strong>Reinheit:</strong> Sehr gute Reinheit mit natürlicher Klarheit<br><strong>Farbe:</strong> Intensives Electric Blue - leuchtend und lebendig<br><strong>Schliff:</strong> Ovaler Schliff mit exzellenter Politur<br><strong>Fluoreszenz:</strong> Keine UV-Fluoreszenz<br><strong>Besonderheiten:</strong> Seltene Electric Blue Färbung ohne Behandlung, intensive Sättigung, perfekt für moderne Designs<br><div class='stone-value-info'><div class='price-per-carat'><span class='ppc-label'>Preis pro Karat:</span><span class='ppc-value'>345€/ct</span></div><div class='quality-indicator'><span class='quality-badge premium'>Top 25% Marktqualität</span><small>Unbehandelte Madagaskar-Qualität</small></div></div>">
                          <span class="button-price">200€</span>
                          <span class="separator">•</span>
                          <span class="button-text">Jetzt kaufen</span>
