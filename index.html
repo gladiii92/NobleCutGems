@@ -185,6 +185,73 @@
                 opacity: 1;
             }
 
+            /* Stein-Wert-Information Container */
+            .stone-value-info {
+                margin-top: 20px;
+                padding: 15px;
+                background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), rgba(244, 228, 193, 0.05));
+                border: 1px solid rgba(212, 175, 55, 0.2);
+                border-radius: 12px;
+            }
+            
+            /* Preis pro Karat Sektion */
+            .price-per-carat {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 12px;
+                padding-bottom: 8px;
+                border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            }
+            
+            .ppc-label {
+                color: var(--text-muted);
+                font-size: 0.95rem;
+                font-weight: 500;
+            }
+            
+            .ppc-value {
+                color: var(--primary-gold);
+                font-size: 1.1rem;
+                font-weight: bold;
+                background: rgba(212, 175, 55, 0.1);
+                padding: 4px 12px;
+                border-radius: 20px;
+            }
+            
+            /* Qualitäts-Indikatoren */
+            .quality-indicator {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .quality-badge {
+                background: var(--primary-gold);
+                color: var(--dark-bg);
+                padding: 4px 12px;
+                border-radius: 15px;
+                font-size: 0.85rem;
+                font-weight: bold;
+                letter-spacing: 0.5px;
+            }
+            
+            .quality-badge.premium {
+                background: linear-gradient(45deg, #4CAF50, #45a049);
+                color: white;
+            }
+            
+            .quality-badge.special {
+                background: linear-gradient(45deg, #FF6B35, #E55A2B);
+                color: white;
+            }
+            
+            .quality-indicator small {
+                color: var(--text-muted);
+                font-size: 0.8rem;
+                font-style: italic;
+            }
+
             /* MODAL STYLES */
             .stone-modal {
                 display: none;
@@ -1293,7 +1360,7 @@
                   </div>
                 </div>
 
-                <!-- Kashmir Saphir - Sapphire (DE) - MIT PREIS -->
+                <!-- Kashmir Saphir - Sapphire 2 (DE) - MIT PREIS -->
                 <div class="gem-card show" data-category="sapphire">
                   <div class="carousel-container">
                     <div class="carousel-slide active">
@@ -1347,7 +1414,7 @@
                   </div>
                 </div>
 
-                <!-- Electric Blue Sapphire - Sapphire (DE) - MIT PREIS -->
+                <!-- Electric Blue Sapphire - Sapphire 3 (DE) - MIT PREIS UND WERT-INFO -->
                 <div class="gem-card show" data-category="sapphire">
                   <div class="carousel-container">
                     <div class="carousel-slide active">
@@ -1392,7 +1459,7 @@
                          data-whatsapp-en="Hello NobleCutGems, I want to buy the Electric Blue Sapphire (0.58 ct) for 200€. Is it still available?"
                          data-whatsapp-fr="Bonjour NobleCutGems, je veux acheter le Saphir Bleu Électrique (0.58 ct) pour 200€. Est-il encore disponible ?"
                          data-modal-name="Electric Blue Saphir Madagaskar - 0.58 Karat Premium Qualität"
-                         data-modal-details="<strong>Herkunft:</strong> Madagaskar - Ilakaka Region<br><strong>Gewicht:</strong> 0.58 ct (exakt 0.116 Gramm)<br><strong>Behandlung:</strong> Vollständig unbehandelt (No Heat - No Treat)<br><strong>Reinheit:</strong> Sehr gute Reinheit mit natürlicher Klarheit<br><strong>Farbe:</strong> Intensives Electric Blue - leuchtend und lebendig<br><strong>Schliff:</strong> Ovaler Schliff mit exzellenter Politur<br><strong>Fluoreszenz:</strong> Keine UV-Fluoreszenz<br><strong>Preis:</strong> 200€<br><strong>Besonderheiten:</strong> Seltene natürliche Electric Blue Färbung ohne jegliche Behandlung, intensive Sättigung und außergewöhnliche Brillanz, madagassische Saphire sind bekannt für ihre lebendigen Farben, perfekt für moderne Schmuckdesigns oder als Sammlerstück für Liebhaber unbehandelter Edelsteine">
+                         data-modal-details="<strong>Herkunft:</strong> Madagaskar - Ilakaka Region<br><strong>Gewicht:</strong> 0.58 ct (exakt 0.116 Gramm)<br><strong>Behandlung:</strong> Vollständig unbehandelt (No Heat - No Treat)<br><strong>Reinheit:</strong> Sehr gute Reinheit mit natürlicher Klarheit<br><strong>Farbe:</strong> Intensives Electric Blue - leuchtend und lebendig<br><strong>Schliff:</strong> Ovaler Schliff mit exzellenter Politur<br><strong>Fluoreszenz:</strong> Keine UV-Fluoreszenz<br><strong>Preis:</strong> 200€<br><div class='stone-value-info'><div class='price-per-carat'><span class='ppc-label'>Preis pro Karat:</span><span class='ppc-value'>345€/ct</span></div><div class='quality-indicator'><span class='quality-badge premium'>Top 25% Marktqualität</span><small>Unbehandelte Madagaskar-Qualität</small></div></div><strong>Besonderheiten:</strong> Seltene natürliche Electric Blue Färbung ohne jegliche Behandlung, intensive Sättigung und außergewöhnliche Brillanz, madagassische Saphire sind bekannt für ihre lebendigen Farben, perfekt für moderne Schmuckdesigns oder als Sammlerstück für Liebhaber unbehandelter Edelsteine">
                          <span class="button-price">200€</span>
                          <span class="separator">•</span>
                          <span class="button-text">Jetzt kaufen</span>
@@ -1878,7 +1945,7 @@
                   </div>
                 </div>
 
-                <!-- Kashmir Saphir - Sapphire (EN) - MIT PREIS -->
+                <!-- Kashmir Saphir - Sapphire 2 (EN) - MIT PREIS -->
                 <div class="gem-card show" data-category="sapphire">
                   <div class="carousel-container">
                     <div class="carousel-slide active">
@@ -1932,7 +1999,7 @@
                   </div>
                 </div>
 
-                <!-- Electric Blue Sapphire - Sapphire (EN) - MIT PREIS -->
+                <!-- Electric Blue Sapphire - Sapphire 3 (EN) - MIT PREIS -->
                 <div class="gem-card show" data-category="sapphire">
                   <div class="carousel-container">
                     <div class="carousel-slide active">
@@ -2437,7 +2504,7 @@
                   </div>
                 </div>
 
-                <!-- Kashmir Saphir - Sapphire (FR) - MIT PREIS -->
+                <!-- Kashmir Saphir - Sapphire 2 (FR) - MIT PREIS -->
                 <div class="gem-card show" data-category="sapphire">
                   <div class="carousel-container">
                     <div class="carousel-slide active">
@@ -2491,7 +2558,7 @@
                   </div>
                 </div>
 
-                <!-- Electric Blue Sapphire - Sapphire (FR) - MIT PREIS -->
+                <!-- Electric Blue Sapphire - Sapphire 3 (FR) - MIT PREIS -->
                 <div class="gem-card show" data-category="sapphire">
                   <div class="carousel-container">
                     <div class="carousel-slide active">
