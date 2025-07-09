@@ -771,9 +771,9 @@
             
             .modal-whatsapp-button {
                 padding: 15px 40px;
-                border: 3px solid #d4af37;
+                border: 3px solid #45a049;
                 background: transparent;
-                color: #d4af37;
+                color: #45a049;
                 text-decoration: none;
                 display: inline-flex;
                 align-items: center;
@@ -788,10 +788,22 @@
             }
             
             .modal-whatsapp-button:hover {
-                background: rgba(212, 175, 55, 0.1);
+                background: rgba(76, 175, 80, 0.1); /* Grüner Hover für Standard */
                 color: #45a049;
                 transform: translateY(-2px);
-                box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+                box-shadow: 0 10px 20px rgba(76, 175, 80, 0.3); /* Grüner Schatten */
+            }
+
+            /* Premium Modal-Button für Steine im Ab-Preis Bereich (Orange) */
+            .modal-whatsapp-button.premium {
+                border: 3px solid #FF6B35; /* Orange für Premium */
+                color: #FF6B35; /* Orange für Premium */
+            }
+            
+            .modal-whatsapp-button.premium:hover {
+                background: rgba(255, 107, 53, 0.1); /* Oranger Hover */
+                color: #FF6B35;
+                box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3); /* Oranger Schatten */
             }
             
             nav {
@@ -1855,32 +1867,58 @@
                   </div>
                 </div>
 
-                <!-- Cobalt Spinell - Spinel 3 -->
+                <!-- Ceylon Spinel Rosa - Spinel 3 (DE) - MIT PREIS -->
                 <div class="gem-card show" data-category="spinel">
-                    <div class="carousel-container">
-                        <div class="carousel-slide active">
-                            <img src="images/spinel3-1.jpg" alt="Cobalt Spinell">
-                        </div>
-                        <div class="carousel-nav">
-                            <span class="carousel-dot active" data-slide="0"></span>
-                        </div>
+                  <div class="carousel-container">
+                    <div class="carousel-slide active">
+                      <img src="images/ceylon-spinel-rosa-202ct.jpg" alt="Ceylon Spinel Rosa 2.02 ct Sri Lanka unbehandelt VVS Qualität Fancy Cut">
                     </div>
-                    <div class="gem-info">
-                        <h3 class="gem-name">Cobalt Spinell</h3>
-                        <p class="gem-details">
-                            2.47 ct | Vivid Blue | Vietnam<br>
-                            Seltene Kobaltfarbe
-                        </p>
-                        <div class="action-buttons">
-                            <a href="#" 
-                               class="whatsapp-button" 
-                               data-whatsapp-de="Hallo NobleCutGems, ich interessiere mich für diesen Stein." 
-                               data-whatsapp-en="Hello NobleCutGems, I am interested in this gem." 
-                               data-whatsapp-fr="Bonjour NobleCutGems, je suis intéressé par cette gemme.">
-                               Auf Anfrage
-                            </a>
-                        </div>
+                    <div class="carousel-slide">
+                      <video muted autoplay loop playsinline>
+                        <source src="videos/ceylon-spinel-rosa-202ct-finger.mp4" type="video/mp4">
+                      </video>
                     </div>
+                    <div class="carousel-slide">
+                      <video muted autoplay loop playsinline>
+                        <source src="videos/ceylon-spinel-rosa-202ct-pinzette.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="carousel-slide">
+                      <video muted autoplay loop playsinline>
+                        <source src="videos/ceylon-spinel-rosa-202ct-360.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="carousel-nav">
+                      <span class="carousel-dot active" data-slide="0"></span>
+                      <span class="carousel-dot" data-slide="1"></span>
+                      <span class="carousel-dot" data-slide="2"></span>
+                      <span class="carousel-dot" data-slide="3"></span>
+                    </div>
+                    <div class="carousel-arrows">
+                      <div class="carousel-arrow prev">‹</div>
+                      <div class="carousel-arrow next">›</div>
+                    </div>
+                  </div>
+                  <div class="gem-info">
+                    <h3 class="gem-name">Ceylon Spinel Rosa, 2.02 ct</h3>
+                    <p class="gem-details">
+                      Ceylon (Sri Lanka) · Unbehandelt · Fancy-Cut<br>
+                      Natürliche rosa-rote Färbung
+                    </p>
+                    <div class="action-buttons">
+                      <a href="#"
+                         class="whatsapp-button purchase-button"
+                         data-whatsapp-de="Hallo NobleCutGems, ich möchte den Ceylon Spinel Rosa (2.02 ct) für 1.050€ kaufen. Ist er noch verfügbar?"
+                         data-whatsapp-en="Hello NobleCutGems, I want to buy the Ceylon Spinel Pink (2.02 ct) for 1,050€. Is it still available?"
+                         data-whatsapp-fr="Bonjour NobleCutGems, je veux acheter le Spinelle Rose de Ceylan (2.02 ct) pour 1.050€. Est-il encore disponible ?"
+                         data-modal-name="Ceylon Spinel Rosa - 2.02 Karat Sammlerqualität"
+                         data-modal-details="<strong>Herkunft:</strong> Ceylon (Sri Lanka) - Ratnapura District<br><strong>Gewicht:</strong> 2.02 ct (exakt 0.404 Gramm)<br><strong>Behandlung:</strong> Vollständig unbehandelt (No Heat)<br><strong>Reinheit:</strong> VS-VVS (Very Slightly to Very Very Slightly Included) - Spitzenqualität<br><strong>Farbe:</strong> Natürliche rosa-rote Färbung mit ausgezeichneter Sättigung<br><strong>Schliff:</strong> Fancy-Cut mit exzellenter Politur<br><strong>Fluoreszenz:</strong> Keine UV-Fluoreszenz<br><strong>Besonderheiten:</strong> Ceylon-Spinelle gelten als die wertvollsten der Welt, rosa-rote Färbung ist extrem begehrt, perfekte Größe für exklusive Schmuckstücke<br><div class='stone-value-info'><div class='price-per-carat'><span class='ppc-label'>Preis pro Karat:</span><span class='ppc-value'>520€/ct</span></div><div class='quality-indicator'><span class='quality-badge premium'>Ceylon Spitzenqualität</span><small>Rosa-Rote Spinelle Premium-Segment</small></div></div>">
+                         <span class="button-price">1.050€</span>
+                         <span class="separator">•</span>
+                         <span class="button-text">Jetzt kaufen</span>
+                      </a>
+                    </div>
+                  </div>
                 </div>
 
                 <!-- Burma Rubin - Ruby 1 -->
@@ -2428,32 +2466,58 @@
                   </div>
                 </div>
 
-                <!-- Cobalt Spinel - Spinel 3 (EN) -->
+                <!-- Ceylon Spinel Rosa - Spinel 3 (EN) - WITH PRICE -->
                 <div class="gem-card show" data-category="spinel">
-                    <div class="carousel-container">
-                        <div class="carousel-slide active">
-                            <img src="images/spinel3-1.jpg" alt="Cobalt Spinel">
-                        </div>
-                        <div class="carousel-nav">
-                            <span class="carousel-dot active" data-slide="0"></span>
-                        </div>
+                  <div class="carousel-container">
+                    <div class="carousel-slide active">
+                      <img src="images/ceylon-spinel-rosa-202ct.jpg" alt="Ceylon Spinel Pink 2.02 ct Sri Lanka untreated VVS quality Fancy Cut">
                     </div>
-                    <div class="gem-info">
-                        <h3 class="gem-name">Cobalt Spinel</h3>
-                        <p class="gem-details">
-                            2.47 ct | Vivid Blue | Vietnam<br>
-                            Rare cobalt color
-                        </p>
-                        <div class="action-buttons">
-                            <a href="#" 
-                               class="whatsapp-button" 
-                               data-whatsapp-de="Hallo NobleCutGems, ich interessiere mich für diesen Stein." 
-                               data-whatsapp-en="Hello NobleCutGems, I am interested in this gem." 
-                               data-whatsapp-fr="Bonjour NobleCutGems, je suis intéressé par cette gemme.">
-                               On Request
-                            </a>
-                        </div>
+                    <div class="carousel-slide">
+                      <video muted autoplay loop playsinline>
+                        <source src="videos/ceylon-spinel-rosa-202ct-finger.mp4" type="video/mp4">
+                      </video>
                     </div>
+                    <div class="carousel-slide">
+                      <video muted autoplay loop playsinline>
+                        <source src="videos/ceylon-spinel-rosa-202ct-pinzette.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="carousel-slide">
+                      <video muted autoplay loop playsinline>
+                        <source src="videos/ceylon-spinel-rosa-202ct-360.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="carousel-nav">
+                      <span class="carousel-dot active" data-slide="0"></span>
+                      <span class="carousel-dot" data-slide="1"></span>
+                      <span class="carousel-dot" data-slide="2"></span>
+                      <span class="carousel-dot" data-slide="3"></span>
+                    </div>
+                    <div class="carousel-arrows">
+                      <div class="carousel-arrow prev">‹</div>
+                      <div class="carousel-arrow next">›</div>
+                    </div>
+                  </div>
+                  <div class="gem-info">
+                    <h3 class="gem-name">Ceylon Spinel Pink, 2.02 ct</h3>
+                    <p class="gem-details">
+                      Ceylon (Sri Lanka) · Untreated · Fancy Cut<br>
+                      Natural pink-red coloration
+                    </p>
+                    <div class="action-buttons">
+                      <a href="#"
+                         class="whatsapp-button purchase-button"
+                         data-whatsapp-de="Hallo NobleCutGems, ich möchte den Ceylon Spinel Rosa (2.02 ct) für 1.050€ kaufen. Ist er noch verfügbar?"
+                         data-whatsapp-en="Hello NobleCutGems, I want to buy the Ceylon Spinel Pink (2.02 ct) for 1,050€. Is it still available?"
+                         data-whatsapp-fr="Bonjour NobleCutGems, je veux acheter le Spinelle Rose de Ceylan (2.02 ct) pour 1.050€. Est-il encore disponible ?"
+                         data-modal-name="Ceylon Spinel Pink - 2.02 Carat Collector Quality"
+                         data-modal-details="<strong>Origin:</strong> Ceylon (Sri Lanka) - Ratnapura District<br><strong>Weight:</strong> 2.02 ct (exactly 0.404 grams)<br><strong>Treatment:</strong> Completely untreated (No Heat)<br><strong>Clarity:</strong> VS-VVS (Very Slightly to Very Very Slightly Included) - Top quality<br><strong>Color:</strong> Natural pink-red coloration with excellent saturation<br><strong>Cut:</strong> Fancy cut with excellent polish<br><strong>Fluorescence:</strong> None under UV light<br><strong>Special Features:</strong> Ceylon spinels are considered the world's most valuable, pink-red coloration is extremely sought after, perfect size for exclusive jewelry pieces<br><div class='stone-value-info'><div class='price-per-carat'><span class='ppc-label'>Price per Carat:</span><span class='ppc-value'>520€/ct</span></div><div class='quality-indicator'><span class='quality-badge premium'>Ceylon Top Quality</span><small>Pink-Red Spinels Premium Segment</small></div></div>">
+                         <span class="button-price">1,050€</span>
+                         <span class="separator">•</span>
+                         <span class="button-text">Buy Now</span>
+                      </a>
+                    </div>
+                  </div>
                 </div>
 
                 <!-- Burma Ruby - Ruby 1 (EN) -->
@@ -2975,32 +3039,58 @@
                   </div>
                 </div>
 
-                <!-- Cobalt Spinel - Spinel 3 (FR) -->
+                <!-- Ceylon Spinel Rosa - Spinel 3 (FR) - AVEC PRIX -->
                 <div class="gem-card show" data-category="spinel">
-                    <div class="carousel-container">
-                        <div class="carousel-slide active">
-                            <img src="images/spinel3-1.jpg" alt="Spinelle Cobalt">
-                        </div>
-                        <div class="carousel-nav">
-                            <span class="carousel-dot active" data-slide="0"></span>
-                        </div>
+                  <div class="carousel-container">
+                    <div class="carousel-slide active">
+                      <img src="images/ceylon-spinel-rosa-202ct.jpg" alt="Spinelle Rose de Ceylan 2.02 ct Sri Lanka non traité qualité VVS Fancy Cut">
                     </div>
-                    <div class="gem-info">
-                        <h3 class="gem-name">Spinelle Cobalt</h3>
-                        <p class="gem-details">
-                            2.47 ct | Bleu Vif | Vietnam<br>
-                            Couleur cobalt rare
-                        </p>
-                        <div class="action-buttons">
-                            <a href="#" 
-                               class="whatsapp-button" 
-                               data-whatsapp-de="Hallo NobleCutGems, ich interessiere mich für diesen Stein." 
-                               data-whatsapp-en="Hello NobleCutGems, I am interested in this gem." 
-                               data-whatsapp-fr="Bonjour NobleCutGems, je suis intéressé par cette gemme.">
-                               Sur Demande
-                            </a>
-                        </div>
+                    <div class="carousel-slide">
+                      <video muted autoplay loop playsinline>
+                        <source src="videos/ceylon-spinel-rosa-202ct-finger.mp4" type="video/mp4">
+                      </video>
                     </div>
+                    <div class="carousel-slide">
+                      <video muted autoplay loop playsinline>
+                        <source src="videos/ceylon-spinel-rosa-202ct-pinzette.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="carousel-slide">
+                      <video muted autoplay loop playsinline>
+                        <source src="videos/ceylon-spinel-rosa-202ct-360.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="carousel-nav">
+                      <span class="carousel-dot active" data-slide="0"></span>
+                      <span class="carousel-dot" data-slide="1"></span>
+                      <span class="carousel-dot" data-slide="2"></span>
+                      <span class="carousel-dot" data-slide="3"></span>
+                    </div>
+                    <div class="carousel-arrows">
+                      <div class="carousel-arrow prev">‹</div>
+                      <div class="carousel-arrow next">›</div>
+                    </div>
+                  </div>
+                  <div class="gem-info">
+                    <h3 class="gem-name">Spinelle Rose de Ceylan, 2.02 ct</h3>
+                    <p class="gem-details">
+                      Ceylan (Sri Lanka) · Non traité · Fancy Cut<br>
+                      Coloration rose-rouge naturelle
+                    </p>
+                    <div class="action-buttons">
+                      <a href="#"
+                         class="whatsapp-button purchase-button"
+                         data-whatsapp-de="Hallo NobleCutGems, ich möchte den Ceylon Spinel Rosa (2.02 ct) für 1.050€ kaufen. Ist er noch verfügbar?"
+                         data-whatsapp-en="Hello NobleCutGems, I want to buy the Ceylon Spinel Pink (2.02 ct) for 1,050€. Is it still available?"
+                         data-whatsapp-fr="Bonjour NobleCutGems, je veux acheter le Spinelle Rose de Ceylan (2.02 ct) pour 1.050€. Est-il encore disponible ?"
+                         data-modal-name="Spinelle Rose de Ceylan - 2.02 Carat Qualité Collectionneur"
+                         data-modal-details="<strong>Origine:</strong> Ceylan (Sri Lanka) - District de Ratnapura<br><strong>Poids:</strong> 2.02 ct (exactement 0.404 grammes)<br><strong>Traitement:</strong> Complètement non traité (No Heat)<br><strong>Pureté:</strong> VS-VVS (Very Slightly to Very Very Slightly Included) - Qualité supérieure<br><strong>Couleur:</strong> Coloration rose-rouge naturelle avec saturation excellente<br><strong>Taille:</strong> Fancy Cut avec polissage excellent<br><strong>Fluorescence:</strong> Aucune sous lumière UV<br><strong>Caractéristiques spéciales:</strong> Les spinelles de Ceylan sont considérés comme les plus précieux au monde, coloration rose-rouge extrêmement recherchée, taille parfaite pour pièces de joaillerie exclusives<br><div class='stone-value-info'><div class='price-per-carat'><span class='ppc-label'>Prix par Carat:</span><span class='ppc-value'>520€/ct</span></div><div class='quality-indicator'><span class='quality-badge premium'>Qualité Supérieure Ceylan</span><small>Spinelles Rose-Rouge Segment Premium</small></div></div>">
+                         <span class="button-price">1.050€</span>
+                         <span class="separator">•</span>
+                         <span class="button-text">Acheter</span>
+                      </a>
+                    </div>
+                  </div>
                 </div>
 
                 <!-- Burma Ruby - Ruby 1 (FR) -->
@@ -3178,7 +3268,7 @@
                 <p class="modal-gem-details" id="modalDetails"></p>
                 <p class="modal-gem-price" id="modalPrice"></p>
                 <div class="modal-action-buttons">
-                    <a href="#" class="modal-whatsapp-button" id="modalWhatsApp">
+                    <a href="#" class="modal-whatsapp-button premium" id="modalWhatsApp">
                       <span id="modalButtonText">Auf Anfrage</span>
                     </a>
                 </div>
