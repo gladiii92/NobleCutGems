@@ -994,6 +994,44 @@
                 justify-content: center;
                 animation: fadeIn 0.3s ease;
             }
+
+            /* Modal-Button - Grün für Standard-Steine (höhere Spezifizität) */
+            .stone-modal .modal-whatsapp-button {
+                padding: 15px 40px;
+                border: 3px solid #45a049 !important; /* Grün mit !important */
+                background: transparent;
+                color: #45a049 !important; /* Grün mit !important */
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                border-radius: 50px;
+                transition: all 0.3s ease;
+                font-weight: 700;
+                letter-spacing: 1px;
+                font-size: 1.1rem;
+                margin-top: 10px;
+            }
+            
+            .stone-modal .modal-whatsapp-button:hover {
+                background: rgba(76, 175, 80, 0.1) !important; /* Grüner Hover mit !important */
+                color: #45a049 !important;
+                transform: translateY(-2px);
+                box-shadow: 0 10px 20px rgba(76, 175, 80, 0.3) !important; /* Grüner Schatten */
+            }
+            
+            /* Premium Modal-Button für blauen Spinell (Orange) */
+            .stone-modal .modal-whatsapp-button.premium {
+                border: 3px solid #FF6B35 !important; /* Orange für Premium */
+                color: #FF6B35 !important; /* Orange für Premium */
+            }
+            
+            .stone-modal .modal-whatsapp-button.premium:hover {
+                background: rgba(255, 107, 53, 0.1) !important; /* Oranger Hover */
+                color: #FF6B35 !important;
+                box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3) !important; /* Oranger Schatten */
+            }
             
             .stone-modal-content {
                 background: var(--dark-secondary);
@@ -3278,6 +3316,39 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // === DYNAMISCHE KATEGORIE-ZÄHLUNG ===
+        function updateCategoryCounts() {
+            // Alle verfügbaren Kategorien ermitteln
+            const categories = ['all', 'sapphire', 'spinel', 'emerald', 'ruby'];
+            
+            categories.forEach(category => {
+                const button = document.querySelector(`[data-category="${category}"]`);
+                const countElement = button?.querySelector('.count');
+                
+                if (button && countElement) {
+                    let count = 0;
+                    
+                    if (category === 'all') {
+                        // Zähle alle sichtbaren Steine in der aktiven Sprache
+                        count = document.querySelectorAll('.lang-content.active .gem-card').length;
+                    } else {
+                        // Zähle Steine der spezifischen Kategorie in der aktiven Sprache
+                        count = document.querySelectorAll(`.lang-content.active .gem-card[data-category="${category}"]`).length;
+                    }
+                    
+                    // Anzahl aktualisieren
+                    countElement.textContent = count;
+                    
+                    // Button ausblenden wenn keine Steine vorhanden
+                    if (count === 0 && category !== 'all') {
+                        button.style.display = 'none';
+                    } else {
+                        button.style.display = 'inline-block';
+                    }
+                }
+            });
+        }
+    
         // === SPRACHUMSCHALTUNG - VOLLSTÄNDIG KORRIGIERT ===
         const langBtns = document.querySelectorAll('.lang-btn');
         
@@ -3307,6 +3378,9 @@
                 targetContent.classList.add('active');
                 targetContent.style.display = 'block'; // Zusätzliche Sicherheit
                 console.log('Language switched successfully to:', targetLang); // Debug-Info
+                
+                // 5. Kategorie-Zählung nach Sprachenwechsel aktualisieren
+                setTimeout(updateCategoryCounts, 100);
             } else {
                 console.error('Language content not found for:', targetLang); // Fehler-Info
             }
@@ -3324,8 +3398,7 @@
         // Standardsprache setzen (Deutsch)
         switchLanguage('de');
         
-        // === REST DES CODES (unverändert) ===
-        // Kategorie-Filter
+        // === KATEGORIE-FILTER ===
         document.querySelectorAll('.category-btn').forEach(button => {
             button.addEventListener('click', () => {
                 const filter = button.getAttribute('data-category');
@@ -3345,417 +3418,418 @@
             });
         });
     
-      // Zertifikat-Karussell
-      function setupCertCarousel(carouselId) {
-        const carousel = document.getElementById(carouselId);
-        if (!carousel) return;
-        const images = carousel.querySelectorAll('.cert-carousel-inner img');
-        const left = carousel.querySelector('.cert-arrow-left');
-        const right = carousel.querySelector('.cert-arrow-right');
-        let currentIndex = 0;
-        let interval;
-        function updateCarousel() {
-          images.forEach((img, i) => img.classList.toggle('active', i === currentIndex));
-        }
-        function next() {
-          currentIndex = (currentIndex + 1) % images.length;
-          updateCarousel();
-        }
-        function prev() {
-          currentIndex = (currentIndex - 1 + images.length) % images.length;
-          updateCarousel();
-        }
-        function startAuto() {
-          interval = setInterval(next, 2200);
-        }
-        function stopAuto() {
-          clearInterval(interval);
-        }
-        left.addEventListener("click", (e) => { e.stopPropagation(); stopAuto(); prev(); startAuto(); });
-        right.addEventListener("click", (e) => { e.stopPropagation(); stopAuto(); next(); startAuto(); });
-        updateCarousel();
-        startAuto();
-      }
+        // Initiale Kategorie-Zählung
+        updateCategoryCounts();
     
-      setupCertCarousel("certCarousel-de");
-      setupCertCarousel("certCarousel-en");
-      setupCertCarousel("certCarousel-fr");
-    
-    // === OPTIMIERTE VIDEO-STEUERUNG FÜR MOBILE ===
-    document.querySelectorAll('.gem-card').forEach(card => {
-        const slides = card.querySelectorAll('.carousel-slide');
-        const videos = card.querySelectorAll('.carousel-slide video');
-        const arrows = card.querySelectorAll('.carousel-arrow');
-        const dots = card.querySelectorAll('.carousel-dot');
-        let currentIndex = 0;
-        const isMobile = window.innerWidth <= 768;
-        
-        // Videos initial setup
-        videos.forEach(video => {
-            video.muted = true;
-            video.loop = true;
-            video.playsInline = true;
+        // === ZERTIFIKAT-KARUSSELL ===
+        function setupCertCarousel(carouselId) {
+            const carousel = document.getElementById(carouselId);
+            if (!carousel) return;
+            const images = carousel.querySelectorAll('.cert-carousel-inner img');
+            const left = carousel.querySelector('.cert-arrow-left');
+            const right = carousel.querySelector('.cert-arrow-right');
+            let currentIndex = 0;
+            let interval;
             
-            if (!isMobile) {
-                // Nur auf Desktop autoplay
-                video.autoplay = true;
-                video.play().catch(() => {});
-            } else {
-                // Auf Mobile: Autoplay deaktiviert
-                video.autoplay = false;
-                video.removeAttribute('autoplay');
+            function updateCarousel() {
+                images.forEach((img, i) => img.classList.toggle('active', i === currentIndex));
             }
-        });
-        
-        function showSlide(index) {
-            // Alle Videos pausieren
+            
+            function next() {
+                currentIndex = (currentIndex + 1) % images.length;
+                updateCarousel();
+            }
+            
+            function prev() {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                updateCarousel();
+            }
+            
+            function startAuto() {
+                interval = setInterval(next, 2200);
+            }
+            
+            function stopAuto() {
+                clearInterval(interval);
+            }
+            
+            left.addEventListener("click", (e) => { e.stopPropagation(); stopAuto(); prev(); startAuto(); });
+            right.addEventListener("click", (e) => { e.stopPropagation(); stopAuto(); next(); startAuto(); });
+            updateCarousel();
+            startAuto();
+        }
+    
+        setupCertCarousel("certCarousel-de");
+        setupCertCarousel("certCarousel-en");
+        setupCertCarousel("certCarousel-fr");
+    
+        // === OPTIMIERTE VIDEO-STEUERUNG FÜR MOBILE ===
+        document.querySelectorAll('.gem-card').forEach(card => {
+            const slides = card.querySelectorAll('.carousel-slide');
+            const videos = card.querySelectorAll('.carousel-slide video');
+            const arrows = card.querySelectorAll('.carousel-arrow');
+            const dots = card.querySelectorAll('.carousel-dot');
+            let currentIndex = 0;
+            const isMobile = window.innerWidth <= 768;
+            
+            // Videos initial setup
             videos.forEach(video => {
-                video.pause();
-                video.removeAttribute('data-playing');
-            });
-            
-            // Slides und Dots aktualisieren
-            slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
-            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-            currentIndex = index;
-            
-            // Aktuelles Video behandeln
-            const currentSlide = slides[currentIndex];
-            const currentVideo = currentSlide.querySelector('video');
-            
-            if (currentVideo) {
+                video.muted = true;
+                video.loop = true;
+                video.playsInline = true;
+                
                 if (!isMobile) {
-                    // Desktop: Video automatisch starten
-                    currentVideo.play().catch(() => {});
+                    // Nur auf Desktop autoplay
+                    video.autoplay = true;
+                    video.play().catch(() => {});
                 } else {
-                    // Mobile: Video bereit machen, aber nicht starten
-                    currentVideo.currentTime = 0;
+                    // Auf Mobile: Autoplay deaktiviert
+                    video.autoplay = false;
+                    video.removeAttribute('autoplay');
+                }
+            });
+            
+            function showSlide(index) {
+                // Alle Videos pausieren
+                videos.forEach(video => {
+                    video.pause();
+                    video.removeAttribute('data-playing');
+                });
+                
+                // Slides und Dots aktualisieren
+                slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+                dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+                currentIndex = index;
+                
+                // Aktuelles Video behandeln
+                const currentSlide = slides[currentIndex];
+                const currentVideo = currentSlide.querySelector('video');
+                
+                if (currentVideo) {
+                    if (!isMobile) {
+                        // Desktop: Video automatisch starten
+                        currentVideo.play().catch(() => {});
+                    } else {
+                        // Mobile: Video bereit machen, aber nicht starten
+                        currentVideo.currentTime = 0;
+                    }
                 }
             }
-        }
-        
-        // Arrow-Navigation
-        arrows.forEach(arrow => {
-            arrow.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const direction = arrow.classList.contains('prev') ? -1 : 1;
-                let newIndex = currentIndex + direction;
-                if (newIndex < 0) newIndex = slides.length - 1;
-                if (newIndex >= slides.length) newIndex = 0;
-                showSlide(newIndex);
-            });
-        });
-        
-        // Dot-Navigation
-        dots.forEach((dot, i) => {
-            dot.addEventListener('click', function(e) {
-                e.stopPropagation();
-                showSlide(i);
-            });
-        });
-        
-        // Mobile Touch/Swipe Support - KORRIGIERT
-        if (isMobile) {
-            let startX = 0;
-            let endX = 0;
-            let startY = 0;
-            let endY = 0;
             
-            const carouselContainer = card.querySelector('.carousel-container');
-            
-            carouselContainer.addEventListener('touchstart', function(e) {
-                startX = e.touches[0].clientX;
-                startY = e.touches[0].clientY;
-            }, { passive: true });
-            
-            carouselContainer.addEventListener('touchmove', function(e) {
-                // Nur horizontales Scrollen verhindern wenn es ein Swipe ist
-                const currentX = e.touches[0].clientX;
-                const currentY = e.touches[0].clientY;
-                const diffX = Math.abs(currentX - startX);
-                const diffY = Math.abs(currentY - startY);
-                
-                if (diffX > diffY) {
-                    e.preventDefault(); // Horizontal swipe
-                }
-            }, { passive: false });
-            
-            carouselContainer.addEventListener('touchend', function(e) {
-                endX = e.changedTouches[0].clientX;
-                endY = e.changedTouches[0].clientY;
-                
-                const swipeDistanceX = startX - endX;
-                const swipeDistanceY = startY - endY;
-                const minSwipeDistance = 50;
-                
-                // Nur horizontale Swipes beachten
-                if (Math.abs(swipeDistanceX) > minSwipeDistance && Math.abs(swipeDistanceX) > Math.abs(swipeDistanceY)) {
-                    let newIndex;
-                    if (swipeDistanceX > 0) {
-                        // Swipe left - next slide
-                        newIndex = (currentIndex + 1) % slides.length;
-                    } else {
-                        // Swipe right - prev slide
-                        newIndex = (currentIndex - 1 + slides.length) % slides.length;
-                    }
-                    showSlide(newIndex);
-                    
-                    // Wenn zu Video gewechselt wurde, Video starten
-                    const newSlide = slides[newIndex];
-                    const newVideo = newSlide.querySelector('video');
-                    if (newVideo) {
-                        newVideo.setAttribute('data-playing', 'true');
-                        newVideo.play().catch(() => {});
-                    }
-                }
-            }, { passive: true });
-            
-            // Video-Tap zum Abspielen auf Mobile
-            videos.forEach(video => {
-                video.addEventListener('click', function(e) {
+            // Arrow-Navigation
+            arrows.forEach(arrow => {
+                arrow.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    if (this.paused) {
-                        this.setAttribute('data-playing', 'true');
-                        this.play().catch(() => {});
-                    } else {
-                        this.pause();
-                        this.removeAttribute('data-playing');
-                    }
+                    const direction = arrow.classList.contains('prev') ? -1 : 1;
+                    let newIndex = currentIndex + direction;
+                    if (newIndex < 0) newIndex = slides.length - 1;
+                    if (newIndex >= slides.length) newIndex = 0;
+                    showSlide(newIndex);
                 });
             });
-        }
-        
-        // Initial slide anzeigen
-        if (slides.length > 0) showSlide(0);
-    });
-    
-      // WhatsApp-Klick (außerhalb des Modals)
-      document.querySelectorAll('.gem-card .whatsapp-button').forEach(button => {
-        button.addEventListener('click', function(e) {
-          e.stopPropagation();
-          e.preventDefault();
-          const lang = document.querySelector('.lang-btn.active')?.dataset.lang?.toLowerCase() || 'de';
-          const key = `whatsapp${lang.charAt(0).toUpperCase() + lang.slice(1)}`;
-          const message = this.dataset[key] || this.dataset.whatsapp;
-          if (!message) return;
-          const link = `https://wa.me/4915168482909?text=${encodeURIComponent(message)}`;
-          window.open(link, '_blank');
-        });
-      });
-    
-    // Modal öffnen
-    const stoneModal = document.getElementById('stoneModal');
-    const modalClose = document.getElementById('modalClose');
-    const modalCarousel = document.getElementById('modalCarousel');
-    const modalName = document.getElementById('modalName');
-    const modalDetails = document.getElementById('modalDetails');
-    const modalWhatsApp = document.getElementById('modalWhatsApp');
-    const modalButtonText = document.getElementById('modalButtonText');
-    
-    document.querySelectorAll('.gem-card').forEach(card => {
-        card.addEventListener('click', function(e) {
-            if (
-                e.target.closest('.whatsapp-button') ||
-                e.target.closest('.carousel-arrow') ||
-                e.target.closest('.carousel-dot')
-            ) return;
             
-            e.preventDefault();
-            e.stopPropagation();
-            
-            const whatsappElement = card.querySelector('.whatsapp-button');
-            
-            // KORRIGIERT: Liest jetzt aus data-modal-* Attributen
-            const name = whatsappElement?.getAttribute('data-modal-name') || card.querySelector('.gem-name')?.textContent || '';
-            const details = whatsappElement?.getAttribute('data-modal-details') || card.querySelector('.gem-details')?.innerHTML || '';
-            
-            const buttonText = whatsappElement?.textContent || '';
-            const lang = document.querySelector('.lang-btn.active')?.dataset.lang?.toLowerCase() || 'de';
-            const key = `whatsapp${lang.charAt(0).toUpperCase() + lang.slice(1)}`;
-            const whatsappMessage = whatsappElement?.dataset[key] || whatsappElement?.dataset.whatsapp || '';
-            const whatsappLink = `https://wa.me/4915168482909?text=${encodeURIComponent(whatsappMessage)}`;
-            const slides = card.querySelectorAll('.carousel-slide');
-            
-            modalName.textContent = name;
-            modalDetails.innerHTML = details;
-            modalWhatsApp.href = whatsappLink;
-            modalButtonText.textContent = buttonText;
-            
-            modalCarousel.innerHTML = '';
-            let carouselHTML = '';
-            let navHTML = '<div class="carousel-nav">';
-            let arrowsHTML = '';
-            
-            slides.forEach((slide, i) => {
-                const img = slide.querySelector('img');
-                const video = slide.querySelector('video');
-                if (img) {
-                    carouselHTML += `<div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}"><img src="${img.src}" alt="${img.alt || 'Edelstein'}"></div>`;
-                } else if (video) {
-                    const source = video.querySelector('source');
-                    if (source) {
-                        carouselHTML += `<div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}"><video muted autoplay loop playsinline><source src="${source.src}" type="video/mp4"></video></div>`;
-                    }
-                }
-                navHTML += `<span class="carousel-dot ${i === 0 ? 'active' : ''}" data-slide="${i}"></span>`;
+            // Dot-Navigation
+            dots.forEach((dot, i) => {
+                dot.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    showSlide(i);
+                });
             });
             
-            navHTML += '</div>';
-            if (slides.length > 1) {
-                arrowsHTML = `<div class="carousel-arrows"><div class="carousel-arrow prev">‹</div><div class="carousel-arrow next">›</div></div>`;
+            // Mobile Touch/Swipe Support
+            if (isMobile) {
+                let startX = 0;
+                let endX = 0;
+                let startY = 0;
+                let endY = 0;
+                
+                const carouselContainer = card.querySelector('.carousel-container');
+                
+                carouselContainer.addEventListener('touchstart', function(e) {
+                    startX = e.touches[0].clientX;
+                    startY = e.touches[0].clientY;
+                }, { passive: true });
+                
+                carouselContainer.addEventListener('touchmove', function(e) {
+                    const currentX = e.touches[0].clientX;
+                    const currentY = e.touches[0].clientY;
+                    const diffX = Math.abs(currentX - startX);
+                    const diffY = Math.abs(currentY - startY);
+                    
+                    if (diffX > diffY) {
+                        e.preventDefault();
+                    }
+                }, { passive: false });
+                
+                carouselContainer.addEventListener('touchend', function(e) {
+                    endX = e.changedTouches[0].clientX;
+                    endY = e.changedTouches[0].clientY;
+                    
+                    const swipeDistanceX = startX - endX;
+                    const swipeDistanceY = startY - endY;
+                    const minSwipeDistance = 50;
+                    
+                    if (Math.abs(swipeDistanceX) > minSwipeDistance && Math.abs(swipeDistanceX) > Math.abs(swipeDistanceY)) {
+                        let newIndex;
+                        if (swipeDistanceX > 0) {
+                            newIndex = (currentIndex + 1) % slides.length;
+                        } else {
+                            newIndex = (currentIndex - 1 + slides.length) % slides.length;
+                        }
+                        showSlide(newIndex);
+                        
+                        const newSlide = slides[newIndex];
+                        const newVideo = newSlide.querySelector('video');
+                        if (newVideo) {
+                            newVideo.setAttribute('data-playing', 'true');
+                            newVideo.play().catch(() => {});
+                        }
+                    }
+                }, { passive: true });
+                
+                // Video-Tap zum Abspielen auf Mobile
+                videos.forEach(video => {
+                    video.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        if (this.paused) {
+                            this.setAttribute('data-playing', 'true');
+                            this.play().catch(() => {});
+                        } else {
+                            this.pause();
+                            this.removeAttribute('data-playing');
+                        }
+                    });
+                });
             }
             
-            modalCarousel.innerHTML = carouselHTML + navHTML + arrowsHTML;
-            setupModalCarousel();
-            stoneModal.classList.add('show');
-            document.body.style.overflow = 'hidden';
-            document.body.style.touchAction = 'none'; // Zusätzlich für Touch
-
-            // Setup Modal mit Swipe
-            setTimeout(setupModalCarousel, 100);
+            // Initial slide anzeigen
+            if (slides.length > 0) showSlide(0);
         });
-    });
     
-    function setupModalCarousel() {
-        const slides = modalCarousel.querySelectorAll('.carousel-slide');
-        const dots = modalCarousel.querySelectorAll('.carousel-dot');
-        const prevArrow = modalCarousel.querySelector('.carousel-arrow.prev');
-        const nextArrow = modalCarousel.querySelector('.carousel-arrow.next');
-        let currentIndex = 0;
-        
-        function showSlide(index) {
-            slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
-            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-            currentIndex = index;
-        }
-        
-        dots.forEach((dot, i) => {
-            dot.addEventListener('click', function(e) {
+        // === WHATSAPP-KLICK (AUßERHALB DES MODALS) ===
+        document.querySelectorAll('.gem-card .whatsapp-button').forEach(button => {
+            button.addEventListener('click', function(e) {
                 e.stopPropagation();
-                showSlide(i);
+                e.preventDefault();
+                const lang = document.querySelector('.lang-btn.active')?.dataset.lang?.toLowerCase() || 'de';
+                const key = `whatsapp${lang.charAt(0).toUpperCase() + lang.slice(1)}`;
+                const message = this.dataset[key] || this.dataset.whatsapp;
+                if (!message) return;
+                const link = `https://wa.me/4915168482909?text=${encodeURIComponent(message)}`;
+                window.open(link, '_blank');
             });
         });
+    
+        // === MODAL-SYSTEM ===
+        const stoneModal = document.getElementById('stoneModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalCarousel = document.getElementById('modalCarousel');
+        const modalName = document.getElementById('modalName');
+        const modalDetails = document.getElementById('modalDetails');
+        const modalWhatsApp = document.getElementById('modalWhatsApp');
+        const modalButtonText = document.getElementById('modalButtonText');
         
-        if (prevArrow) {
-            prevArrow.addEventListener('click', function(e) {
-                e.stopPropagation();
-                let newIndex = currentIndex - 1;
-                if (newIndex < 0) newIndex = slides.length - 1;
-                showSlide(newIndex);
-            });
-        }
-        
-        if (nextArrow) {
-            nextArrow.addEventListener('click', function(e) {
-                e.stopPropagation();
-                let newIndex = currentIndex + 1;
-                if (newIndex >= slides.length) newIndex = 0;
-                showSlide(newIndex);
-            });
-        }
-        
-        // === MODAL-SWIPE-FUNKTIONALITÄT HINZUFÜGEN ===
-        const isMobile = window.innerWidth <= 768;
-        
-        if (isMobile && modalCarousel) {
-            let startX = 0;
-            let endX = 0;
-            let startY = 0;
-            let endY = 0;
-            let isDragging = false;
-            
-            modalCarousel.addEventListener('touchstart', function(e) {
-                startX = e.touches[0].clientX;
-                startY = e.touches[0].clientY;
-                isDragging = true;
+        // Modal öffnen
+        document.querySelectorAll('.gem-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (
+                    e.target.closest('.whatsapp-button') ||
+                    e.target.closest('.carousel-arrow') ||
+                    e.target.closest('.carousel-dot')
+                ) return;
                 
-                // Körper-Scroll verhindern
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const whatsappElement = card.querySelector('.whatsapp-button');
+                
+                const name = whatsappElement?.getAttribute('data-modal-name') || card.querySelector('.gem-name')?.textContent || '';
+                const details = whatsappElement?.getAttribute('data-modal-details') || card.querySelector('.gem-details')?.innerHTML || '';
+                
+                const buttonText = whatsappElement?.textContent || '';
+                const lang = document.querySelector('.lang-btn.active')?.dataset.lang?.toLowerCase() || 'de';
+                const key = `whatsapp${lang.charAt(0).toUpperCase() + lang.slice(1)}`;
+                const whatsappMessage = whatsappElement?.dataset[key] || whatsappElement?.dataset.whatsapp || '';
+                const whatsappLink = `https://wa.me/4915168482909?text=${encodeURIComponent(whatsappMessage)}`;
+                const slides = card.querySelectorAll('.carousel-slide');
+                
+                modalName.textContent = name;
+                modalDetails.innerHTML = details;
+                modalWhatsApp.href = whatsappLink;
+                modalButtonText.textContent = buttonText;
+                
+                // Modal-Button Klassen für Farbe setzen
+                modalWhatsApp.className = 'modal-whatsapp-button'; // Reset classes
+                if (whatsappElement?.classList.contains('starting-price-button')) {
+                    modalWhatsApp.classList.add('premium'); // Orange für Ab-Preis Steine
+                }
+                
+                modalCarousel.innerHTML = '';
+                let carouselHTML = '';
+                let navHTML = '<div class="carousel-nav">';
+                let arrowsHTML = '';
+                
+                slides.forEach((slide, i) => {
+                    const img = slide.querySelector('img');
+                    const video = slide.querySelector('video');
+                    if (img) {
+                        carouselHTML += `<div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}"><img src="${img.src}" alt="${img.alt || 'Edelstein'}"></div>`;
+                    } else if (video) {
+                        const source = video.querySelector('source');
+                        if (source) {
+                            carouselHTML += `<div class="carousel-slide ${i === 0 ? 'active' : ''}" data-slide="${i}"><video muted autoplay loop playsinline><source src="${source.src}" type="video/mp4"></video></div>`;
+                        }
+                    }
+                    navHTML += `<span class="carousel-dot ${i === 0 ? 'active' : ''}" data-slide="${i}"></span>`;
+                });
+                
+                navHTML += '</div>';
+                if (slides.length > 1) {
+                    arrowsHTML = `<div class="carousel-arrows"><div class="carousel-arrow prev">‹</div><div class="carousel-arrow next">›</div></div>`;
+                }
+                
+                modalCarousel.innerHTML = carouselHTML + navHTML + arrowsHTML;
+                setupModalCarousel();
+                stoneModal.classList.add('show');
+                document.body.style.overflow = 'hidden';
                 document.body.style.touchAction = 'none';
-            }, { passive: true });
+            });
+        });
+        
+        // Modal-Karussell Setup
+        function setupModalCarousel() {
+            const slides = modalCarousel.querySelectorAll('.carousel-slide');
+            const dots = modalCarousel.querySelectorAll('.carousel-dot');
+            const prevArrow = modalCarousel.querySelector('.carousel-arrow.prev');
+            const nextArrow = modalCarousel.querySelector('.carousel-arrow.next');
+            let currentIndex = 0;
             
-            modalCarousel.addEventListener('touchmove', function(e) {
-                if (!isDragging) return;
-                
-                const currentX = e.touches[0].clientX;
-                const currentY = e.touches[0].clientY;
-                const diffX = Math.abs(currentX - startX);
-                const diffY = Math.abs(currentY - startY);
-                
-                // Nur horizontale Swipes im Modal
-                if (diffX > diffY && diffX > 10) {
-                    e.preventDefault(); // Verhindert Seiten-Scroll
+            function showSlide(index) {
+                slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+                dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+                currentIndex = index;
+            }
+            
+            dots.forEach((dot, i) => {
+                dot.addEventListener('click', function(e) {
                     e.stopPropagation();
-                }
-            }, { passive: false });
+                    showSlide(i);
+                });
+            });
             
-            modalCarousel.addEventListener('touchend', function(e) {
-                if (!isDragging) return;
-                
-                endX = e.changedTouches[0].clientX;
-                endY = e.changedTouches[0].clientY;
-                isDragging = false;
-                
-                // Körper-Scroll wieder erlauben
-                document.body.style.touchAction = 'auto';
-                
-                const swipeDistanceX = startX - endX;
-                const swipeDistanceY = startY - endY;
-                const minSwipeDistance = 50;
-                
-                // Nur horizontale Swipes beachten
-                if (Math.abs(swipeDistanceX) > minSwipeDistance && Math.abs(swipeDistanceX) > Math.abs(swipeDistanceY)) {
-                    let newIndex;
-                    if (swipeDistanceX > 0) {
-                        // Swipe left - next slide
-                        newIndex = (currentIndex + 1) % slides.length;
-                    } else {
-                        // Swipe right - prev slide
-                        newIndex = (currentIndex - 1 + slides.length) % slides.length;
-                    }
+            if (prevArrow) {
+                prevArrow.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    let newIndex = currentIndex - 1;
+                    if (newIndex < 0) newIndex = slides.length - 1;
                     showSlide(newIndex);
-                    
-                    // Video starten wenn zu Video gewechselt
-                    const newSlide = slides[newIndex];
-                    const newVideo = newSlide.querySelector('video');
-                    if (newVideo) {
-                        newVideo.play().catch(() => {});
-                    }
-                }
-            }, { passive: true });
+                });
+            }
             
-            // Touch-Cancel behandeln
-            modalCarousel.addEventListener('touchcancel', function(e) {
-                isDragging = false;
-                document.body.style.touchAction = 'auto';
-            }, { passive: true });
+            if (nextArrow) {
+                nextArrow.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    let newIndex = currentIndex + 1;
+                    if (newIndex >= slides.length) newIndex = 0;
+                    showSlide(newIndex);
+                });
+            }
+            
+            // Modal-Swipe für Mobile
+            const isMobile = window.innerWidth <= 768;
+            
+            if (isMobile && modalCarousel) {
+                let startX = 0;
+                let endX = 0;
+                let startY = 0;
+                let endY = 0;
+                let isDragging = false;
+                
+                modalCarousel.addEventListener('touchstart', function(e) {
+                    startX = e.touches[0].clientX;
+                    startY = e.touches[0].clientY;
+                    isDragging = true;
+                    document.body.style.touchAction = 'none';
+                }, { passive: true });
+                
+                modalCarousel.addEventListener('touchmove', function(e) {
+                    if (!isDragging) return;
+                    
+                    const currentX = e.touches[0].clientX;
+                    const currentY = e.touches[0].clientY;
+                    const diffX = Math.abs(currentX - startX);
+                    const diffY = Math.abs(currentY - startY);
+                    
+                    if (diffX > diffY && diffX > 10) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }
+                }, { passive: false });
+                
+                modalCarousel.addEventListener('touchend', function(e) {
+                    if (!isDragging) return;
+                    
+                    endX = e.changedTouches[0].clientX;
+                    endY = e.changedTouches[0].clientY;
+                    isDragging = false;
+                    
+                    document.body.style.touchAction = 'auto';
+                    
+                    const swipeDistanceX = startX - endX;
+                    const swipeDistanceY = startY - endY;
+                    const minSwipeDistance = 50;
+                    
+                    if (Math.abs(swipeDistanceX) > minSwipeDistance && Math.abs(swipeDistanceX) > Math.abs(swipeDistanceY)) {
+                        let newIndex;
+                        if (swipeDistanceX > 0) {
+                            newIndex = (currentIndex + 1) % slides.length;
+                        } else {
+                            newIndex = (currentIndex - 1 + slides.length) % slides.length;
+                        }
+                        showSlide(newIndex);
+                        
+                        const newSlide = slides[newIndex];
+                        const newVideo = newSlide.querySelector('video');
+                        if (newVideo) {
+                            newVideo.play().catch(() => {});
+                        }
+                    }
+                }, { passive: true });
+                
+                modalCarousel.addEventListener('touchcancel', function(e) {
+                    isDragging = false;
+                    document.body.style.touchAction = 'auto';
+                }, { passive: true });
+            }
+            
+            if (slides.length > 0) showSlide(0);
         }
         
-        if (slides.length > 0) showSlide(0);
-    }
-    
-    function closeModal() {
-        stoneModal.classList.remove('show');
-        document.body.style.overflow = 'auto';
-        document.body.style.touchAction = 'auto'; // Touch wieder erlauben
-    }
-    
-    if (modalClose) {
-        modalClose.addEventListener('click', closeModal);
-    }
-    
-    if (stoneModal) {
-        stoneModal.addEventListener('click', function(e) {
-            if (e.target === stoneModal) closeModal();
-        });
-    }
-    
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && stoneModal?.classList.contains('show')) {
-            closeModal();
+        // Modal schließen
+        function closeModal() {
+            stoneModal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+            document.body.style.touchAction = 'auto';
         }
-    });
+        
+        if (modalClose) {
+            modalClose.addEventListener('click', closeModal);
+        }
+        
+        if (stoneModal) {
+            stoneModal.addEventListener('click', function(e) {
+                if (e.target === stoneModal) closeModal();
+            });
+        }
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && stoneModal?.classList.contains('show')) {
+                closeModal();
+            }
+        });
     });
     </script>
+
 
 </body>
 </html>
