@@ -1154,18 +1154,36 @@
                     height: 20px;
                 }
 
+                .stone-modal {
+                    padding: 0; /* Kein Padding */
+                    overflow-x: hidden; /* Horizontales Scrollen verhindern */
+                }
+                
                 .stone-modal-content {
+                    width: 100vw; /* Exakte Viewport-Breite */
+                    max-width: 100vw; /* Maximum auch 100vw */
                     height: 95vh;
-                    width: 98%;
+                    margin: 0; /* Kein Margin */
+                    border-radius: 0; /* Keine runden Ecken für maximale Breite */
+                    border: none; /* Kein Border der Platz wegnimmt */
+                    box-shadow: none; /* Kein Schatten der übersteht */
                 }
 
                 .modal-image-section {
-                    height: 50%;
+                    border-radius: 0; /* Keine runden Ecken */
                 }
 
                 .modal-info-section {
-                    height: 50%;
-                    padding: 15px 20px;
+                    border-radius: 0; /* Keine runden Ecken */
+                    padding: 15px; /* Weniger Padding */
+                }
+
+                /* Modal-Close Button anpassen */
+                .modal-close {
+                    top: 10px;
+                    right: 10px;
+                    background: rgba(0, 0, 0, 0.8); /* Stärkerer Hintergrund */
+                    z-index: 1000001; /* Höchste Priorität */
                 }
 
                 .modal-gem-name {
@@ -1194,14 +1212,62 @@
                     gap: 10px;
                 }
                 
-                /* Performance-Optimierungen - HIER EINFÜGEN */
+                /* Mobile: Videos NICHT automatisch abspielen */
                 .carousel-slide video {
-                    max-height: 250px;
-                    object-fit: cover;
+                    width: 100% !important;
+                    height: 100% !important;
+                    object-fit: contain !important;
+                    object-position: center !important;
+                    cursor: pointer;
+                    padding: 10px;
+                    display: block;
+                    margin: 0 auto;
+                    /* WICHTIG: Autoplay entfernt */
+                    /* autoplay entfernt */
+                    /* muted bleibt für wenn Video dann startet */
                 }
                 
                 .carousel-slide:not(.active) video {
                     display: none;
+                }
+
+                /* Video-Container optimieren */
+                .carousel-container {
+                    height: 280px; /* Feste Höhe für bessere Performance */
+                    overflow: hidden;
+                }
+
+                /* Reduzierte Schatten und Effekte */
+                .gem-card {
+                    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2); /* Weniger intensiv */
+                }
+                
+                .gem-card:hover {
+                    transform: translateY(-2px); /* Weniger Transform */
+                    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+                }
+
+                /* Video-Overlay für Play-Button */
+                .carousel-slide video:not([data-playing="true"]) {
+                    position: relative;
+                }
+                
+                .carousel-slide video:not([data-playing="true"])::before {
+                    content: "▶";
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: rgba(0, 0, 0, 0.7);
+                    color: var(--primary-gold);
+                    border-radius: 50%;
+                    width: 60px;
+                    height: 60px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 20px;
+                    pointer-events: none;
                 }
             
                 /* Reduzierte Animationen für bessere Performance */
@@ -1472,7 +1538,7 @@
                   </div>
                 </div>
 
-                <!-- Electric Blue Sapphire - Sapphire (DE) - MIT PREIS UND WERT-INFO -->
+                <!-- Electric Blue Sapphire - Sapphire 3 (DE) - MIT PREIS UND WERT-INFO -->
                 <div class="gem-card show" data-category="sapphire">
                   <div class="carousel-container">
                     <div class="carousel-slide active">
@@ -1517,7 +1583,7 @@
                          data-whatsapp-en="Hello NobleCutGems, I want to buy the Electric Blue Sapphire (0.58 ct) for 200€. Is it still available?"
                          data-whatsapp-fr="Bonjour NobleCutGems, je veux acheter le Saphir Bleu Électrique (0.58 ct) pour 200€. Est-il encore disponible ?"
                          data-modal-name="Electric Blue Saphir Madagaskar - 0.58 Karat Premium Qualität"
-                         data-modal-details="<strong>Herkunft:</strong> Madagaskar - Ilakaka Region<br><strong>Gewicht:</strong> 0.58 ct (exakt 0.116 Gramm)<br><strong>Behandlung:</strong> Vollständig unbehandelt (No Heat - No Treat)<br><strong>Reinheit:</strong> Sehr gute Reinheit mit natürlicher Klarheit<br><strong>Farbe:</strong> Intensives Electric Blue - leuchtend und lebendig<br><strong>Schliff:</strong> Ovaler Schliff mit exzellenter Politur<br><strong>Fluoreszenz:</strong> Keine UV-Fluoreszenz<br><strong>Besonderheiten:</strong> Seltene Electric Blue Färbung ohne Behandlung, intensive Sättigung, perfekt für moderne Designs<br><div class='stone-value-info'><div class='price-per-carat'><span class='ppc-label'>Preis pro Karat:</span><span class='ppc-value'>345€/ct</span></div><div class='quality-indicator'><span class='quality-badge premium'>Top 25% Marktqualität</span><small>Unbehandelte Madagaskar-Qualität</small></div></div>">
+                         data-modal-details="<strong>Herkunft:</strong> Madagaskar - Ilakaka Region<br><strong>Gewicht:</strong> 0.58 ct (exakt 0.116 Gramm)<br><strong>Behandlung:</strong> Vollständig unbehandelt (No Heat - No Treat)<br><strong>Reinheit:</strong> Natürliche Klarheit mit charakteristischem Einschluss - authentische unbehandelte Qualität<br><strong>Farbe:</strong> Intensives Electric Blue - leuchtend und lebendig<br><strong>Schliff:</strong> Ovaler Schliff mit exzellenter Politur<br><strong>Fluoreszenz:</strong> Keine UV-Fluoreszenz<br><strong>Besonderheiten:</strong> Seltene Electric Blue Färbung ohne Behandlung, intensive Sättigung, perfekt für moderne Designs<br><div class='stone-value-info'><div class='price-per-carat'><span class='ppc-label'>Preis pro Karat:</span><span class='ppc-value'>345€/ct</span></div><div class='quality-indicator'><span class='quality-badge premium'>Top 25% Marktqualität</span><small>Unbehandelte Madagaskar-Qualität</small></div></div>">
                          <span class="button-price">200€</span>
                          <span class="separator">•</span>
                          <span class="button-text">Jetzt kaufen</span>
@@ -3106,47 +3172,153 @@
       setupCertCarousel("certCarousel-en");
       setupCertCarousel("certCarousel-fr");
     
-      // Stein-Karussells aktivieren inkl. Videos automatisch stumm abspielen
-      document.querySelectorAll('.gem-card').forEach(card => {
-        card.querySelectorAll('video').forEach(video => {
-          video.muted = true;
-          video.autoplay = true;
-          video.loop = true;
-          video.playsInline = true;
-          video.play().catch(() => {});
-        });
-    
+    // === OPTIMIERTE VIDEO-STEUERUNG FÜR MOBILE ===
+    document.querySelectorAll('.gem-card').forEach(card => {
         const slides = card.querySelectorAll('.carousel-slide');
+        const videos = card.querySelectorAll('.carousel-slide video');
         const arrows = card.querySelectorAll('.carousel-arrow');
         const dots = card.querySelectorAll('.carousel-dot');
         let currentIndex = 0;
-    
+        const isMobile = window.innerWidth <= 768;
+        
+        // Videos initial setup
+        videos.forEach(video => {
+            video.muted = true;
+            video.loop = true;
+            video.playsInline = true;
+            
+            if (!isMobile) {
+                // Nur auf Desktop autoplay
+                video.autoplay = true;
+                video.play().catch(() => {});
+            } else {
+                // Auf Mobile: Autoplay deaktiviert
+                video.autoplay = false;
+                video.removeAttribute('autoplay');
+            }
+        });
+        
         function showSlide(index) {
-          slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
-          dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-          currentIndex = index;
+            // Alle Videos pausieren
+            videos.forEach(video => {
+                video.pause();
+                video.removeAttribute('data-playing');
+            });
+            
+            // Slides und Dots aktualisieren
+            slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+            currentIndex = index;
+            
+            // Aktuelles Video behandeln
+            const currentSlide = slides[currentIndex];
+            const currentVideo = currentSlide.querySelector('video');
+            
+            if (currentVideo) {
+                if (!isMobile) {
+                    // Desktop: Video automatisch starten
+                    currentVideo.play().catch(() => {});
+                } else {
+                    // Mobile: Video bereit machen, aber nicht starten
+                    currentVideo.currentTime = 0;
+                }
+            }
         }
-    
+        
+        // Arrow-Navigation
         arrows.forEach(arrow => {
-          arrow.addEventListener('click', e => {
-            e.stopPropagation();
-            const direction = arrow.classList.contains('prev') ? -1 : 1;
-            let newIndex = currentIndex + direction;
-            if (newIndex < 0) newIndex = slides.length - 1;
-            if (newIndex >= slides.length) newIndex = 0;
-            showSlide(newIndex);
-          });
+            arrow.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const direction = arrow.classList.contains('prev') ? -1 : 1;
+                let newIndex = currentIndex + direction;
+                if (newIndex < 0) newIndex = slides.length - 1;
+                if (newIndex >= slides.length) newIndex = 0;
+                showSlide(newIndex);
+            });
         });
-    
+        
+        // Dot-Navigation
         dots.forEach((dot, i) => {
-          dot.addEventListener('click', e => {
-            e.stopPropagation();
-            showSlide(i);
-          });
+            dot.addEventListener('click', function(e) {
+                e.stopPropagation();
+                showSlide(i);
+            });
         });
-    
+        
+        // Mobile Touch/Swipe Support - KORRIGIERT
+        if (isMobile) {
+            let startX = 0;
+            let endX = 0;
+            let startY = 0;
+            let endY = 0;
+            
+            const carouselContainer = card.querySelector('.carousel-container');
+            
+            carouselContainer.addEventListener('touchstart', function(e) {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+            }, { passive: true });
+            
+            carouselContainer.addEventListener('touchmove', function(e) {
+                // Nur horizontales Scrollen verhindern wenn es ein Swipe ist
+                const currentX = e.touches[0].clientX;
+                const currentY = e.touches[0].clientY;
+                const diffX = Math.abs(currentX - startX);
+                const diffY = Math.abs(currentY - startY);
+                
+                if (diffX > diffY) {
+                    e.preventDefault(); // Horizontal swipe
+                }
+            }, { passive: false });
+            
+            carouselContainer.addEventListener('touchend', function(e) {
+                endX = e.changedTouches[0].clientX;
+                endY = e.changedTouches[0].clientY;
+                
+                const swipeDistanceX = startX - endX;
+                const swipeDistanceY = startY - endY;
+                const minSwipeDistance = 50;
+                
+                // Nur horizontale Swipes beachten
+                if (Math.abs(swipeDistanceX) > minSwipeDistance && Math.abs(swipeDistanceX) > Math.abs(swipeDistanceY)) {
+                    let newIndex;
+                    if (swipeDistanceX > 0) {
+                        // Swipe left - next slide
+                        newIndex = (currentIndex + 1) % slides.length;
+                    } else {
+                        // Swipe right - prev slide
+                        newIndex = (currentIndex - 1 + slides.length) % slides.length;
+                    }
+                    showSlide(newIndex);
+                    
+                    // Wenn zu Video gewechselt wurde, Video starten
+                    const newSlide = slides[newIndex];
+                    const newVideo = newSlide.querySelector('video');
+                    if (newVideo) {
+                        newVideo.setAttribute('data-playing', 'true');
+                        newVideo.play().catch(() => {});
+                    }
+                }
+            }, { passive: true });
+            
+            // Video-Tap zum Abspielen auf Mobile
+            videos.forEach(video => {
+                video.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (this.paused) {
+                        this.setAttribute('data-playing', 'true');
+                        this.play().catch(() => {});
+                    } else {
+                        this.pause();
+                        this.removeAttribute('data-playing');
+                    }
+                });
+            });
+        }
+        
+        // Initial slide anzeigen
         if (slides.length > 0) showSlide(0);
-      });
+    });
     
       // WhatsApp-Klick (außerhalb des Modals)
       document.querySelectorAll('.gem-card .whatsapp-button').forEach(button => {
