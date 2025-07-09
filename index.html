@@ -147,7 +147,59 @@
                 font-size: 0.95rem; /* Explizite Schriftgröße für Button */
                 
             }
+
+            /* Ab-Preis Button - Goldener Stil für Premium-Steine */
+            .whatsapp-button.starting-price-button {
+                background: transparent;
+                border: 2px solid var(--primary-gold); /* Gold für Premium */
+                color: var(--primary-gold);
+                padding: 12px 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                border-radius: 50px;
+                transition: all 0.3s ease;
+                font-size: 1.1rem;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+            }
             
+            .whatsapp-button.starting-price-button:hover {
+                background: rgba(212, 175, 55, 0.1);
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+                border-color: #C4A747;
+                color: #C4A747;
+            }
+            
+            .whatsapp-button.starting-price-button .button-price {
+                font-size: 1.1rem;
+                font-weight: bold;
+                color: var(--primary-gold);
+            }
+            
+            .whatsapp-button.starting-price-button .separator {
+                color: var(--primary-gold);
+                font-weight: bold;
+                opacity: 0.7;
+                margin: 0 6px;
+                font-size: 1.1rem;
+            }
+            
+            .whatsapp-button.starting-price-button .button-text {
+                font-size: 1.1rem;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+                color: var(--primary-gold);
+            }
+            
+            /* Qualitäts-Badge für seltene Steine */
+            .quality-badge.rare {
+                background: linear-gradient(45deg, #8A2BE2, #9932CC);
+                color: white;
+            }
+                        
             .button-price {
                 font-weight: bold;
                 font-size: 0.95rem; /* Gleiche Größe wie Modal */
@@ -236,8 +288,8 @@
             }
             
             .quality-badge {
-                background: var(--primary-gold);
-                color: var(--dark-bg);
+                background: linear-gradient(45deg, #228B22, #32CD32);
+                color: white;
                 padding: 4px 12px;
                 border-radius: 15px;
                 font-size: 0.85rem;
@@ -1583,7 +1635,7 @@
                   <div class="gem-info">
                     <h3 class="gem-name">Gelber Saphir, 1.43 ct</h3>
                     <p class="gem-details">
-                      Ceylon (Sri Lanka) · Unbehandelt · Eyeclean<br>
+                      Ceylon (Sri Lanka) · Unbehandelt · Fancy-Cut<br>
                       Natürliche helle Gelbfärbung
                     </p>
                     <div class="action-buttons">
@@ -1766,40 +1818,58 @@
                     </div>
                 </div>
 
-                <!-- Mahenge Spinell - Spinel 1 -->
+                <!-- Blauer Spinell - Spinel 1 (DE) - AB-PREIS ANGEPASST -->
                 <div class="gem-card show" data-category="spinel">
-                    <div class="carousel-container">
-                        <div class="carousel-slide active">
-                            <img src="images/spinel1-1.jpg" alt="Mahenge Spinell">
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="images/spinel1-2.jpg" alt="Mahenge Spinell">
-                        </div>
-                        <div class="carousel-nav">
-                            <span class="carousel-dot active" data-slide="0"></span>
-                            <span class="carousel-dot" data-slide="1"></span>
-                        </div>
-                        <div class="carousel-arrows">
-                            <div class="carousel-arrow prev">‹</div>
-                            <div class="carousel-arrow next">›</div>
-                        </div>
+                  <div class="carousel-container">
+                    <div class="carousel-slide active">
+                      <img src="images/blauer-spinell-457ct-aig.jpg" alt="Blauer Spinell 4.57 ct unbehandelt VS Qualität Cushion Cut AIG Zertifikat">
                     </div>
-                    <div class="gem-info">
-                        <h3 class="gem-name">Mahenge Spinell</h3>
-                        <p class="gem-details">
-                            3.21 ct | Neon Pink | Tanzania<br>
-                            Perfekte Kristallstruktur
-                        </p>
-                        <div class="action-buttons">
-                            <a href="#" 
-                               class="whatsapp-button" 
-                               data-whatsapp-de="Hallo NobleCutGems, ich interessiere mich für diesen Stein." 
-                               data-whatsapp-en="Hello NobleCutGems, I am interested in this gem." 
-                               data-whatsapp-fr="Bonjour NobleCutGems, je suis intéressé par cette gemme.">
-                               Auf Anfrage
-                            </a>
-                        </div>
+                    <div class="carousel-slide">
+                      <video muted autoplay loop playsinline>
+                        <source src="videos/blauer-spinell-457ct-finger.mp4" type="video/mp4">
+                      </video>
                     </div>
+                    <div class="carousel-slide">
+                      <video muted autoplay loop playsinline>
+                        <source src="videos/blauer-spinell-457ct-pinzette.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="carousel-slide">
+                      <video muted autoplay loop playsinline>
+                        <source src="videos/blauer-spinell-457ct-360.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="carousel-nav">
+                      <span class="carousel-dot active" data-slide="0"></span>
+                      <span class="carousel-dot" data-slide="1"></span>
+                      <span class="carousel-dot" data-slide="2"></span>
+                      <span class="carousel-dot" data-slide="3"></span>
+                    </div>
+                    <div class="carousel-arrows">
+                      <div class="carousel-arrow prev">‹</div>
+                      <div class="carousel-arrow next">›</div>
+                    </div>
+                  </div>
+                  <div class="gem-info">
+                    <h3 class="gem-name">Blauer Spinell, 4.57 ct</h3>
+                    <p class="gem-details">
+                      Unbehandelt · VS-Qualität · Cushion-Cut<br>
+                      Intensive blaue Färbung mit AIG-Zertifikat
+                    </p>
+                    <div class="action-buttons">
+                      <a href="#"
+                         class="whatsapp-button starting-price-button"
+                         data-whatsapp-de="Hallo NobleCutGems, ich interessiere mich für den blauen Spinell (4.57 ct) ab 1.750€. Können Sie mir den genauen Preis und weitere Details mitteilen?"
+                         data-whatsapp-en="Hello NobleCutGems, I'm interested in the blue spinel (4.57 ct) from 1,750€. Can you provide the exact price and additional details?"
+                         data-whatsapp-fr="Bonjour NobleCutGems, je suis intéressé par le spinelle bleu (4.57 ct) à partir de 1.750€. Pouvez-vous me donner le prix exact et plus de détails ?"
+                         data-modal-name="Blauer Spinell AIG-Zertifiziert - 4.57 Karat Sammlerqualität"
+                         data-modal-details="<strong>Herkunft:</strong> Natürlicher blauer Spinell - Sammlerqualität<br><strong>Gewicht:</strong> 4.57 ct (exakt 0.914 Gramm)<br><strong>Behandlung:</strong> Vollständig unbehandelt (No Heat)<br><strong>Reinheit:</strong> VS (Very Slightly Included) - Augenrein<br><strong>Farbe:</strong> Intensive blaue Färbung mit natürlicher Sättigung<br><strong>Schliff:</strong> Cushion-Cut mit klassischen Proportionen<br><strong>Zertifikat:</strong> AIG (Authenticity Guaranteed)<br><strong>Besonderheiten:</strong> Außergewöhnlich große Größe für blauen Spinell, intensive natürliche Färbung, attraktives Preis-Leistungs-Verhältnis<br><div class='stone-value-info'><div class='price-per-carat'><span class='ppc-label'>Preis pro Karat:</span><span class='ppc-value'>Ab 383€/ct</span></div><div class='quality-indicator'><span class='quality-badge value'>Hervorragendes Preis-Leistungs-Verhältnis</span><small>Große blaue Spinelle Attraktiv-Segment</small></div></div>">
+                         <span class="button-price">Ab 1.750€</span>
+                         <span class="separator">•</span>
+                         <span class="button-text">Preisanfrage</span>
+                      </a>
+                    </div>
+                  </div>
                 </div>
 
                 <!-- Jedi Spinell - Spinel 2 -->
@@ -2168,7 +2238,7 @@
                   <div class="gem-info">
                     <h3 class="gem-name">Yellow Sapphire, 1.43 ct</h3>
                     <p class="gem-details">
-                      Ceylon (Sri Lanka) · Untreated · Eyeclean<br>
+                      Ceylon (Sri Lanka) · Untreated · Fancy Cut<br>
                       Natural Light Yellow Color
                     </p>
                     <div class="action-buttons">
@@ -2323,42 +2393,60 @@
                     </div>
                 </div>
 
-                <!-- Mahenge Spinel - Spinel 1 (EN) -->
+                <!-- Blauer Spinell - Spinel 1 (EN) - STARTING PRICE ADJUSTED -->
                 <div class="gem-card show" data-category="spinel">
-                    <div class="carousel-container">
-                        <div class="carousel-slide active">
-                            <img src="images/spinel1-1.jpg" alt="Mahenge Spinel">
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="images/spinel1-2.jpg" alt="Mahenge Spinel">
-                        </div>
-                        <div class="carousel-nav">
-                            <span class="carousel-dot active" data-slide="0"></span>
-                            <span class="carousel-dot" data-slide="1"></span>
-                        </div>
-                        <div class="carousel-arrows">
-                            <div class="carousel-arrow prev">‹</div>
-                            <div class="carousel-arrow next">›</div>
-                        </div>
+                  <div class="carousel-container">
+                    <div class="carousel-slide active">
+                      <img src="images/blauer-spinell-457ct-aig.jpg" alt="Blue Spinel 4.57 ct untreated VS quality Cushion Cut AIG certificate">
                     </div>
-                    <div class="gem-info">
-                        <h3 class="gem-name">Mahenge Spinel</h3>
-                        <p class="gem-details">
-                            3.21 ct | Neon Pink | Tanzania<br>
-                            Perfect crystal structure
-                        </p>
-                        <div class="action-buttons">
-                            <a href="#" 
-                               class="whatsapp-button" 
-                               data-whatsapp-de="Hallo NobleCutGems, ich interessiere mich für diesen Stein." 
-                               data-whatsapp-en="Hello NobleCutGems, I am interested in this gem." 
-                               data-whatsapp-fr="Bonjour NobleCutGems, je suis intéressé par cette gemme.">
-                               On Request
-                            </a>
-                        </div>
+                    <div class="carousel-slide">
+                      <video muted autoplay loop playsinline>
+                        <source src="videos/blauer-spinell-457ct-finger.mp4" type="video/mp4">
+                      </video>
                     </div>
+                    <div class="carousel-slide">
+                      <video muted autoplay loop playsinline>
+                        <source src="videos/blauer-spinell-457ct-pinzette.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="carousel-slide">
+                      <video muted autoplay loop playsinline>
+                        <source src="videos/blauer-spinell-457ct-360.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="carousel-nav">
+                      <span class="carousel-dot active" data-slide="0"></span>
+                      <span class="carousel-dot" data-slide="1"></span>
+                      <span class="carousel-dot" data-slide="2"></span>
+                      <span class="carousel-dot" data-slide="3"></span>
+                    </div>
+                    <div class="carousel-arrows">
+                      <div class="carousel-arrow prev">‹</div>
+                      <div class="carousel-arrow next">›</div>
+                    </div>
+                  </div>
+                  <div class="gem-info">
+                    <h3 class="gem-name">Blue Spinel, 4.57 ct</h3>
+                    <p class="gem-details">
+                      Untreated · VS Quality · Cushion Cut<br>
+                      Intense blue coloration with AIG certificate
+                    </p>
+                    <div class="action-buttons">
+                      <a href="#"
+                         class="whatsapp-button starting-price-button"
+                         data-whatsapp-de="Hallo NobleCutGems, ich interessiere mich für den blauen Spinell (4.57 ct) ab 1.750€. Können Sie mir den genauen Preis und weitere Details mitteilen?"
+                         data-whatsapp-en="Hello NobleCutGems, I'm interested in the blue spinel (4.57 ct) from 1,750€. Can you provide the exact price and additional details?"
+                         data-whatsapp-fr="Bonjour NobleCutGems, je suis intéressé par le spinelle bleu (4.57 ct) à partir de 1.750€. Pouvez-vous me donner le prix exact et plus de détails ?"
+                         data-modal-name="Blue Spinel AIG-Certified - 4.57 Carat Collector Quality"
+                         data-modal-details="<strong>Origin:</strong> Natural blue spinel - Collector quality<br><strong>Weight:</strong> 4.57 ct (exactly 0.914 grams)<br><strong>Treatment:</strong> Completely untreated (No Heat)<br><strong>Clarity:</strong> VS (Very Slightly Included) - Eye clean appearance<br><strong>Color:</strong> Intense blue coloration with natural saturation<br><strong>Cut:</strong> Cushion cut with classic proportions<br><strong>Certificate:</strong> AIG (Authenticity Guaranteed)<br><strong>Special Features:</strong> Exceptionally large size for blue spinel, intense natural coloration, excellent value proposition<br><div class='stone-value-info'><div class='price-per-carat'><span class='ppc-label'>Price per Carat:</span><span class='ppc-value'>From 383€/ct</span></div><div class='quality-indicator'><span class='quality-badge value'>Excellent Value Proposition</span><small>Large Blue Spinels Attractive Segment</small></div></div>">
+                         <span class="button-price">From 1,750€</span>
+                         <span class="separator">•</span>
+                         <span class="button-text">Price Inquiry</span>
+                      </a>
+                    </div>
+                  </div>
                 </div>
-
+                
                 <!-- Jedi Spinel - Spinel 2 (EN) -->
                 <div class="gem-card show" data-category="spinel">
                     <div class="carousel-container">
@@ -2699,7 +2787,7 @@
                   <div class="gem-info">
                     <h3 class="gem-name">Saphir Jaune, 1.43 ct</h3>
                     <p class="gem-details">
-                      Ceylan (Sri Lanka) · Non traité · Eyeclean<br>
+                      Ceylan (Sri Lanka) · Non traité · Fancy Cut<br>
                       Couleur jaune claire naturelle
                     </p>
                     <div class="action-buttons">
@@ -2882,40 +2970,58 @@
                     </div>
                 </div>
 
-                <!-- Mahenge Spinel - Spinel 1 (FR) -->
+                <!-- Blauer Spinell - Spinel 1 (FR) - PRIX DE DÉPART AJUSTÉ -->
                 <div class="gem-card show" data-category="spinel">
-                    <div class="carousel-container">
-                        <div class="carousel-slide active">
-                            <img src="images/spinel1-1.jpg" alt="Spinelle Mahenge">
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="images/spinel1-2.jpg" alt="Spinelle Mahenge">
-                        </div>
-                        <div class="carousel-nav">
-                            <span class="carousel-dot active" data-slide="0"></span>
-                            <span class="carousel-dot" data-slide="1"></span>
-                        </div>
-                        <div class="carousel-arrows">
-                            <div class="carousel-arrow prev">‹</div>
-                            <div class="carousel-arrow next">›</div>
-                        </div>
+                  <div class="carousel-container">
+                    <div class="carousel-slide active">
+                      <img src="images/blauer-spinell-457ct-aig.jpg" alt="Spinelle Bleu 4.57 ct non traité qualité VS taille Coussin certificat AIG">
                     </div>
-                    <div class="gem-info">
-                        <h3 class="gem-name">Spinelle Mahenge</h3>
-                        <p class="gem-details">
-                            3.21 ct | Rose Néon | Tanzanie<br>
-                            Structure cristalline parfaite
-                        </p>
-                        <div class="action-buttons">
-                            <a href="#" 
-                               class="whatsapp-button" 
-                               data-whatsapp-de="Hallo NobleCutGems, ich interessiere mich für diesen Stein." 
-                               data-whatsapp-en="Hello NobleCutGems, I am interested in this gem." 
-                               data-whatsapp-fr="Bonjour NobleCutGems, je suis intéressé par cette gemme.">
-                               Sur Demande
-                            </a>
-                        </div>
+                    <div class="carousel-slide">
+                      <video muted autoplay loop playsinline>
+                        <source src="videos/blauer-spinell-457ct-finger.mp4" type="video/mp4">
+                      </video>
                     </div>
+                    <div class="carousel-slide">
+                      <video muted autoplay loop playsinline>
+                        <source src="videos/blauer-spinell-457ct-pinzette.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="carousel-slide">
+                      <video muted autoplay loop playsinline>
+                        <source src="videos/blauer-spinell-457ct-360.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="carousel-nav">
+                      <span class="carousel-dot active" data-slide="0"></span>
+                      <span class="carousel-dot" data-slide="1"></span>
+                      <span class="carousel-dot" data-slide="2"></span>
+                      <span class="carousel-dot" data-slide="3"></span>
+                    </div>
+                    <div class="carousel-arrows">
+                      <div class="carousel-arrow prev">‹</div>
+                      <div class="carousel-arrow next">›</div>
+                    </div>
+                  </div>
+                  <div class="gem-info">
+                    <h3 class="gem-name">Spinelle Bleu, 4.57 ct</h3>
+                    <p class="gem-details">
+                      Non traité · Qualité VS · Taille Coussin<br>
+                      Coloration bleue intense avec certificat AIG
+                    </p>
+                    <div class="action-buttons">
+                      <a href="#"
+                         class="whatsapp-button starting-price-button"
+                         data-whatsapp-de="Hallo NobleCutGems, ich interessiere mich für den blauen Spinell (4.57 ct) ab 1.750€. Können Sie mir den genauen Preis und weitere Details mitteilen?"
+                         data-whatsapp-en="Hello NobleCutGems, I'm interested in the blue spinel (4.57 ct) from 1,750€. Can you provide the exact price and additional details?"
+                         data-whatsapp-fr="Bonjour NobleCutGems, je suis intéressé par le spinelle bleu (4.57 ct) à partir de 1.750€. Pouvez-vous me donner le prix exact et plus de détails ?"
+                         data-modal-name="Spinelle Bleu Certifié AIG - 4.57 Carat Qualité Collectionneur"
+                         data-modal-details="<strong>Origine:</strong> Spinelle bleu naturel - Qualité collectionneur<br><strong>Poids:</strong> 4.57 ct (exactement 0.914 grammes)<br><strong>Traitement:</strong> Complètement non traité (No Heat)<br><strong>Pureté:</strong> VS (Very Slightly Included) - Parfait à l'œil nu<br><strong>Couleur:</strong> Coloration bleue intense avec saturation naturelle<br><strong>Taille:</strong> Taille coussin avec proportions classiques<br><strong>Certificat:</strong> AIG (Authenticity Guaranteed)<br><strong>Caractéristiques spéciales:</strong> Taille exceptionnellement grande pour spinelle bleu, coloration naturelle intense, excellent rapport qualité-prix<br><div class='stone-value-info'><div class='price-per-carat'><span class='ppc-label'>Prix par Carat:</span><span class='ppc-value'>À partir de 383€/ct</span></div><div class='quality-indicator'><span class='quality-badge value'>Excellent Rapport Qualité-Prix</span><small>Spinelles Bleus Grands Segment Attractif</small></div></div>">
+                         <span class="button-price">À partir de 1.750€</span>
+                         <span class="separator">•</span>
+                         <span class="button-text">Demande de Prix</span>
+                      </a>
+                    </div>
+                  </div>
                 </div>
 
                 <!-- Jedi Spinel - Spinel 2 (FR) -->
