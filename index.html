@@ -365,11 +365,11 @@
             /* Zertifikate-Überschrift optisch wie section-title */
             .cert-title.cert-heading h2 {
                 text-align: center;
-                font-size: 2.4rem;
+                font-size: 3rem;
                 background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
-                margin-bottom: 12px;
+                margin-bottom: 60px;
             }
             
             .cert-title.cert-heading small {
@@ -378,6 +378,10 @@
                 font-weight: 400;
                 color: var(--text-muted);
                 margin-top: 2px;
+            }
+
+            .cert-title.cert-heading {
+                max-width: 700px; /* oder 600, 700, nach Geschmack */
             }
             
             .collection {
