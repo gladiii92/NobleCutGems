@@ -3383,33 +3383,35 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // === DYNAMISCHE KATEGORIE-ZÄHLUNG ===
-      function updateCategoryCounts() {
-        const categories = ['all', 'sapphire', 'spinel', 'emerald', 'ruby', 'other'];
+    // === DYNAMISCHE KATEGORIE-ZÄHLUNG ===
+    function updateCategoryCounts() {
+      const categories = ['all', 'sapphire', 'spinel', 'emerald', 'ruby', 'other'];
+      const activeLangContent = document.querySelector('.lang-content.active');
+      if (!activeLangContent) return;
     
-        categories.forEach(category => {
-          const button = document.querySelector(`[data-category="${category}"]`);
-          const countElement = button?.querySelector('.count');
+      categories.forEach(category => {
+        const button = activeLangContent.querySelector(`[data-category="${category}"]`);
+        const countElement = button?.querySelector('.count');
     
-          if (button && countElement) {
-            let count = 0;
+        if (button && countElement) {
+          let count = 0;
     
-            if (category === 'all') {
-              count = document.querySelectorAll('.lang-content.active .gem-card').length;
-            } else {
-              count = document.querySelectorAll(`.lang-content.active .gem-card[data-category="${category}"]`).length;
-            }
-    
-            countElement.textContent = count;
-    
-            if (count === 0 && category !== 'all') {
-              button.style.display = 'none';
-            } else {
-              button.style.display = 'inline-block';
-            }
+          if (category === 'all') {
+            count = activeLangContent.querySelectorAll('.gem-card').length;
+          } else {
+            count = activeLangContent.querySelectorAll(`.gem-card[data-category="${category}"]`).length;
           }
-        });
-      }
+    
+          countElement.textContent = count;
+    
+          if (count === 0 && category !== 'all') {
+            button.style.display = 'none';
+          } else {
+            button.style.display = 'inline-block';
+          }
+        }
+      });
+    }
 
 
 
