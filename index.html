@@ -102,6 +102,25 @@
                 line-height: 1.8;
                 color: var(--text-muted);
             }
+
+            .about-content.column-layout {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 32px;
+            }
+            
+            .about-text.center {
+                text-align: center;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+            
+            .about-image.center {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
             
             .action-buttons {
                 display: flex;
@@ -340,21 +359,22 @@
                 z-index: 2;
             }
 
-            .cert-title {
-                margin-bottom: 15px;
-                color: var(--primary-gold);
-                font-weight: 700;
+            /* Zertifikate-Überschrift optisch wie section-title */
+            .cert-title.cert-heading h3 {
                 text-align: center;
-                font-size: 1.3rem;
-                line-height: 1.3;
+                font-size: 2.4rem;
+                background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                margin-bottom: 12px;
             }
             
-            .cert-title small {
+            .cert-title.cert-heading small {
                 display: block;
+                font-size: 1.1rem;
                 font-weight: 400;
-                font-size: 0.9rem;
                 color: var(--text-muted);
-                margin-top: 5px;
+                margin-top: 2px;
             }
             
             .collection {
@@ -1600,35 +1620,35 @@
         </section>
 
         <section class="about" id="about">
-            <h2 class="section-title">Über NobleCutGems</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Bei NobleCutGems vereinen wir Leidenschaft und Expertise, um Ihnen die exquisitesten Edelsteine der Welt zu präsentieren. Jeder Stein in unserer Kollektion wurde sorgfältig ausgewählt und repräsentiert hohe Qualität und außergewöhnliche Schönheit.</p>
-                    <br>
-                    <p>Unsere Expertise erstreckt sich über umfangreiche Erfahrung in der Edelsteinbranche. Farbedelsteine seltener als Diamanten – wir bieten nur das Beste für anspruchsvolle Sammler und Liebhaber.</p>
-                </div>
-                  <div class="cert-title">
-                      <h3>Abgeschlossene und anerkannte Zertifikate der IGS<br><small>(International Gem Society)</small></h3>
-                  </div> 
-                <div class="about-image">
-                    <div class="cert-carousel" id="certCarousel-de">
-                        <button class="cert-arrow cert-arrow-left">←</button>
-                        <div class="cert-carousel-inner">
-                            <img src="images/igs_aquamarine.png" alt="IGS Aquamarine Zertifikat" class="active">
-                            <img src="images/igs_ruby.png" alt="IGS Ruby Zertifikat">
-                            <img src="images/igs_sapphire.png" alt="IGS Sapphire Zertifikat">
-                            <img src="images/igs_emerald.png" alt="IGS Emerald Zertifikat">
-                            <img src="images/igs_citrine.png" alt="IGS Citrine Zertifikat">
-                            <img src="images/igs_garnet.png" alt="IGS Garnet Zertifikat">
-                            <img src="images/igs_spinel.png" alt="IGS Spinel Zertifikat">
-                            <img src="images/igs_topaz.png" alt="IGS Topaz Zertifikat">
-                            <img src="images/igs_tourmaline.png" alt="IGS Tourmaline Zertifikat">
-                            <img src="images/igs_zircon.png" alt="IGS Zircon Zertifikat">
-                        </div>
-                        <button class="cert-arrow cert-arrow-right">→</button>
-                    </div>
-                </div>
+          <h2 class="section-title">Über NobleCutGems</h2>
+          <div class="about-content column-layout">
+            <div class="about-text center">
+              <p>Bei NobleCutGems vereinen wir Leidenschaft und Expertise, um Ihnen die exquisitesten Edelsteine der Welt zu präsentieren. Jeder Stein in unserer Kollektion wurde sorgfältig ausgewählt und repräsentiert hohe Qualität und außergewöhnliche Schönheit.</p>
+              <br>
+              <p>Unsere Expertise erstreckt sich über umfangreiche Erfahrung in der Edelsteinbranche. Farbedelsteine seltener als Diamanten – wir bieten nur das Beste für anspruchsvolle Sammler und Liebhaber.</p>
             </div>
+            <div class="cert-title cert-heading">
+              <h3>Abgeschlossene und anerkannte Zertifikate der IGS<br><small>(International Gem Society)</small></h3>
+            </div>
+            <div class="about-image center">
+              <div class="cert-carousel" id="certCarousel-de">
+                <button class="cert-arrow cert-arrow-left">←</button>
+                <div class="cert-carousel-inner">
+                    <img src="images/igs_aquamarine.png" alt="IGS Aquamarine Zertifikat" class="active">
+                    <img src="images/igs_ruby.png" alt="IGS Ruby Zertifikat">
+                    <img src="images/igs_sapphire.png" alt="IGS Sapphire Zertifikat">
+                    <img src="images/igs_emerald.png" alt="IGS Emerald Zertifikat">
+                    <img src="images/igs_citrine.png" alt="IGS Citrine Zertifikat">
+                    <img src="images/igs_garnet.png" alt="IGS Garnet Zertifikat">
+                    <img src="images/igs_spinel.png" alt="IGS Spinel Zertifikat">
+                    <img src="images/igs_topaz.png" alt="IGS Topaz Zertifikat">
+                    <img src="images/igs_tourmaline.png" alt="IGS Tourmaline Zertifikat">
+                    <img src="images/igs_zircon.png" alt="IGS Zircon Zertifikat">
+                </div>
+                <button class="cert-arrow cert-arrow-right">→</button>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section class="collection" id="collection">
