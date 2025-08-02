@@ -117,7 +117,9 @@
             }
             
             .about-image.center {
-                width: 100%;
+                width: 320px;       /* Ebenso auf Original-Größe setzen */
+                max-width: 100%;    /* Für Responsive */
+                margin: 0 auto;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -322,6 +324,7 @@
             .cert-carousel {
                 position: relative;
                 width: 100%;
+                max-width: 320px;
                 height: 220px;
                 margin: 0 auto;
                 overflow: hidden;
@@ -375,6 +378,13 @@
                 font-weight: 400;
                 color: var(--text-muted);
                 margin-top: 2px;
+            }
+
+            .cert-title.cert-heading {
+                max-width: 320px;
+                margin: 0 auto 16px auto;
+                text-align: center;
+                /* Farb- und Schrift-Stile beibehalten */
             }
             
             .collection {
