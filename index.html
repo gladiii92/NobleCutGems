@@ -3385,7 +3385,7 @@
     document.addEventListener('DOMContentLoaded', function() {
       // === DYNAMISCHE KATEGORIE-ZÄHLUNG ===
       function updateCategoryCounts() {
-        const categories = ['all', 'sapphire', 'spinel', 'emerald', 'ruby'];
+        const categories = ['all', 'sapphire', 'spinel', 'emerald', 'ruby', 'other'];
     
         categories.forEach(category => {
           const button = document.querySelector(`[data-category="${category}"]`);
@@ -3410,33 +3410,76 @@
           }
         });
       }
+
+
+
+      function selectCategory(filter) {
+          const buttons = document.querySelectorAll('.category-btn');
+          buttons.forEach(button => button.classList.remove('active'));
+          
+          const activeButton = document.querySelector(`.category-btn[data-category="${filter}"]`);
+          if (activeButton) activeButton.classList.add('active');
+          
+          const container = document.querySelector('.lang-content.active .gem-grid');
+          if (!container) return;
+          
+          let cards = Array.from(container.querySelectorAll('.gem-card'));
+        
+          if (filter !== 'all') {
+            cards.forEach(card => {
+              if (card.getAttribute('data-category') === filter) {
+                card.classList.add('show');
+                card.style.display = 'block';
+              } else {
+                card.classList.remove('show');
+                card.style.display = 'none';
+              }
+            });
+          } else {
+            cards.forEach(card => {
+              card.classList.add('show');
+              card.style.display = 'block';
+            });
+        
+            cards.sort((a, b) => {
+              const priceA = parseFloat(a.getAttribute('data-price')) || 0;
+              const priceB = parseFloat(b.getAttribute('data-price')) || 0;
+              return priceB - priceA;
+            });
+        
+            cards.forEach(card => container.appendChild(card));
+          }
+        }
     
       // === SPRACHUMSCHALTUNG ===
       const langBtns = document.querySelectorAll('.lang-btn');
     
-      function switchLanguage(targetLang) {
-        langBtns.forEach(btn => btn.classList.remove('active'));
-    
-        const activeBtn = document.querySelector(`[data-lang="${targetLang}"]`);
-        if (activeBtn) activeBtn.classList.add('active');
-    
-        const allContent = document.querySelectorAll('.lang-content');
-        allContent.forEach(content => {
-          content.classList.remove('active');
-          content.style.display = 'none';
-        });
-    
-        const targetContent = document.querySelector(`.lang-content[data-lang="${targetLang}"]`);
-        if (targetContent) {
-          targetContent.classList.add('active');
-          targetContent.style.display = 'block';
-    
-          // Nach Sprachwechsel Kategoriezahlen aktualisieren
-          setTimeout(updateCategoryCounts, 100);
-        } else {
-          console.error('Language content not found for:', targetLang);
+        function switchLanguage(targetLang) {
+          langBtns.forEach(btn => btn.classList.remove('active'));
+        
+          const activeBtn = document.querySelector(`[data-lang="${targetLang}"]`);
+          if (activeBtn) activeBtn.classList.add('active');
+        
+          const allContent = document.querySelectorAll('.lang-content');
+          allContent.forEach(content => {
+            content.classList.remove('active');
+            content.style.display = 'none';
+          });
+        
+          const targetContent = document.querySelector(`.lang-content[data-lang="${targetLang}"]`);
+          if (targetContent) {
+            targetContent.classList.add('active');
+            targetContent.style.display = 'block';
+        
+            setTimeout(() => {
+              updateCategoryCounts();
+              selectCategory('all');  // zeigt automatisch "Alle" nach Sprachwechsel
+            }, 100);
+        
+          } else {
+            console.error('Language content not found for:', targetLang);
+          }
         }
-      }
     
       langBtns.forEach(btn => {
         btn.addEventListener('click', function(e) {
@@ -3448,11 +3491,13 @@
     
       // Standardsprache Deutsch setzen
       switchLanguage('de');
+      selectCategory('all');
     
       // === KATEGORIE-FILTER und Sortierung nach Preis (teuerste zuerst) ===
       document.querySelectorAll('.category-btn').forEach(button => {
         button.addEventListener('click', () => {
           const filter = button.getAttribute('data-category');
+          selectCategory(filter);
           document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
           button.classList.add('active');
     
