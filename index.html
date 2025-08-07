@@ -574,7 +574,16 @@
                 margin-bottom: 40px;
                 letter-spacing: 2px;
             }
-            
+
+            h1.hero-subtitle {
+                margin: 0; /* Verhindert unerwünschte Abstände */
+                font-size: 1.5rem; /* Falls im p.hero-subtitle anders definiert ist, anpassen */
+                color: var(--text-muted); /* passend zur aktuellen Farbe */
+                letter-spacing: 2px;
+                margin-bottom: 40px;
+                font-weight: normal; /* Damit es optisch wie bisher aussieht */
+            }
+                        
             .impressum {
                 padding: 100px 50px;
                 background: var(--dark-secondary);
@@ -1350,6 +1359,13 @@
                 .hero h1 {
                     font-size: 3rem;
                 }
+
+                h1.hero-subtitle {
+                    font-size: 2.2rem; /* Oder exakt die mobile Schriftgröße der anderen Überschriften */
+                    line-height: 1.1;
+                    margin-bottom: 40px;
+                }
+           
             
                 .hero-content {
                     padding: 0 20px;
