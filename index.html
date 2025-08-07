@@ -1601,22 +1601,22 @@
 
                 .whatsapp-button.starting-price-button {
                     display: flex;
-                    flex-wrap: wrap;             /* Umbruch erlauben bei Bedarf */
+                    flex-wrap: nowrap;             /* Umbruch erlauben bei Bedarf */
                     justify-content: center;     /* Zentriert den Inhalt */
                     align-items: center;
-                    gap: 4px;                   /* Abstand zwischen den Teilen */
+                    gap: 6px;                   /* Abstand zwischen den Teilen */
                 }
                 
                 .whatsapp-button.starting-price-button .button-price,
                 .whatsapp-button.starting-price-button .separator,
                 .whatsapp-button.starting-price-button .button-text {
                     white-space: nowrap;         /* Verhindert Umbruch in einzelnen Teilen */
+                    flex-basis: auto;            /* Standardbreite, nicht 100% */
                 }
                 
                 .whatsapp-button.starting-price-button .button-text {
-                    flex-basis: 100%;            /* Preisanfrage in eigener Zeile */
-                    text-align: center;
-                    margin-top: 4px;
+                    margin-top: 0;
+                    text-align: initial;
                 }
                 
             }
