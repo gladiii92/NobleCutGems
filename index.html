@@ -576,12 +576,15 @@
             }
 
             h1.hero-subtitle {
-                margin: 0; /* Verhindert unerwünschte Abstände */
-                font-size: 1.5rem; /* Falls im p.hero-subtitle anders definiert ist, anpassen */
-                color: var(--text-muted); /* passend zur aktuellen Farbe */
-                letter-spacing: 2px;
-                margin-bottom: 40px;
-                font-weight: normal; /* Damit es optisch wie bisher aussieht */
+                font-weight: normal; /* oder wie bisher */
+                margin: 0 0 40px 0;
+                font-size: 1.5rem; /* bestehende Größe */
+                letter-spacing: 2px; /* bestehend */
+                
+                /* Farbverlauf wie bei section-title */
+                background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
             }
                         
             .impressum {
@@ -1361,12 +1364,10 @@
                 }
 
                 h1.hero-subtitle {
-                    font-size: 2.2rem; /* Oder exakt die mobile Schriftgröße der anderen Überschriften */
+                    font-size: 2.2rem;
                     line-height: 1.1;
-                    margin-bottom: 40px;
                 }
-           
-            
+         
                 .hero-content {
                     padding: 0 20px;
                 }
