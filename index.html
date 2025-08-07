@@ -1534,6 +1534,7 @@
                 }
             
                 .whatsapp-button.purchase-button .button-text {
+                    white-space: nowrap;
                     font-size: 0.95rem;
                 }
             
@@ -1600,12 +1601,17 @@
                 }
 
                 .whatsapp-button.starting-price-button {
+                    max-width: 100%;
+                    box-sizing: border-box; /* damit Padding innerhalb der Breite bleibt */
                     display: flex;
                     flex-wrap: nowrap;             /* Umbruch erlauben bei Bedarf */
                     justify-content: center;     /* Zentriert den Inhalt */
                     align-items: center;
                     gap: 6px;                   /* Abstand zwischen den Teilen */
                     font-size: 0.9rem;         /* Damit wird der Text kleiner als z.B. 1.1rem */
+                    overflow: hidden; /* Optional: wenn Überschreitung */
+                    text-overflow: ellipsis; /* Optional für Textkürzung */
+                    white-space: nowrap;
                 }
                 
                 .whatsapp-button.starting-price-button .button-price,
