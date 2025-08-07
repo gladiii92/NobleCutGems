@@ -1608,7 +1608,7 @@
                     justify-content: center;     /* Zentriert den Inhalt */
                     align-items: center;
                     gap: 6px;                   /* Abstand zwischen den Teilen */
-                    font-size: 0.9rem;         /* Damit wird der Text kleiner als z.B. 1.1rem */
+                    font-size: clamp(0.7rem, 2.5vw, 1.1rem);
                     overflow: hidden; /* Optional: wenn Überschreitung */
                     text-overflow: ellipsis; /* Optional für Textkürzung */
                     white-space: nowrap;
